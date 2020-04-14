@@ -21,15 +21,10 @@ import {
 } from "..";
 import * as appPaths from "../../app/routes";
 import { CheckoutContext } from "../../checkout/context";
-import { maybe } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
-import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
 
 import cartImg from "../../images/cart.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
-import hamburgerImg from "../../images/hamburger.svg";
-import logoImg from "../../images/logo.svg";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 
@@ -52,7 +47,6 @@ const MainMenu: React.FC = () => {
           <div className="main-menu__left">
             <TypedMainMenuQuery renderOnError displayLoader={false}>
               {({ data }) => {
-                const items = maybe(() => data.shop.navigation.main.items, []);
 
                 return (
                   <ul>
@@ -61,49 +55,16 @@ const MainMenu: React.FC = () => {
                       render={() => (
                         <li
                           className="main-menu__hamburger"
-                          onClick={() =>
-                            overlayContext.show(
-                              OverlayType.sideNav,
-                              OverlayTheme.left,
-                              { data: items }
-                            )
-                          }
+                          onClick={() => console.log('GO BACK!')}
                         >
-                          <ReactSVG
-                            path={hamburgerImg}
-                            className={"main-menu__hamburger--icon"}
-                          />
-                          <ReactSVG
-                            path={hamburgerHoverImg}
-                            className={"main-menu__hamburger--hover"}
-                          />
+                          Ret
                         </li>
                       )}
-                    />
-                    <Media
-                      query={{ minWidth: mediumScreen }}
-                      render={() =>
-                        items.map(item => (
-                          <li
-                            data-cy="main-menu__item"
-                            className="main-menu__item"
-                            key={item.id}
-                          >
-                            <NavDropdown overlay={overlayContext} {...item} />
-                          </li>
-                        ))
-                      }
                     />
                   </ul>
                 );
               }}
             </TypedMainMenuQuery>
-          </div>
-
-          <div className="main-menu__center">
-            <Link to={appPaths.baseUrl}>
-              <ReactSVG path={logoImg} />
-            </Link>
           </div>
 
           <div className="main-menu__right">
