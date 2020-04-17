@@ -8,7 +8,6 @@ import {
   CartSummary,
   GuestAddressForm,
   Steps,
-  UserAddressSelector,
 } from "../../components";
 import { CheckoutStep } from "../../context";
 import { shippingOptionsUrl } from "../../routes";
@@ -105,13 +104,6 @@ const Page: React.FC<IShippingPageProps> = ({
     }
   };
 
-  const onSubmitHandler = (address: FormAddressType) => {
-    return new Promise<boolean>(async resolve => {
-      const result = await onSaveShippingAddressHandler(address);
-      resolve(!!result);
-    });
-  };
-
   const getShippingProps = (userCheckoutData: ICheckoutUserArgs) => ({
     buttonText: "Next",
     errors,
@@ -133,16 +125,7 @@ const Page: React.FC<IShippingPageProps> = ({
           token={proceedToNextStepData.token}
           checkout={checkout}
         >
-          {user ? (
-            <UserAddressSelector
-              {...shippingProps}
-              update={update}
-              onSubmit={onSubmitHandler}
-              type="shipping"
-            />
-          ) : (
-            <GuestAddressForm {...shippingProps} shop={shop} />
-          )}
+        <GuestAddressForm {...shippingProps} shop={shop} />
         </Steps>
       </div>
     </CartSummary>

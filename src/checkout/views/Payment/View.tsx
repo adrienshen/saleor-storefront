@@ -12,7 +12,6 @@ import {
   CheckoutStep,
 } from "../../context";
 import { reviewUrl } from "../../routes";
-import CreditCard from "./Gateways/Braintree/CreditCard";
 import Dummy from "./Gateways/Dummy";
 import { Stripe } from "./Gateways/Stripe";
 import { TypedPaymentMethodCreateMutation } from "./queries";
@@ -127,16 +126,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                       paymentGatewayConfig: provider.config,
                     };
                     switch (providerName) {
-                      case PROVIDERS.BRAINTREE.label:
-                        return (
-                          <Option
-                            label="Credit Card"
-                            {...optionProps(providerName)}
-                          >
-                            <CreditCard {...paymentGatewayProps} />
-                          </Option>
-                        );
-
                       case PROVIDERS.DUMMY.label:
                         return (
                           <Option label="Dummy" {...optionProps(providerName)}>
@@ -166,7 +155,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                         );
                       }}
                     >
-                      Continue to Review Your Order
+                      Confirm Order
                     </Button>
                   </div>
                 </div>

@@ -2,14 +2,15 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { NotFound } from "../../components";
-import { Billing, Payment, Review, Shipping, ShippingOptions } from "../views";
-import { CheckoutRouteDispatcher } from "./CheckoutRouteDispatcher";
+import { Billing, Contact, Payment, Review, Shipping, ShippingOptions } from "../views";
+// import { CheckoutRouteDispatcher } from "./CheckoutRouteDispatcher";
 
 import * as paths from ".";
 
 export const CheckoutRoutes: React.FC = () => (
   <Switch>
-    <Route exact path={paths.baseUrl} component={CheckoutRouteDispatcher} />
+    <Route exact path={paths.baseUrl} component={Contact} />
+    <Route path={paths.contactUrl} component={Contact} />
     <Route path={paths.shippingAddressUrl} component={Shipping} />
     <Route path={paths.shippingOptionsUrl} component={ShippingOptions} />
     <Route path={paths.billingUrl} component={Billing} />
