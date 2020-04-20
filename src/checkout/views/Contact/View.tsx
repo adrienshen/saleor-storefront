@@ -21,7 +21,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
 
-
   return (
     <CheckoutContext.Consumer>
       {({ update, checkout }) => (

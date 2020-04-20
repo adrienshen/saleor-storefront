@@ -11,10 +11,19 @@ export const AccountMenuMobile: React.FC<IProps> = ({
   links,
   active,
 }: IProps) => {
-  const [showMenu, setShowMenu] = React.useState(true);
+  const [showMenu, setShowMenu] = React.useState(false);
+
+  const { setElementRef } = useHandlerWhenClickedOutside(() => {
+    setShowMenu(false);
+  });
 
   return (
-    <S.Wrapper>
+    <S.Wrapper
+      onClick={() => {
+        setShowMenu(true);
+      }}
+      ref={setElementRef()}
+    >
       {active
         .replace(/\//g, "")
         .replace("-", " ")
@@ -24,6 +33,7 @@ export const AccountMenuMobile: React.FC<IProps> = ({
       <Icon name="select_arrow" size={8} />
       {showMenu && (
         <S.Overlay>
+          <S.MenuHeader>Go to</S.MenuHeader>
           {links.map(link => {
             const menuItem = link
               .replace(/\//g, "")
@@ -32,11 +42,17 @@ export const AccountMenuMobile: React.FC<IProps> = ({
               .map(s => s.charAt(0).toUpperCase() + s.substring(1))
               .join(" ");
             return (
-              <div key={link}
+              <div
+                onClick={evt => {
+                  evt.stopPropagation();
+                  setShowMenu(false);
+                }}
+                key={link}
               >
                 <Link to={link}>
                   <S.MenuItem active={active === link}>
-                  ICON | {menuItem}
+                    {menuItem}
+                    <Icon name="select_arrow" size={8} />
                   </S.MenuItem>
                 </Link>
               </div>

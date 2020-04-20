@@ -32,17 +32,10 @@ const ContactForm: React.FC<any> = ({
       {children}
       <fieldset className="form-fieldset">
         <TextField
-          label="First Name"
+          label="Full Name"
           type="given-name"
           name="firstName"
           autoComplete="given-name"
-          required
-        />
-        <TextField
-          label="Last Name"
-          type="family-name"
-          name="lastName"
-          autoComplete="family-name"
           required
         />
         <TextField
