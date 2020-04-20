@@ -7,27 +7,29 @@ import { Form, TextField } from "..";
 // import { FormAddressType, IShippingAddressFormProps } from "./types";
 
 import { CheckoutNextButton } from "../Button";
+import { useLocalStorage } from "@hooks";
 
 const ContactForm: React.FC<any> = ({
-  data,
   buttonText,
   errors,
   loading,
-  onSubmit,
   children,
-  shippingAsBilling = false,
-  noShipping = false,
-  type = "shipping",
-}) => (
-  <div className="address-form">
+}) => {
+  const { storedValue: contactFields, setValue: setContactFields } = useLocalStorage(
+    "contactFields"
+  );
+
+  // console.log(contactFields, setContactFields);
+
+  return <div className="address-form">
     <Form<any>
       errors={errors}
       onSubmit={(evt, data) => {
         evt.preventDefault();
-        // onSubmit(data);
-        console.log('Submitting...');
+        // console.log('Save to LS >> ', data);
+        setContactFields(data);
       }}
-      data={null}
+      data={contactFields || null}
     >
       {children}
       <fieldset className="form-fieldset">
@@ -58,6 +60,6 @@ const ContactForm: React.FC<any> = ({
       </CheckoutNextButton>
     </Form>
   </div>
-);
+};
 
 export default ContactForm;
