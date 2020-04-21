@@ -15,6 +15,7 @@ import { ICheckoutData, ICheckoutUserArgs } from "../../types";
 import { IShippingPageProps } from "./types";
 
 import { CountryCode } from "types/globalTypes";
+import { useLocalStorage } from "@temp/@next/hooks";
 
 const computeCheckoutData = (
   data: FormAddressType,
@@ -66,12 +67,25 @@ const Page: React.FC<IShippingPageProps> = ({
   const loading = createCheckoutLoading || updateAddressLoading;
   const email = maybe(() => user.email, null);
 
+  const { storedValue: contactFields } = useLocalStorage(
+    "contactFields"
+  );
+
   const onSaveShippingAddressHandler = async (formData: FormAddressType) => {
+    // console.log('contactFields >> ', contactFields);
+    formData = {
+      ...formData,
+      firstName: contactFields.firstName,
+      lastName: '',
+      phone: contactFields.phone,
+    }
+    console.log('form data >> ', formData);
+
     if (!checkoutId) {
       const data = computeCheckoutData(formData, lines);
       return create({
         checkoutInput: {
-          email: data.email,
+          email: contactFields.email,
           lines: data.lines,
           shippingAddress: data.shippingAddress,
         },
@@ -80,7 +94,7 @@ const Page: React.FC<IShippingPageProps> = ({
     const data = computeCheckoutData(formData, null, email);
     return updateAddress({
       checkoutId,
-      email: data.email,
+      email: contactFields.email,
       shippingAddress: data.shippingAddress,
     });
   };
@@ -125,7 +139,7 @@ const Page: React.FC<IShippingPageProps> = ({
           token={proceedToNextStepData.token}
           checkout={checkout}
         >
-        <GuestAddressForm {...shippingProps} shop={shop} />
+          <GuestAddressForm {...shippingProps} shop={shop} />
         </Steps>
       </div>
     </CartSummary>

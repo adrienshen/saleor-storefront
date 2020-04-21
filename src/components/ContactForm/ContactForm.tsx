@@ -8,12 +8,15 @@ import { Form, TextField } from "..";
 
 import { CheckoutNextButton } from "../Button";
 import { useLocalStorage } from "@hooks";
+import { withRouter, generatePath } from "react-router";
+import { shippingAddressUrl } from "@temp/checkout/routes";
 
 const ContactForm: React.FC<any> = ({
   buttonText,
   errors,
   loading,
   children,
+  history,
 }) => {
   const { storedValue: contactFields, setValue: setContactFields } = useLocalStorage(
     "contactFields"
@@ -28,6 +31,7 @@ const ContactForm: React.FC<any> = ({
         evt.preventDefault();
         // console.log('Save to LS >> ', data);
         setContactFields(data);
+        location.href = generatePath(shippingAddressUrl);
       }}
       data={contactFields || null}
     >
@@ -56,10 +60,10 @@ const ContactForm: React.FC<any> = ({
         />
       </fieldset>
       <CheckoutNextButton className="btn-checkout-continue" type="submit" disabled={loading}>
-        {loading ? "Loading" : buttonText}
+        {loading ? "Loading" : 'Next'}
       </CheckoutNextButton>
     </Form>
   </div>
 };
 
-export default ContactForm;
+export default withRouter(ContactForm);

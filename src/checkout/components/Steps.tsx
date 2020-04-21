@@ -13,7 +13,7 @@ const steps = [
   {
     header: "Contact Details",
     path: contactUrl,
-    step: CheckoutStep.ContactDetails,
+    step: CheckoutStep.Contact,
     type: 'contact',
   },
   {
@@ -72,6 +72,8 @@ const Steps: React.FC<{
   });
 
   const availableSteps = getAvailableSteps(checkout, variantsProducts);
+
+  console.log('available steps >> ', availableSteps);
 
   return (
     <>

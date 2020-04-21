@@ -48,6 +48,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
     dummyStatus
   );
   const stepFromPath = useCheckoutStepFromPath(pathname);
+  console.log('step from path >> ', stepFromPath);
 
   return (
     <div className="checkout">
@@ -64,6 +65,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
               !step ||
               (!stepFromPath && checkoutBaseUrl !== pathname)
             ) {
+              console.log('HERE LOADER ', stepFromPath);
               return <Loader />;
             }
 

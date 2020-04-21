@@ -4,7 +4,7 @@ import { CardData } from "./types/CardData";
 import { Checkout } from "./types/Checkout";
 
 export enum CheckoutStep {
-  ContactDetails = 1,
+  Contact = 1,
   ShippingAddress,
   ShippingOption,
   BillingAddress,
