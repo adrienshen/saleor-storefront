@@ -15,6 +15,7 @@ import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
 import { completeCheckout } from "./types/completeCheckout";
 import { CheckoutNextButton } from "@temp/components/Button";
+import { Stepper } from "@temp/checkout/components/Stepper";
 
 const completeCheckout = (
   data: completeCheckout,
@@ -53,16 +54,10 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
 }) => {
   const alert = useAlert();
   const {
-    cardData,
-    dummyStatus,
     checkout,
     clear: clearCheckout,
   } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
-
-  const discountExists = checkout.discount && !!checkout.discount.amount;
-
-  console.log('token >> ', token);
 
   return (
     <>
@@ -71,6 +66,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
         <div className="checkout__step checkout__step--inactive">
           <CheckoutTitle>Confirm Order</CheckoutTitle>
         </div>
+
+        <Stepper activeStep={3} />
 
         <div className="checkout__content">
           <div className="checkout-review__content">

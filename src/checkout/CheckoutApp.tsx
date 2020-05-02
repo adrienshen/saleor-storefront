@@ -64,7 +64,6 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
               !step ||
               (!stepFromPath && checkoutBaseUrl !== pathname)
             ) {
-              console.log('HERE LOADER ', stepFromPath);
               return <Loader />;
             }
 
