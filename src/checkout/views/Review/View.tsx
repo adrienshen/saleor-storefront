@@ -62,17 +62,11 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
 
   const discountExists = checkout.discount && !!checkout.discount.amount;
 
+  console.log('token >> ', token);
+
   return (
     <>
       <div className="checkout-review">
-        <Link
-          to={generatePath(paymentUrl, { token })}
-          className="checkout-review__back"
-        >
-          Go back to the previous Step
-        </Link>
-
-        
 
         <div className="checkout__step checkout__step--inactive">
           <CheckoutTitle>Confirm Order</CheckoutTitle>

@@ -19,7 +19,7 @@ const ContactForm: React.FC<any> = ({
   history,
 }) => {
   const { storedValue: contactFields, setValue: setContactFields } = useLocalStorage(
-    "contactFields"
+    'contactFields'
   );
 
   // console.log(contactFields, setContactFields);

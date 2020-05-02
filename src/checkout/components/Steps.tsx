@@ -73,8 +73,6 @@ const Steps: React.FC<{
 
   const availableSteps = getAvailableSteps(checkout, variantsProducts);
 
-  console.log('available steps >> ', availableSteps);
-
   return (
     <>
       {availableSteps.map(({ header, step, path }, index) => (

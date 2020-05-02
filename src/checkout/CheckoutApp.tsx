@@ -48,7 +48,6 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
     dummyStatus
   );
   const stepFromPath = useCheckoutStepFromPath(pathname);
-  console.log('step from path >> ', stepFromPath);
 
   return (
     <div className="checkout">
