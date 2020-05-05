@@ -19,13 +19,12 @@ const Page = props => {
 
   return (
     <div style={{ "backgroundImage": `url(${data.collection.backgroundImage.url})` }} className="divImg">
-      <PageHeader handleClick={handleClick}/>
+      <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
       <div className="overlay-wrap">
         <div
           className={show ? "overlay-wrap--inner overlay-down-arrow-div" : " overlay-wrap--inner overlay-arrow-div"}>
           <div>
-            <img src={show ? topArrow : bottomArrow}
-                 className="overlay-arrow" onClick={handleOverlay}/>
+            <img src={show ? topArrow : bottomArrow} className="overlay-arrow" onClick={handleOverlay}/>
           </div>
           <div className={show ? "overlay-height overlay-height-down" : "overlay-height"}>
             <div className="overlay-heading">

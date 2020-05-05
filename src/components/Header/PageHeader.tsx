@@ -5,16 +5,16 @@ import cartIcon from "../../images/cart-icon.svg";
 import searchIcon from "../../images/search-icon.svg";
 
 export const PageHeader = (props) => {
-  const { handleClick } = props
+  const { handleClick, back, search, cart } = props
 
   return(
     <div className="browse-cabinet__header">
       <div className="browse-cabinet__header-left" onClick={handleClick}>
-        <ReactSVG path={arrowLeftIcon} className="browse-cabinet__header-icon"/>
+        { back && <ReactSVG path={arrowLeftIcon} className="browse-cabinet__header-icon"/> }
       </div>
       <div className="browse-cabinet__header-right">
-        <ReactSVG path={cartIcon} className="browse-cabinet__header-icon cart-icon"/>
-        <ReactSVG path={searchIcon} className="browse-cabinet__header-icon search-icon"/>
+        { cart && <ReactSVG path={cartIcon} className="browse-cabinet__header-icon cart-icon"/> }
+        { search && <ReactSVG path={searchIcon} className="browse-cabinet__header-icon search-icon"/> }
       </div>
     </div>
   )

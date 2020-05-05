@@ -9,7 +9,7 @@ export const Page = (props) => {
 
   return (
     <div className="specification-wrapper inner-page-wrapper">
-      <PageHeader handleClick={handleClick}/>
+      <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
       <div>
         <div className="wrapper-header"><span>Set Details</span></div>
         <div className="wrapper-description">
