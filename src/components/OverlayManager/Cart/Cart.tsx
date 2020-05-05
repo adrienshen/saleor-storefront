@@ -35,7 +35,6 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 };
 
 export function CartBasic({ overlay, cartData }) {
-  console.log("cart data >>> ", cartData);
   return (
     <>
       <Online>
@@ -71,7 +70,7 @@ export function CartBasic({ overlay, cartData }) {
                         <div className="overlay__header">
                           <ReactSVG
                             path={chevronLeft}
-                            onClick={() => console.log("overlay.hide")}
+                            onClick={() => null}
                             className="overlay__header__close-icon"
                           />
                         </div>
@@ -105,7 +104,7 @@ export function CartBasic({ overlay, cartData }) {
                           </>
                         ) : (
                           <Empty
-                            overlayHide={() => console.log("overlay hide")}
+                            overlayHide={null}
                           />
                         )}
                       </div>

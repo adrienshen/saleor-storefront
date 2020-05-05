@@ -79,7 +79,6 @@ const Page: React.FC<IShippingPageProps> = ({
       lastName: '',
       phone: contactFields.phone,
     }
-    console.log('form data >> ', formData);
 
     if (!checkoutId) {
       const data = computeCheckoutData(formData, lines);

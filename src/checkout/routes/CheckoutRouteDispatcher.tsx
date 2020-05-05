@@ -39,7 +39,6 @@ export const CheckoutRouteDispatcher: React.FC<RouteComponentProps<{
   );
 
   if (checkoutLoading || variantsProductsLoading || !step) {
-    console.log('HERE:: step ', step);
     return <Loader />;
   }
 
