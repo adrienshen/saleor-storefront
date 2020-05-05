@@ -3,24 +3,24 @@ import { Route, Switch } from "react-router-dom";
 
 import { PasswordReset } from "@pages";
 import { CheckoutLogin, NotFound } from "../../components";
-import { AvailableColors } from "../../components/Collection/AvailableColors";
-import { CollectionItems } from "../../components/Collection/CollectionItems";
-import { CollectionSamples } from "../../components/Collection/CollectionSamples";
-import { CollectionSpecification } from "../../components/Collection/CollectionSpecification";
-import { ViewDetails } from "../../components/Collection/ViewDetails";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
+import { AvailableColors } from "../../views/CollectionIndex/Colors";
 import { BrowseCabinets } from "../../views/BrowseCabinets";
 import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { CollectionIndex } from "../../views/CollectionIndex";
+import { CollectionItems } from "../../views/CollectionIndex/ItemsIncluded";
+import { CollectionSamples } from "../../views/CollectionIndex/Samples";
+import { CollectionSpecification } from "../../views/CollectionIndex/Specification";
 import { HomePage } from "../../views/Home";
 import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
+import { ViewDetails } from "../../views/CollectionIndex/ViewDetails";
 
 import * as paths from "./paths";
 

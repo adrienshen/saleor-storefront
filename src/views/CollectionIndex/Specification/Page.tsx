@@ -1,0 +1,27 @@
+import * as React from "react";
+import { PageHeader } from "../../../components/Header/PageHeader";
+
+export const Page = (props) => {
+  const { data } = props;
+  const handleClick = () => {
+    props.history.goBack();
+  };
+
+  return (
+    <div className="specification-wrapper inner-page-wrapper">
+      <PageHeader handleClick={handleClick}/>
+      <div>
+        <div className="wrapper-header"><span>Set Details</span></div>
+        <div className="wrapper-description">
+          <div>
+            <p className="wrapper-data">{data.collection.description}</p>
+            <p className="wrapper-data">{data.collection.description}</p>
+          </div>
+        </div>
+        {/*<div className="wrapper-description"><span>{data.collection.description}</span></div>*/}
+      </div>
+    </div>
+  );
+};
+
+export default Page;
