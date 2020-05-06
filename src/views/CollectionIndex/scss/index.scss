@@ -116,6 +116,7 @@
 .inner-page-wrapper {
   padding: 17px;
   height: 100vh;
+  background-color: #F7F7F7;
 
   .browse-cabinet__header {
     padding-top: 17px;
@@ -127,17 +128,110 @@
     font-size: 25px;
   }
 
-  .wrapper-coming-soon {
-    height: calc(100vh - 200px);
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .text {
-      font-size: 30px;
-      font-weight: 700;
-      color: #B09A51;
+  .wrapper-img {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 14px;
+    row-gap: 14px;
+    margin-bottom: 34px;
+
+    &-main {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      background-color: #ffffff;
+      height: 200px;
+      border-radius: 5px;
+
+      &-inner {
+        border: 1px solid transparent;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 7px 22px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        &.withBorder {
+          border: 1px solid #B09A51;
+        }
+
+        &--header {
+          display: flex;
+          justify-content: center;
+          font-size: 14px;
+          color: #4E4E4E;
+        }
+
+        &--img {
+          height: calc(100% - 62px);
+          margin: 8px 0 14px;
+
+          img {
+            max-width: 100%;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &--price {
+          display: flex;
+          justify-content: center;
+
+          .old-price {
+            font-size: 12px;
+            margin-right: 8px;
+            color: #AAAAAA;
+          }
+
+          .new-price {
+            font-size: 13px;
+            color: #B09A51;
+          }
+        }
+      }
     }
+
+  }
+
+  .home-page__btn {
+    transition: all 0.3s;
+    position: relative;
+    z-index: 0;
+
+    &:hover {
+      &:after {
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    &:after {
+      background: rgba(0, 0, 0, 0.2);
+      content: '';
+      position: absolute;
+      z-index: -1;
+      height: 0;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      border-radius: 7px;
+      transition: all 0.3s ease;
+    }
+
+    &:before {
+      background: rgba(0, 0, 0, 0.2);
+      content: '';
+      position: absolute;
+      z-index: -1;
+    }
+
   }
 }
 

@@ -5,7 +5,7 @@ import cartIcon from "../../images/cart-icon.svg";
 import searchIcon from "../../images/search-icon.svg";
 
 export const PageHeader = (props) => {
-  const { handleClick, back, search, cart } = props
+  const { handleClick, back, search, cart, itemsCount } = props
 
   return(
     <div className="browse-cabinet__header">
@@ -13,7 +13,12 @@ export const PageHeader = (props) => {
         { back && <ReactSVG path={arrowLeftIcon} className="browse-cabinet__header-icon"/> }
       </div>
       <div className="browse-cabinet__header-right">
-        { cart && <ReactSVG path={cartIcon} className="browse-cabinet__header-icon cart-icon"/> }
+        { cart &&
+          <div className="cart-main">
+            <span className="cart-main-item">{itemsCount}</span>
+            <ReactSVG path={cartIcon} className="browse-cabinet__header-icon cart-icon"/>
+          </div>
+        }
         { search && <ReactSVG path={searchIcon} className="browse-cabinet__header-icon search-icon"/> }
       </div>
     </div>
