@@ -128,6 +128,19 @@
     font-size: 25px;
   }
 
+  .wrapper-coming-soon {
+    height: calc(100vh - 200px);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .text {
+      font-size: 30px;
+      font-weight: 700;
+      color: #B09A51;
+    }
+  }
+
   .wrapper-img {
     display: grid;
     grid-template-columns: repeat(2, auto);

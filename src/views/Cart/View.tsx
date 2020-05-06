@@ -1,4 +1,5 @@
 import "./scss/index.scss";
+import { PageHeader } from "../../components/Header/PageHeader";
 
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
@@ -16,6 +17,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
 }) => {
   return (
     <div className="container cart-page">
+      <PageHeader back={true} cart={true} search={true}/>
       <h1 className="checkout__header cart-page__header">Shopping bag</h1>
       <CheckoutContext.Consumer>
         {checkout => (

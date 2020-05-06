@@ -5,6 +5,7 @@ export const Page = (props) => {
   const { data } = props
   const [images, selectedImages] = useState([])
   const [cartCount, addItemIntoCart] = useState(0)
+  localStorage.setItem('show', "true")
 
   const handleClick = () => {
     props.history.goBack()
@@ -20,7 +21,13 @@ export const Page = (props) => {
   }
 
   const handleOrderSamples = () => {
-    addItemIntoCart(images.length)
+    const count = images.length
+    addItemIntoCart(count)
+    if(count === 0){
+      localStorage.removeItem('cartItems')
+    }else{
+      localStorage.setItem('cartItems', String(count))
+    }
   }
 
   return (
@@ -28,7 +35,7 @@ export const Page = (props) => {
       <PageHeader back={true} cart={true} search={true} itemsCount={cartCount} handleClick={handleClick}/>
       <div>
         <div className="wrapper-header">Samples</div>
-        <div className="wrapper-coming-soon wrapper-img">
+        <div className="wrapper-img">
           { data.products.edges.map((sample, i) =>
             <div className="wrapper-img-main">
               <div className={images ? images.indexOf(sample.node.id) > -1 ? "wrapper-img-main-inner withBorder": "wrapper-img-main-inner noBorder" : ""}>

@@ -6,19 +6,21 @@ export const Page = (props) => {
   const handleClick = () => {
     props.history.goBack();
   };
+  localStorage.setItem('show', "true")
 
   return (
     <div className="specification-wrapper inner-page-wrapper">
       <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
       <div>
-        <div className="wrapper-header"><span>Set Details</span></div>
+        <div className="wrapper-header">
+          <span>Set Details</span>
+        </div>
         <div className="wrapper-description">
           <div>
             <p className="wrapper-data">{data.collection.description}</p>
             <p className="wrapper-data">{data.collection.description}</p>
           </div>
         </div>
-        {/*<div className="wrapper-description"><span>{data.collection.description}</span></div>*/}
       </div>
     </div>
   );

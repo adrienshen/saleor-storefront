@@ -8,6 +8,11 @@ import { PageHeader } from "../../components/Header/PageHeader";
 const Page = props => {
   const [show, showOverlay] = useState(false);
   const { data, history } = props;
+  const toShow = localStorage.getItem('show')
+  if(toShow === "true") {
+    showOverlay(true)
+  }
+  localStorage.removeItem('show')
 
   const handleOverlay = () => {
     showOverlay(!show);

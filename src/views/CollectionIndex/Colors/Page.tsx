@@ -6,6 +6,7 @@ export const Page = (props) => {
   const handleClick = () => {
     props.history.goBack()
   }
+  localStorage.setItem('show', "true")
 
   return(
     <div className="inner-page-wrapper">
