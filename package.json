@@ -22,7 +22,6 @@
     "apollo-link-http": "^1.5.17",
     "apollo-link-retry": "^2.2.16",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "braintree-web": "^3.62.0",
     "classnames": "^2.2.6",
     "core-js": "^2.6.11",
     "cross-env": "^5.2.1",
