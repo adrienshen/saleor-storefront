@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const PageHeader = (props) => {
   const { handleClick, back, search, cart, itemsCount } = props;
-  const totItems = localStorage.getItem("cartItems")
+  const totItems = localStorage.getItem("cartItems") ? localStorage.getItem("cartItems") : 0
 
   return (
     <div className="browse-cabinet__header">

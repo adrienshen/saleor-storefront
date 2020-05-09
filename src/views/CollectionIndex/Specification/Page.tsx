@@ -3,6 +3,8 @@ import { PageHeader } from "../../../components/Header/PageHeader";
 
 export const Page = (props) => {
   const { data } = props;
+  const description = JSON.parse(data.collection.descriptionJson)
+
   const handleClick = () => {
     props.history.goBack();
   };
@@ -17,8 +19,7 @@ export const Page = (props) => {
         </div>
         <div className="wrapper-description">
           <div>
-            <p className="wrapper-data">{data.collection.description}</p>
-            <p className="wrapper-data">{data.collection.description}</p>
+            <p className="wrapper-data">{description.blocks[0].text}</p>
           </div>
         </div>
       </div>

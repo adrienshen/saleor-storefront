@@ -11,6 +11,7 @@ export const collectionSampleQuery = gql`
     $id: ID!
     $after: String
     $pageSize: Int
+    $catId: ID
   ) {
     collection(id: $id) {
       id
@@ -27,6 +28,7 @@ export const collectionSampleQuery = gql`
       first: $pageSize
       filter: {
         collections: [$id]
+        categories: [$catId]
       }
     ) {
       totalCount

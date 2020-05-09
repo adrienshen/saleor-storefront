@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { PageHeader } from "../../../components/Header/PageHeader";
 
 export const Page = (props) => {
   const { data } = props
   const [images, selectedImages] = useState([])
   const [cartCount, addItemIntoCart] = useState(0)
+  const collect = [];
   localStorage.setItem('show', "true")
 
   const handleClick = () => {
@@ -18,10 +19,14 @@ export const Page = (props) => {
     }else{
       selectedImages([...images, e.target.id]);
     }
-  }
+  };
+
+  useEffect(() => {
+    collect[props.collectionId] = [...images]
+  }, [images])
 
   const handleOrderSamples = () => {
-    const count = images.length
+    const count = collect[props.collectionId].length
     addItemIntoCart(count)
     if(count === 0){
       localStorage.removeItem('cartItems')
@@ -37,8 +42,11 @@ export const Page = (props) => {
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
           { data.products.edges.map((sample, i) =>
-            <div className="wrapper-img-main">
-              <div className={images ? images.indexOf(sample.node.id) > -1 ? "wrapper-img-main-inner withBorder": "wrapper-img-main-inner noBorder" : ""}>
+            <div className="wrapper-img-main" key={i}>
+              <div className={images ?
+                images.indexOf(sample.node.id) > -1 ?
+                  "wrapper-img-main-inner withBorder": "wrapper-img-main-inner noBorder" : ""}
+              >
                 <div className="wrapper-img-main-inner--header">
                   <span>{sample.node.name}</span>
                 </div>
