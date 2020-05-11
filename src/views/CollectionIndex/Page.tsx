@@ -1,30 +1,26 @@
 import topArrow from "images/arrow-down.svg";
 import bottomArrow from "images/arrow-up.svg";
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/Header/PageHeader";
-
+import { Paths } from "./Paths";
+import useLocalStorage from "./useLocalStorage";
 
 const Page = props => {
-  const [show, showOverlay] = useState(false);
+  const [show, showOverlay] = useLocalStorage('show', false);
   const { data, history } = props;
-  const toShow = localStorage.getItem('show')
-  if(toShow === "true") {
-    showOverlay(true)
-  }
-  localStorage.removeItem('show')
 
   const handleOverlay = () => {
     showOverlay(!show);
   };
 
-  const handleClick = () => {
+  const handleBack = () => {
     history.push("/collections/cabinets");
   };
 
   return (
     <div style={{ "backgroundImage": `url(${data.collection.backgroundImage.url})` }} className="divImg">
-      <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
+      <PageHeader back={true} cart={true} search={true} handleClick={handleBack}/>
       <div className="overlay-wrap">
         <div
           className={show ? "overlay-wrap--inner overlay-down-arrow-div" : " overlay-wrap--inner overlay-arrow-div"}>
@@ -37,21 +33,14 @@ const Page = props => {
               <span>$81,318</span>
             </div>
             <div className="overlay-button-list">
-              <Link to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}/samples`}>
-                <button type="button" className="home-page__btn">View Samples</button>
-              </Link>
-              <Link to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}/available-colors`}>
-                <button type="button" className="home-page__btn">Available Colors</button>
-              </Link>
-              <Link to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}/view-details`}>
-                <button type="button" className="home-page__btn">View Details</button>
-              </Link>
-              <Link to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}/specification`}>
-                <button type="button" className="home-page__btn">Specification</button>
-              </Link>
-              <Link to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}/items-included`}>
-                <button type="button" className="home-page__btn">Items Included</button>
-              </Link>
+              { Paths.map((path, i) =>
+                <Link
+                  to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}${path.path}`}
+                  key={i}
+                >
+                  <button type="button" className="home-page__btn">{path.text}</button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

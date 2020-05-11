@@ -36,7 +36,7 @@
 }
 
 .home-page__btn {
-  background: #BFAD71;
+  background: $light-grayish-orange;
   padding: 16px 35px;
   font-size: 14px;
   border-radius: 7px;
@@ -138,7 +138,7 @@
     .text {
       font-size: 30px;
       font-weight: 700;
-      color: #B09A51;
+      color: $dull-orange;
     }
   }
 
@@ -199,12 +199,12 @@
           .old-price {
             font-size: 12px;
             margin-right: 8px;
-            color: #AAAAAA;
+            color: $gray;
           }
 
           .new-price {
             font-size: 13px;
-            color: #B09A51;
+            color: $dull-orange;
           }
         }
       }
@@ -227,7 +227,7 @@
     }
 
     &:after {
-      background: rgba(0, 0, 0, 0.2);
+      background: $black-bg;
       content: '';
       position: absolute;
       z-index: -1;
@@ -240,7 +240,7 @@
     }
 
     &:before {
-      background: rgba(0, 0, 0, 0.2);
+      background: $black-bg;
       content: '';
       position: absolute;
       z-index: -1;
@@ -252,7 +252,7 @@
 .specification-wrapper {
   .wrapper-description {
     font-size: 16px;
-    color: #4E4E4E;
+    color: $dark-gray;
 
     .wrapper-data:not(:last-child) {
       margin-bottom: 20px;

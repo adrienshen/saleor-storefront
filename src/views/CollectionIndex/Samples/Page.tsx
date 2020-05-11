@@ -6,7 +6,6 @@ export const Page = (props) => {
   const [images, selectedImages] = useState([])
   const [cartCount, addItemIntoCart] = useState(0)
   const collect = [];
-  localStorage.setItem('show', "true")
 
   const handleClick = () => {
     props.history.goBack()
@@ -57,8 +56,10 @@ export const Page = (props) => {
                   />
                 </div>
                 <div className="wrapper-img-main-inner--price">
-                  <span className="old-price"><del>$44.44</del></span>
-                  <span className="new-price">$33.33</span>
+                  <span className="old-price">
+                    <del>${sample.node.pricing.priceRange.start.gross.amount}</del>
+                  </span>
+                  <span className="new-price">${sample.node.pricing.priceRange.start.net.amount}</span>
                 </div>
               </div>
             </div>

@@ -52,7 +52,7 @@
 
         @media (max-width: $small-screen) {
           font-size: 25px;
-          color: #ffffff;
+          color: $white;
         }
 
         @media (min-width: $small-screen) and (max-width: $medium-screen) {
@@ -63,7 +63,7 @@
       span {
         @media (max-width: $small-screen) {
           font-size: 18px;
-          color: #ffffff;
+          color: $white;
         }
       }
     }
@@ -83,7 +83,7 @@
         }
       }
       & .home-page__btn {
-        background: #BFAD71;
+        background: $light-grayish-orange;
         padding: 17px 35px;
         font-size: 14px;
         border-radius: 7px;
