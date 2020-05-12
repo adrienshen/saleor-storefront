@@ -13,6 +13,6 @@ export const Paths =
     path: '/specification',
     text: 'Specification',
   },{
-    path: '/items-included',
+    path: '/cabinet-parts',
     text: 'Items Included',
   }]

@@ -20,5 +20,5 @@ export const cabinetCollection = `${baseUrl}collections/cabinets/:id/:slug`;
 export const collectionAvailableColors = `${baseUrl}collections/cabinets/:id/:slug/available-colors`;
 export const collectionViewDetails = `${baseUrl}collections/cabinets/:id/:slug/details`;
 export const collectionSpecification = `${baseUrl}collections/cabinets/:id/:slug/specification`;
-export const collectionItemsIncluded = `${baseUrl}collections/cabinets/:id/:slug/items-included`;
+export const collectionItemsIncluded = `${baseUrl}collections/cabinets/:id/:slug/cabinet-parts`;
 export const collectionSamples = `${baseUrl}collections/cabinets/:id/:slug/samples`;
