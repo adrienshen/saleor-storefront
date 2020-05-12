@@ -3,11 +3,28 @@ import bottomArrow from "images/arrow-up.svg";
 import React from "react";
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/Header/PageHeader";
-import { Paths } from "./Paths";
-import useLocalStorage from "./useLocalStorage";
+import { useLocalStorage } from '../../@next/hooks/useLocalStorage'
+
+export const Paths =
+  [{
+    path: '/samples',
+    text: 'View Samples',
+  },{
+    path: '/available-colors',
+    text: 'Available Colors',
+  },{
+    path: '/details',
+    text: 'View Details',
+  },{
+    path: '/specification',
+    text: 'Specification',
+  },{
+    path: '/cabinet-parts',
+    text: 'Items Included',
+  }]
 
 const Page = props => {
-  const [show, showOverlay] = useLocalStorage('show', false);
+  const {storedValue: show, setValue: showOverlay} = useLocalStorage('show', "false");
   const { data, history } = props;
 
   const handleOverlay = () => {
