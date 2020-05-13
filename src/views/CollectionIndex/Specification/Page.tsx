@@ -1,4 +1,4 @@
-import * as React from "react";
+ import * as React from "react";
 import { PageHeader } from "../../../components/Header/PageHeader";
 
 export const Page = (props) => {
@@ -8,6 +8,8 @@ export const Page = (props) => {
   const handleClick = () => {
     props.history.goBack();
   };
+
+  // some changes
 
   return (
     <div className="specification-wrapper inner-page-wrapper">
