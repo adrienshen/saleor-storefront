@@ -6,12 +6,14 @@ import Page from "./Page";
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
+const STATIC_CAT_SAMPLE_ID = "Q2F0ZWdvcnk6MjM=";
+
 const View: React.FC<ViewProps> = ({ match, history }) => {
   const variables = {
-    "catId": "Q2F0ZWdvcnk6MjM=",
-    "id": match.params.id,
-    "pageSize": PRODUCTS_PER_PAGE,
-  }
+    catId: STATIC_CAT_SAMPLE_ID,
+    id: match.params.id,
+    pageSize: PRODUCTS_PER_PAGE,
+  };
 
   return (
     <div className="home-page">
@@ -19,13 +21,17 @@ const View: React.FC<ViewProps> = ({ match, history }) => {
         {({ data }) => {
           return (
             <div>
-              <Page data={data} history={history} collectionId={match.params.id}/>
+              <Page
+                data={data}
+                history={history}
+                collectionId={match.params.id}
+              />
             </div>
           );
         }}
       </TypedCollectionSampleQuery>
     </div>
-  )
+  );
 };
 
 export default View;
