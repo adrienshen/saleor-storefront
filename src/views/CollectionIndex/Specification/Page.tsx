@@ -9,8 +9,6 @@ export const Page = (props) => {
     props.history.goBack();
   };
 
-  // some changes
-
   return (
     <div className="specification-wrapper inner-page-wrapper">
       <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
