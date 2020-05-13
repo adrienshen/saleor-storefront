@@ -11,8 +11,6 @@ interface IPage {
 }
 
 export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
-  console.log('DATA >> ', data);
-  console.log('CART >> ', cart);
 
   const [samples, selectedSample] = useState([]);
   const collect = [];

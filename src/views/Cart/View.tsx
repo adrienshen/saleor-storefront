@@ -16,13 +16,13 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
 
-  const handleClick = () => {
+  const handleBack = () => {
     window.history.back()
   }
 
   return (
     <div className="container cart-page">
-      <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
+      <PageHeader back={true} cart={true} search={true} handleClick={handleBack}/>
       <h1 className="checkout__header cart-page__header">Shopping bag</h1>
       <CheckoutContext.Consumer>
         {checkout => (
