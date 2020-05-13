@@ -11,7 +11,6 @@ interface IPage {
 }
 
 export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
-
   const [samples, selectedSample] = useState([]);
   const collect = [];
 
@@ -52,41 +51,41 @@ export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
       <div>
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
-          {data.products.edges.map(({ node: { name, id, pricing, thumbnail } }, idx) => (
-            <div className="wrapper-img-main" key={idx}>
-              <div
-                className={
-                  samples
-                    ? samples.indexOf(id) > -1
-                      ? "wrapper-img-main-inner withBorder"
-                      : "wrapper-img-main-inner noBorder"
-                    : ""
-                }
-              >
-                <div className="wrapper-img-main-inner--header">
-                  <span>{name}</span>
-                </div>
-                <div className="wrapper-img-main-inner--img">
-                  <img
-                    src={thumbnail.url}
-                    onClick={selectImage}
-                    id={id}
-                    key={idx}
-                  />
-                </div>
-                <div className="wrapper-img-main-inner--price">
-                  <span className="old-price">
-                    <del>
-                      ${pricing.priceRange.start.gross.amount}
-                    </del>
-                  </span>
-                  <span className="new-price">
-                    ${pricing.priceRange.start.net.amount}
-                  </span>
+          {data.products.edges.map(
+            ({ node: { name, id, pricing, thumbnail } }, idx) => (
+              <div className="wrapper-img-main" key={idx}>
+                <div
+                  className={
+                    samples
+                      ? samples.indexOf(id) > -1
+                        ? "wrapper-img-main-inner withBorder"
+                        : "wrapper-img-main-inner noBorder"
+                      : ""
+                  }
+                >
+                  <div className="wrapper-img-main-inner--header">
+                    <span>{name}</span>
+                  </div>
+                  <div className="wrapper-img-main-inner--img">
+                    <img
+                      src={thumbnail.url}
+                      onClick={selectImage}
+                      id={id}
+                      key={idx}
+                    />
+                  </div>
+                  <div className="wrapper-img-main-inner--price">
+                    <span className="old-price">
+                      <del>${pricing.priceRange.start.gross.amount}</del>
+                    </span>
+                    <span className="new-price">
+                      ${pricing.priceRange.start.net.amount}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
         <button
           type="button"
