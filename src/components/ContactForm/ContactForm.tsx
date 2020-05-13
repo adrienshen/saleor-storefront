@@ -22,14 +22,11 @@ const ContactForm: React.FC<any> = ({
     'contactFields'
   );
 
-  // console.log(contactFields, setContactFields);
-
   return <div className="address-form">
     <Form<any>
       errors={errors}
       onSubmit={(evt, data) => {
         evt.preventDefault();
-        // console.log('Save to LS >> ', data);
         setContactFields(data);
         location.href = generatePath(shippingAddressUrl);
       }}

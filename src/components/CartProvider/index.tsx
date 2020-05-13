@@ -91,7 +91,6 @@ export default class CartProvider extends React.Component<
     this.state.lines.find(line => line.variantId === variantId);
 
   changeQuantity = async (lines: CartLine[]) => {
-    console.log('in change quantity >> ', lines);
     this.setState({ loading: true });
 
     const { checkout } = this.props;
