@@ -24,12 +24,19 @@ import Empty from "./Empty";
 import ProductList from "./ProductList";
 
 import chevronUpImg from "../../../images/chevron-up.svg";
-import closeImg from "../../../images/x.svg";
+import chevronLeft from "../../../images/chevron-left.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
-
   return (
     <Overlay context={overlay}>
+      <CartBasic overlay={overlay} cartData={null} />
+    </Overlay>
+  );
+};
+
+export function CartBasic({ overlay, cartData }) {
+  return (
+    <>
       <Online>
         <CartContext.Consumer>
           {cart => (
@@ -62,8 +69,8 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                       <div className="cart">
                         <div className="overlay__header">
                           <ReactSVG
-                            path={closeImg}
-                            onClick={overlay.hide}
+                            path={chevronLeft}
+                            onClick={() => null}
                             className="overlay__header__close-icon"
                           />
                         </div>
@@ -96,7 +103,9 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                             </div>
                           </>
                         ) : (
-                          <Empty overlayHide={overlay.hide} />
+                          <Empty
+                            overlayHide={null}
+                          />
                         )}
                       </div>
                     );
@@ -112,8 +121,8 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
           <OfflinePlaceholder />
         </div>
       </Offline>
-    </Overlay>
+    </>
   );
-};
+}
 
 export default Cart;
