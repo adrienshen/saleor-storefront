@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { PageHeader } from "../../../components/Header/PageHeader";
+import { CartInterface } from "@temp/components/CartProvider/context";
 
-export const Page = props => {
-  const { data, refetch } = props;
+interface IPage {
+  data: any;
+  cart: CartInterface;
+  refetch: () => any;
+  collectionId: string;
+  history: any;
+}
+
+export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
   console.log('DATA >> ', data);
+  console.log('CART >> ', cart);
 
   const [images, selectedImages] = useState([]);
-  const [cartCount, addItemIntoCart] = useState(0);
   const collect = [];
 
-  const handleClick = () => {
-    props.history.goBack();
+  const handleClick = ({ history }) => {
+    history.goBack();
   };
 
   const selectImage = e => {
@@ -23,17 +31,14 @@ export const Page = props => {
   };
 
   useEffect(() => {
-    collect[props.collectionId] = [...images];
+    collect[collectionId] = [...images];
   }, [images]);
 
   const handleOrderSamples = () => {
-    const count = collect[props.collectionId].length;
-    addItemIntoCart(count);
-    if (count === 0) {
-      localStorage.removeItem("cartItems");
-    } else {
-      localStorage.setItem("cartItems", String(count));
-    }
+
+
+
+    // cart.add();
   };
 
   return (
@@ -42,7 +47,7 @@ export const Page = props => {
         back={true}
         cart={true}
         search={true}
-        itemsCount={cartCount}
+        itemsCount={1}
         handleClick={handleClick}
       />
       <div>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { CartContext } from "../../../components/CartProvider/context";
 import { RouteComponentProps } from "react-router-dom";
 import { TypedCollectionSampleQuery } from "./queries";
 import { PRODUCTS_PER_PAGE } from "../../../core/config";
@@ -20,14 +21,17 @@ const View: React.FC<ViewProps> = ({ match, history }) => {
       <TypedCollectionSampleQuery errorPolicy="all" variables={variables}>
         {({ data, refetch }) => {
           return (
-            <div>
-              <Page
-                data={data}
-                refetch={refetch}
-                history={history}
-                collectionId={match.params.id}
-              />
-            </div>
+            <CartContext.Consumer>
+              {cart => (
+                <Page
+                  data={data}
+                  refetch={refetch}
+                  cart={cart}
+                  history={history}
+                  collectionId={match.params.id}
+                />
+              )}
+            </CartContext.Consumer>
           );
         }}
       </TypedCollectionSampleQuery>
