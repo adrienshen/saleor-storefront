@@ -48,36 +48,36 @@ export const Page = props => {
       <div>
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
-          {data.products.edges.map((sample, i) => (
-            <div className="wrapper-img-main" key={i}>
+          {data.products.edges.map(({ node: { name, id, pricing, thumbnail } }, idx) => (
+            <div className="wrapper-img-main" key={idx}>
               <div
                 className={
                   images
-                    ? images.indexOf(sample.node.id) > -1
+                    ? images.indexOf(id) > -1
                       ? "wrapper-img-main-inner withBorder"
                       : "wrapper-img-main-inner noBorder"
                     : ""
                 }
               >
                 <div className="wrapper-img-main-inner--header">
-                  <span>{sample.node.name}</span>
+                  <span>{name}</span>
                 </div>
                 <div className="wrapper-img-main-inner--img">
                   <img
-                    src={sample.node.thumbnail.url}
+                    src={thumbnail.url}
                     onClick={selectImage}
-                    id={sample.node.id}
-                    key={i}
+                    id={id}
+                    key={idx}
                   />
                 </div>
                 <div className="wrapper-img-main-inner--price">
                   <span className="old-price">
                     <del>
-                      ${sample.node.pricing.priceRange.start.gross.amount}
+                      ${pricing.priceRange.start.gross.amount}
                     </del>
                   </span>
                   <span className="new-price">
-                    ${sample.node.pricing.priceRange.start.net.amount}
+                    ${pricing.priceRange.start.net.amount}
                   </span>
                 </div>
               </div>
