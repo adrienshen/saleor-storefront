@@ -14,7 +14,7 @@ export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
   console.log('DATA >> ', data);
   console.log('CART >> ', cart);
 
-  const [images, selectedImages] = useState([]);
+  const [samples, selectedSample] = useState([]);
   const collect = [];
 
   const handleClick = ({ history }) => {
@@ -22,23 +22,24 @@ export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
   };
 
   const selectImage = e => {
-    if (images.indexOf(e.target.id) > -1) {
-      const image = images.filter(img => img !== e.target.id);
-      selectedImages(image);
+    if (samples.indexOf(e.target.id) > -1) {
+      const image = samples.filter(img => img !== e.target.id);
+      selectedSample(image);
     } else {
-      selectedImages([...images, e.target.id]);
+      selectedSample([...samples, e.target.id]);
     }
   };
 
   useEffect(() => {
-    collect[collectionId] = [...images];
-  }, [images]);
+    collect[collectionId] = [...samples];
+  }, [samples]);
 
   const handleOrderSamples = () => {
+    samples.forEach((s: string) => {
+      cart.add(s, 1);
+    });
 
-
-
-    // cart.add();
+    selectedSample([]);
   };
 
   return (
@@ -57,8 +58,8 @@ export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
             <div className="wrapper-img-main" key={idx}>
               <div
                 className={
-                  images
-                    ? images.indexOf(id) > -1
+                  samples
+                    ? samples.indexOf(id) > -1
                       ? "wrapper-img-main-inner withBorder"
                       : "wrapper-img-main-inner noBorder"
                     : ""
