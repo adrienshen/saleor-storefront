@@ -48,7 +48,7 @@ export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
         back={true}
         cart={true}
         search={true}
-        itemsCount={1}
+        cartLines={cart.lines}
         handleClick={handleClick}
       />
       <div>
