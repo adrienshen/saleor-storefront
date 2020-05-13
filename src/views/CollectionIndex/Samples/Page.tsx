@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PageHeader } from "../../../components/Header/PageHeader";
 
 export const Page = props => {
-  const { data } = props;
+  const { data, refetch } = props;
   console.log('DATA >> ', data);
 
   const [images, selectedImages] = useState([]);

@@ -13,16 +13,16 @@ export const collectionSampleQuery = gql`
     $pageSize: Int
     $catId: ID
   ) {
-    collection(id: $id) {
-      id
-      slug
-      name
-      seoDescription
-      seoTitle
-      backgroundImage {
-        url
-      }
-    }
+    # collection(id: $id) {
+    #   id
+    #   slug
+    #   name
+    #   seoDescription
+    #   seoTitle
+    #   backgroundImage {
+    #     url
+    #   }
+    # }
     products(
       after: $after
       first: $pageSize
