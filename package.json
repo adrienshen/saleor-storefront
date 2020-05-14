@@ -26,6 +26,7 @@
     "core-js": "^2.6.11",
     "cross-env": "^5.2.1",
     "dompurify": "^2.0.11",
+    "draft-js": "^0.11.5",
     "draftjs-to-html": "^0.8.4",
     "formik": "^1.5.8",
     "graphql": "^14.6.0",

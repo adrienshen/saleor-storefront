@@ -1,9 +1,10 @@
- import * as React from "react";
+import * as React from "react";
 import { PageHeader } from "../../../components/Header/PageHeader";
+import { RichTextContent } from "@components/atoms";
 
-export const Page = (props) => {
+export const Page = props => {
   const { data } = props;
-  const description = JSON.parse(data.collection.descriptionJson)
+  const description = JSON.parse(data.collection.descriptionJson);
 
   const handleClick = () => {
     props.history.goBack();
@@ -11,14 +12,21 @@ export const Page = (props) => {
 
   return (
     <div className="specification-wrapper inner-page-wrapper">
-      <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
+      <PageHeader
+        back={true}
+        cart={true}
+        search={true}
+        handleClick={handleClick}
+      />
       <div>
         <div className="wrapper-header">
           <span>Set Details</span>
         </div>
         <div className="wrapper-description">
           <div>
-            <p className="wrapper-data">{description.blocks[0].text}</p>
+            <RichTextContent
+              descriptionJson={data.collection.descriptionJson}
+            />
           </div>
         </div>
       </div>

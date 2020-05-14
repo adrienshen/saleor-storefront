@@ -10,11 +10,11 @@ interface IPage {
   history: any;
 }
 
-export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
+export const Page = ({ data, refetch, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
   const collect = [];
 
-  const handleClick = ({ history }) => {
+  const handleBack = () => {
     history.goBack();
   };
 
@@ -46,7 +46,7 @@ export const Page = ({ data, refetch, cart, collectionId }: IPage) => {
         cart={true}
         search={true}
         cartLines={cart.lines}
-        handleClick={handleClick}
+        handleClick={handleBack}
       />
       <div>
         <div className="wrapper-header">Samples</div>

@@ -2,7 +2,7 @@ import * as React from "react";
 import { CartContext } from "../../../components/CartProvider/context";
 import { RouteComponentProps } from "react-router-dom";
 import { TypedCollectionSampleQuery } from "./queries";
-import { PRODUCTS_PER_PAGE } from "../../../core/config";
+import { SAMPLES_PER_PAGE } from "../../../core/config";
 import Page from "./Page";
 
 type ViewProps = RouteComponentProps<{ id: string }>;
@@ -13,7 +13,7 @@ const View: React.FC<ViewProps> = ({ match, history }) => {
   const variables = {
     catId: STATIC_CAT_SAMPLE_ID,
     id: match.params.id,
-    pageSize: PRODUCTS_PER_PAGE,
+    pageSize: SAMPLES_PER_PAGE,
   };
 
   return (
