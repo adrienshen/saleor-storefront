@@ -5,12 +5,11 @@ import { CartInterface } from "@temp/components/CartProvider/context";
 interface IPage {
   data: any;
   cart: CartInterface;
-  refetch: () => any;
   collectionId: string;
   history: any;
 }
 
-export const Page = ({ data, refetch, cart, collectionId, history }: IPage) => {
+export const Page = ({ data, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
   const collect = [];
 

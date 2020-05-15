@@ -25,7 +25,6 @@ const View: React.FC<ViewProps> = ({ match, history }) => {
               {cart => (
                 <Page
                   data={data}
-                  refetch={refetch}
                   cart={cart}
                   history={history}
                   collectionId={match.params.id}
