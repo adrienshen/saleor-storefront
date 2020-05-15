@@ -40,6 +40,7 @@ const Page = props => {
   };
 
   const handleBack = () => {
+    showOverlay(!show);
     history.push("/collections/cabinets");
   };
 
@@ -59,7 +60,7 @@ const Page = props => {
           className={
             show
               ? "overlay-wrap--inner overlay-down-arrow-div"
-              : " overlay-wrap--inner overlay-arrow-div"
+              : "overlay-wrap--inner overlay-arrow-div"
           }
         >
           <div>
