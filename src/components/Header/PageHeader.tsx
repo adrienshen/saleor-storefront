@@ -5,13 +5,17 @@ import cartIcon from "../../images/cart-icon.svg";
 import searchIcon from "../../images/search-icon.svg";
 import { Link } from "react-router-dom";
 
-export const PageHeader = ({
-  handleClick,
-  back,
-  search,
-  cart,
-  cartLines,
-}: any) => {
+import { CartContext } from "../../components/CartProvider/context";
+
+export default props => {
+  return (
+    <CartContext.Consumer>
+      {cart => <PageHeader cartLines={cart.lines} {...props} />}
+    </CartContext.Consumer>
+  );
+};
+
+const PageHeader = ({ handleClick, back, search, cart, cartLines }: any) => {
   let cartItemsCount = 0;
   if (cartLines && cartLines.length) {
     cartItemsCount = cartLines

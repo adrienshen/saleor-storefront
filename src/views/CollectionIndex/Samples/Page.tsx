@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PageHeader } from "../../../components/Header/PageHeader";
+import PageHeader from "../../../components/Header/PageHeader";
 import { CartInterface } from "@temp/components/CartProvider/context";
 
 interface IPage {
@@ -44,7 +44,6 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
         back={true}
         cart={true}
         search={true}
-        cartLines={cart.lines}
         handleClick={handleBack}
       />
       <div>

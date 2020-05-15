@@ -1,15 +1,19 @@
 import * as React from "react";
-import { PageHeader } from "../../../components/Header/PageHeader";
+import PageHeader from "../../../components/Header/PageHeader";
 
-export const Page = (props) => {
-
+export const Page = props => {
   const handleClick = () => {
-    props.history.goBack()
-  }
+    props.history.goBack();
+  };
 
   return (
     <div className="inner-page-wrapper">
-      <PageHeader back={true} cart={true} search={true} handleClick={handleClick}/>
+      <PageHeader
+        back={true}
+        cart={true}
+        search={true}
+        handleClick={handleClick}
+      />
       <div>
         <div className="wrapper-header">View Details</div>
         <div className="wrapper-coming-soon">
@@ -17,7 +21,7 @@ export const Page = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

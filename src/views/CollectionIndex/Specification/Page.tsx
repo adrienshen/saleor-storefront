@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PageHeader } from "../../../components/Header/PageHeader";
+import PageHeader from "../../../components/Header/PageHeader";
 import { RichTextContent } from "@components/atoms";
 
 export const Page = props => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PageHeader } from "../../../components/Header/PageHeader";
+import PageHeader from "../../../components/Header/PageHeader";
 import { Select } from "../../../@next/components/atoms/Select";
 import { CardBlock } from "./CardBlock";
 
