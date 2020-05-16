@@ -16,13 +16,9 @@ const ProductList: React.SFC<{
       const productUrl = generateProductUrl(line.product.id, line.product.name);
       return (
         <li key={line.id} className="cart__list__item">
-          <Link to={productUrl}>
-            <Thumbnail source={line.product} />
-          </Link>
+          <Thumbnail source={line.product} />
           <div className="cart__list__item__details">
-            <Link to={productUrl}>
-              <p>{line.product.name}</p>
-            </Link>
+            <p>{line.product.name}</p>
             <div className="cart__list__item__details__variant">
               <span>SKU: {`W1230-CYOHH`}</span>
               <span>Dimension: {`10"w x 12"h x 24"d`}</span>
