@@ -38,13 +38,25 @@ export const Page = props => {
         </div>
         <div className="select-value">
           <div className="select-value--item">
-            <Select value={10} onChange={value => onChange()} />
+            <Select
+              value={10}
+              onChange={value => onChange()}
+              placeholder="Width"
+            />
           </div>
           <div className="select-value--item">
-            <Select value={10} onChange={value => onChange()} />
+            <Select
+              value={10}
+              onChange={value => onChange()}
+              placeholder="Height"
+            />
           </div>
           <div className="select-value--item">
-            <Select value={10} onChange={value => onChange()} />
+            <Select
+              value={10}
+              onChange={value => onChange()}
+              placeholder="Depth"
+            />
           </div>
         </div>
         <div className="addcart-card-wrapper">
