@@ -17,12 +17,12 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
     history.goBack();
   };
 
-  const selectImage = e => {
-    if (samples.indexOf(e.target.id) > -1) {
-      const image = samples.filter(img => img !== e.target.id);
+  const selectSample = (variantId: string) => {
+    if (samples.indexOf(variantId) > -1) {
+      const image = samples.filter(img => img !== variantId);
       selectedSample(image);
     } else {
-      selectedSample([...samples, e.target.id]);
+      selectedSample([...samples, variantId]);
     }
   };
 
@@ -50,12 +50,12 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
           {data.products.edges.map(
-            ({ node: { name, id, pricing, thumbnail } }, idx) => (
+            ({ node: { name, id, pricing, thumbnail, variants } }, idx) => (
               <div className="wrapper-img-main" key={idx}>
                 <div
                   className={
                     samples
-                      ? samples.indexOf(id) > -1
+                      ? samples.indexOf(variants[0].id) > -1
                         ? "wrapper-img-main-inner withBorder"
                         : "wrapper-img-main-inner noBorder"
                       : ""
@@ -67,7 +67,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                   <div className="wrapper-img-main-inner--img">
                     <img
                       src={thumbnail.url}
-                      onClick={selectImage}
+                      onClick={() => selectSample(variants[0].id)}
                       id={id}
                       key={idx}
                     />

@@ -20,14 +20,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   };
 
   return (
-    <div className="container cart-page">
-      <PageHeader
-        back={true}
-        cart={true}
-        search={true}
-        handleClick={handleBack}
-      />
-      <h1 className="checkout__header cart-page__header">Shopping bag</h1>
+    <div className="cart-page">
       <CheckoutContext.Consumer>
         {checkout => (
           <CartContext.Consumer>
