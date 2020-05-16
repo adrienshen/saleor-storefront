@@ -79,6 +79,8 @@ export function CartBasic({ overlay, cartData }) {
                             <ProductList
                               lines={extractCartLines(data, cart.lines, locale)}
                               remove={cart.remove}
+                              add={cart.add}
+                              subtract={cart.subtract}
                             />
                             <div className="cart__footer">
                               <div className="cart__footer__subtotoal">

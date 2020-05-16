@@ -1,19 +1,16 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-
-import { generateProductUrl } from "../../../core/utils";
 import { LineI } from "../../CartTable/ProductRow";
 
 const ProductList: React.SFC<{
   lines: LineI[];
   remove(variantId: string): void;
-}> = ({ lines, remove }) => (
+  add(variantId: string, quantity: number): void;
+  subtract(variantId: string, quantity: number): void;
+}> = ({ lines, remove, add, subtract }) => (
   <ul className="cart__list">
     {lines.map(line => {
-      const productUrl = generateProductUrl(line.product.id, line.product.name);
       return (
         <li key={line.id} className="cart__list__item">
           <Thumbnail source={line.product} />
@@ -27,7 +24,12 @@ const ProductList: React.SFC<{
               <p>
                 <TaxedMoney taxedMoney={line.pricing.price} />
               </p>
-              <QauntSelect quantity={line.quantity} />
+              <QauntSelect
+                id={line.id}
+                quantity={line.quantity}
+                add={add}
+                subtract={subtract}
+              />
             </div>
           </div>
         </li>
@@ -43,6 +45,7 @@ const QauntSelect: React.SFC<any> = props => {
     if (quantity + 1 > 10) {
       return;
     }
+    props.add(props.id, 1);
     setQuantity(quantity + 1);
   }
 
@@ -50,6 +53,7 @@ const QauntSelect: React.SFC<any> = props => {
     if (quantity - 1 < 0) {
       return;
     }
+    props.subtract(props.id, 1);
     setQuantity(quantity - 1);
   }
 
