@@ -32,6 +32,9 @@ const ProductList: React.SFC<{
               />
             </div>
           </div>
+          <div className="cart__remove" onClick={() => remove(line.id)}>
+            x
+          </div>
         </li>
       );
     })}
@@ -56,8 +59,6 @@ const QauntSelect: React.SFC<any> = props => {
     props.subtract(props.id, 1);
     setQuantity(quantity - 1);
   }
-
-  // @todo: implement update lineItem quantity graphql
 
   return (
     <div className="quantselect">
