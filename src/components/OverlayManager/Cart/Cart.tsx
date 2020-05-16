@@ -83,9 +83,17 @@ export function CartBasic({ overlay, cartData }) {
                             <div className="cart__footer">
                               <div className="cart__footer__subtotoal">
                                 <span className="cart__footer__price-label">
-                                  Total
-                                  <br />
-                                  (X items)
+                                  <div>Total</div>
+                                  <small>
+                                    (
+                                    {cart.lines
+                                      .map(line => line.quantity)
+                                      .reduce(
+                                        (sum, next) => sum + next,
+                                        0
+                                      )}{" "}
+                                    items)
+                                  </small>
                                 </span>
                                 <span className="cart__footer__price">
                                   {getTotal(data, cart.lines, locale)}
@@ -103,9 +111,7 @@ export function CartBasic({ overlay, cartData }) {
                             </div>
                           </>
                         ) : (
-                          <Empty
-                            overlayHide={null}
-                          />
+                          <Empty overlayHide={null} />
                         )}
                       </div>
                     );

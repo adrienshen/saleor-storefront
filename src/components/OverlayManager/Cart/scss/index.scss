@@ -94,12 +94,15 @@
   &__footer {
     display: flex;
     flex-direction: row nowrap;
+    justify-content: space-between;
     background-color: #fff;
     padding: $spacer;
     position: absolute;
+    left: 0;
     bottom: 0;
     width: 100vw;
     box-shadow: 2px 2px 12px #909090;
+    border-radius: 0.75rem 0.75rem 0 0;
 
     &__subtotoal {
       display: flex;
@@ -107,6 +110,7 @@
       justify-content: space-between;
       align-items: center;
       width: 50%;
+      margin-right: 0.5rem;
     }
 
     &__button {
@@ -120,12 +124,19 @@
 
     &__price-label {
       font-weight: 400;
+      margin-right: 1rem;
+      min-width: 50px;
+
+      small {
+        color: #909090;
+        font-size: 0.6rem;
+      }
     }
 
     &__price {
       color: $background-tan;
       font-weight: 600;
-      margin: 0 0.5rem;
+      margin-right: 1rem;
     }
   }
 
