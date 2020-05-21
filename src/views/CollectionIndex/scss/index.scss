@@ -113,7 +113,7 @@
 
 .inner-page-wrapper {
   padding: 17px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: $alabaster;
 
   .browse-cabinet__header {
@@ -124,7 +124,7 @@
     margin: 30px 0 48px;
     color: $dull-orange;
     font-size: 25px;
-    line-height: 50px;
+    padding-bottom: 14px;
     border-bottom: 1px solid #f3f0e4;
   }
 
