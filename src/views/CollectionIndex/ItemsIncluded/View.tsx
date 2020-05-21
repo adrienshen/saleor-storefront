@@ -1,25 +1,31 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
-// import { TypedCollectionSlugQuery } from "../queries";
+import { TypedCabinetCollectionProdductsQuery } from "./query";
 import Page from "./Page";
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
 const View: React.FC<ViewProps> = ({ match, history }) => {
-
   return (
-    <div className="home-page">
-      {/*<TypedCollectionSlugQuery errorPolicy="all" variables={variables}>*/}
-      {/*  {({ data }) => {*/}
-      {/*    return (*/}
-      <div>
-        <Page history={history}/>
-      </div>
-      {/*);*/}
-      {/*}}*/}
-      {/*</TypedCollectionSlugQuery>*/}
-    </div>
-  )
+    <TypedCabinetCollectionProdductsQuery
+      variables={{
+        collectionId: [match.params.id],
+      }}
+    >
+      {({ loading, data, error }) => {
+        // console.log('DATA >> >> >> ', data);
+        if (error) {
+          console.warn("Error >> ", error);
+          return null;
+        }
+        return (
+          <div className="home-page">
+            <Page products={data.products.edges} history={history} />
+          </div>
+        );
+      }}
+    </TypedCabinetCollectionProdductsQuery>
+  );
 };
 
 export default View;
