@@ -97,7 +97,23 @@
       margin-top: $spacer;
     }
     &-icon {
-      padding: 22px 78px 62px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 262px;
+      height: 190px;
+      margin-bottom: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &-circle {
+        border-radius: 100%;
+        border: 6px solid #bfac70;
+        width: 105px;
+        height: 105px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
     &-close {
       position: absolute;
