@@ -12,7 +12,7 @@ interface IPage {
 export const Page = ({ data, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
   const collect = [];
-  const sampleCount = data.products.totalCount;
+  const sampleExist = data.products.totalCount;
 
   const handleBack = () => {
     history.goBack();
@@ -50,7 +50,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
       <div>
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
-          {sampleCount > 0 ? (
+          {sampleExist > 0 ? (
             data.products.edges.map(
               ({ node: { name, id, pricing, thumbnail, variants } }, idx) => (
                 <div className="wrapper-img-main" key={idx}>
@@ -75,9 +75,12 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                       />
                     </div>
                     <div className="wrapper-img-main-inner--price">
-                      <span className="old-price">
-                        <del>${pricing.priceRange.start.gross.amount}</del>
-                      </span>
+                      {pricing.priceRange.start.gross.amount !==
+                        pricing.priceRange.start.net.amount && (
+                        <span className="old-price">
+                          <del>${pricing.priceRange.start.gross.amount}</del>
+                        </span>
+                      )}
                       <span className="new-price">
                         ${pricing.priceRange.start.net.amount}
                       </span>
@@ -93,7 +96,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
           )}
         </div>
 
-        {sampleCount > 0 && (
+        {sampleExist > 0 && (
           <button
             type="button"
             className="home-page__btn"
