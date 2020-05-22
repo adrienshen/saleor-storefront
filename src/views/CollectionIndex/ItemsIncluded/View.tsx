@@ -13,8 +13,7 @@ const View: React.FC<ViewProps> = ({ match, history }) => {
         collectionId: [match.params.id],
       }}
     >
-      {({ loading, data, error }) => {
-        // console.log('DATA >> >> >> ', data);
+      {({ data, error }) => {
         if (error) {
           console.warn("Error >> ", error);
           return null;

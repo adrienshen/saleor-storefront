@@ -1,14 +1,6 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../../core/queries";
-import {
-  ProductDetails,
-  ProductDetailsVariables,
-} from "../../Product/types/ProductDetails";
-import {
-  VariantList,
-  VariantListVariables,
-} from "../../Product/types/VariantList";
 
 export const priceFragment = gql`
   fragment Price on TaxedMoney {
@@ -142,26 +134,6 @@ export const cabinetCollectionProductsQuery = gql`
   }
 `;
 
-// FIXME: Check how to handle pagination of `productVariants` in the UI.
-// We need allow the user view  all cart items regardless of pagination.
-// export const productVariantsQuery = gql`
-//   ${basicProductFragment}
-//   ${productVariantFragment}
-//   query VariantList($ids: [ID!]) {
-//     productVariants(ids: $ids, first: 100) {
-//       edges {
-//         node {
-//           ...ProductVariantFields
-//           stockQuantity
-//           product {
-//             ...BasicProductFields
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
-
 interface IVariables {
   collectionId: [string];
 }
@@ -174,8 +146,3 @@ export const TypedCabinetCollectionProdductsQuery = TypedQuery<
   IData,
   IVariables
 >(cabinetCollectionProductsQuery);
-
-// export const TypedProductVariantsQuery = TypedQuery<
-//   VariantList,
-//   VariantListVariables
-// >(productVariantsQuery);

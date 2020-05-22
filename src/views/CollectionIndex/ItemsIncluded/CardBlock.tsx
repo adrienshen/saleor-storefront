@@ -33,7 +33,6 @@ export const CardBlock = ({ node, add }) => {
     setCount(0);
     setTimeout(() => setLoading(false), 1000);
   }
-  // console.log('node variants >> ', node.variants[0].id);
   const dimensions = findField(attributes, AttributeNames.Dimemsions);
   const sku = node.variants[0].sku;
   return (
