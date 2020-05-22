@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 import { Select } from "../../../@next/components/atoms/Select";
 import { CardBlock } from "./CardBlock";
+import { CartInterface } from "@temp/components/CartProvider/context";
 
 interface IPageProps {
   history: any;
   products: any;
+  cart: CartInterface;
 }
 
-export const Page = ({ products, history }: IPageProps) => {
+export const Page = ({ products, history, cart }: IPageProps) => {
   const handleClick = () => {
     history.goBack();
   };
@@ -55,7 +57,7 @@ export const Page = ({ products, history }: IPageProps) => {
         </div>
         <div className="addcart-card-wrapper">
           {products.map(({ node }) => {
-            return <CardBlock node={node} />;
+            return <CardBlock add={cart.add} node={node} />;
           })}
         </div>
       </div>

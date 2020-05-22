@@ -19,10 +19,17 @@ function findField(fields: any, name: string) {
   return founded ? founded.value : null;
 }
 
-export const CardBlock = ({ node }) => {
+export const CardBlock = ({ node, add }) => {
+  const [count, setCount] = React.useState(0);
   const attributes = getAttributes(node.attributes);
-  // console.log('node variants >> ', node.variants[0].id);
   const firstVariantId = node.variants[0].id;
+  function addItems() {
+    if (!count || !node.id) {
+      return;
+    }
+    add(firstVariantId, count);
+  }
+  // console.log('node variants >> ', node.variants[0].id);
   const dimensions = findField(attributes, AttributeNames.Dimemsions);
   const sku = node.variants[0].sku;
   return (
@@ -50,14 +57,24 @@ export const CardBlock = ({ node }) => {
           <div className="detail-counter">
             <span
               className="qty-operator"
-              onClick={() => console.log(`Decrement ${firstVariantId}`)}
+              onClick={() => {
+                if (count < 1) {
+                  return;
+                }
+                setCount(count - 1);
+              }}
             >
               -
             </span>
-            <span className="qty-text">{5}</span>
+            <span className="qty-text">{count}</span>
             <span
               className="qty-operator"
-              onClick={() => console.log(`Increment ${firstVariantId}`)}
+              onClick={() => {
+                if (count > 9) {
+                  return;
+                }
+                setCount(count + 1);
+              }}
             >
               +
             </span>
@@ -65,7 +82,7 @@ export const CardBlock = ({ node }) => {
         </div>
 
         <div className="addcart-card-container--btn">
-          <button>
+          <button onClick={addItems}>
             {" "}
             <span>Add to Cart</span>
           </button>
