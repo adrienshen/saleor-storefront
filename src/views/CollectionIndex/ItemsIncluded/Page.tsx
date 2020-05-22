@@ -55,7 +55,6 @@ export const Page = ({ products, history }: IPageProps) => {
         </div>
         <div className="addcart-card-wrapper">
           {products.map(({ node }) => {
-            console.log("node >> ", node);
             return <CardBlock node={node} />;
           })}
         </div>

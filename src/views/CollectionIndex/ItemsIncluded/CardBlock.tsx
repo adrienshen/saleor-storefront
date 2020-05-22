@@ -1,7 +1,30 @@
 import doubleDoor from "images/P_double_door.png";
 import * as React from "react";
 
+enum AttributeNames {
+  Dimemsions = "Dimensions",
+}
+
+function getAttributes(attributes: any) {
+  return attributes.map(att => {
+    return {
+      attribute: att.attribute.name,
+      value: att.values[0] ? att.values[0].name : null,
+    };
+  });
+}
+
+function findField(fields: any, name: string) {
+  const founded = fields.find(f => f.attribute === name);
+  return founded ? founded.value : null;
+}
+
 export const CardBlock = ({ node }) => {
+  const attributes = getAttributes(node.attributes);
+  // console.log('node variants >> ', node.variants[0].id);
+  const firstVariantId = node.variants[0].id;
+  const dimensions = findField(attributes, AttributeNames.Dimemsions);
+  const sku = node.variants[0].sku;
   return (
     <div className="addcart-card">
       <div className="addcart-card--img">
@@ -14,8 +37,8 @@ export const CardBlock = ({ node }) => {
         <div className="addcart-card-container--header">{node.name}</div>
 
         <div className="addcart-card-container--sub-header">
-          <span>SKU: {node.variants[0].sku}</span>
-          <span>Dimensions: 10"w x 12"h x 24"d</span>
+          {sku && <span>SKU: {sku}</span>}
+          {dimensions && <span>Dimensions: {dimensions}</span>}
         </div>
 
         <div className="addcart-card-container--detail">
@@ -27,14 +50,14 @@ export const CardBlock = ({ node }) => {
           <div className="detail-counter">
             <span
               className="qty-operator"
-              onClick={() => console.log("Decrement")}
+              onClick={() => console.log(`Decrement ${firstVariantId}`)}
             >
               -
             </span>
             <span className="qty-text">{5}</span>
             <span
               className="qty-operator"
-              onClick={() => console.log("Increment")}
+              onClick={() => console.log(`Increment ${firstVariantId}`)}
             >
               +
             </span>
