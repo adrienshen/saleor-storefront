@@ -1,4 +1,4 @@
-import doubleDoor from "images/P_double_door.png";
+import doubleDoorImg from "images/P_double_door.png";
 import * as React from "react";
 
 enum AttributeNames {
@@ -40,7 +40,7 @@ export const CardBlock = ({ node, add }) => {
     <div className="addcart-card">
       <div className="addcart-card--img">
         <div className="img-wrapper">
-          <img src={doubleDoor} alt="Avatar" />
+          <img src={doubleDoorImg} alt="Avatar" />
           <div className="small-img"></div>
         </div>
       </div>
