@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./scss/index.scss";
 
-export const DetailComponent = ({ name, value }) => {
+export const DetailRow = ({ name, value }) => {
   return (
     <div>
       <div className="d-flex flex-row data-table">

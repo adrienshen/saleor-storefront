@@ -2,7 +2,7 @@ import { Paths } from "@temp/views/CollectionIndex/Page";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../../components/Header/PageHeader";
-import { DetailComponent } from "@temp/components/Collection/DetailComponent";
+import { DetailRow } from "@temp/components/Collection/DetailRow";
 
 const details = [
   { key: "Style", value: "Shaker" },
@@ -38,9 +38,7 @@ export const Page = props => {
       <div>
         <div className="wrapper-header">Set Details</div>
         {details.map((detail, i) => {
-          return (
-            <DetailComponent key={i} name={detail.key} value={detail.value} />
-          );
+          return <DetailRow key={i} name={detail.key} value={detail.value} />;
         })}
       </div>
     </div>
