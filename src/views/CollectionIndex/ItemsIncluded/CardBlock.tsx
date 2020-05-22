@@ -21,13 +21,17 @@ function findField(fields: any, name: string) {
 
 export const CardBlock = ({ node, add }) => {
   const [count, setCount] = React.useState(0);
+  const [loading, setLoading] = React.useState(false);
   const attributes = getAttributes(node.attributes);
   const firstVariantId = node.variants[0].id;
   function addItems() {
     if (!count || !node.id) {
       return;
     }
+    setLoading(true);
     add(firstVariantId, count);
+    setCount(0);
+    setTimeout(() => setLoading(false), 1000);
   }
   // console.log('node variants >> ', node.variants[0].id);
   const dimensions = findField(attributes, AttributeNames.Dimemsions);
@@ -84,7 +88,7 @@ export const CardBlock = ({ node, add }) => {
         <div className="addcart-card-container--btn">
           <button onClick={addItems}>
             {" "}
-            <span>Add to Cart</span>
+            {loading ? <span>Loading...</span> : <span>Add to Cart</span>}
           </button>
         </div>
       </div>
