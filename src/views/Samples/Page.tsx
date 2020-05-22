@@ -3,10 +3,7 @@ import bottomArrow from "images/arrow-up.svg";
 import React from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
-import { FilterCollection } from "../../components/Collection/FilterCollection";
-import { GridCollection } from "../../components/Collection/GridCollection";
-import { ListCollection } from "../../components/Collection/ListCollection";
-
+import { SubHeader } from "../../components/Collection/SubHeader";
 import "./scss/index.scss";
 
 const Page = props => {
@@ -29,15 +26,7 @@ const Page = props => {
         <h3>Samples</h3>
       </div>
 
-      <div className="collection">
-        <div className="collection-wrapper">
-          <FilterCollection />
-        </div>
-        <div className="collection-wrapper">
-          <GridCollection />
-          <ListCollection />
-        </div>
-      </div>
+      <SubHeader />
 
       <div className="wrapper-img">
         {data.products.edges.map(
@@ -53,12 +42,7 @@ const Page = props => {
                 <div className="wrapper-img-main-inner--img">
                   {collections[0] ? (
                     <Link
-                      to={`/collections/cabinets/${
-                        collections[0].id
-                      }/${collections[0].name
-                        .split(regex)
-                        .join("-")
-                        .toLowerCase()}/samples/}`}
+                      to={`/collections/cabinets/${collections[0].id}/${collections[0].slug}`}
                     >
                       <img src={thumbnail.url} id={id} key={idx} />
                     </Link>
@@ -67,9 +51,12 @@ const Page = props => {
                   )}
                 </div>
                 <div className="wrapper-img-main-inner--price">
-                  <span className="old-price">
-                    <del>${pricing.priceRange.start.gross.amount}</del>
-                  </span>
+                  {pricing.priceRange.start.gross.amount !==
+                    pricing.priceRange.start.net.amount && (
+                    <span className="old-price">
+                      <del>${pricing.priceRange.start.gross.amount}</del>
+                    </span>
+                  )}
                   <span className="new-price">
                     ${pricing.priceRange.start.net.amount}
                   </span>
