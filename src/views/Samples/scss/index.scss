@@ -1,6 +1,8 @@
+@import "../../../globalStyles/scss/variables";
+
 .sample-page {
   padding: 17px;
-  background-color: #f7f7f7;
+  background-color: $alabaster;
 }
 
 .collection {
@@ -18,7 +20,7 @@
       align-items: center;
 
       &-name {
-        color: #b09a51;
+        color: $dull-orange;
         font-size: 14px;
       }
 
@@ -48,7 +50,7 @@
     position: relative;
     width: 100%;
     padding-top: 100%;
-    background-color: #fff;
+    background-color: $white;
     height: 200px;
     border-radius: 5px;
 
@@ -72,7 +74,7 @@
         display: flex;
         justify-content: center;
         font-size: 14px;
-        color: #4e4e4e;
+        color: $dark-gray;
         span {
           display: -webkit-box;
           -webkit-box-orient: vertical;
@@ -100,12 +102,12 @@
         .old-price {
           font-size: 12px;
           margin-right: 8px;
-          color: #c4c4c4;
+          color: $gray;
         }
 
         .new-price {
           font-size: 13px;
-          color: #b09a51;
+          color: $dull-orange;
         }
       }
     }
