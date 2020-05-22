@@ -51,16 +51,20 @@ const Page = props => {
                   <span>{name}</span>
                 </div>
                 <div className="wrapper-img-main-inner--img">
-                  <Link
-                    to={`/collections/cabinets/${
-                      collections[0].id
-                    }/${collections[0].name
-                      .split(regex)
-                      .join("-")
-                      .toLowerCase()}/samples/}`}
-                  >
-                    <img src={thumbnail.url} id={id} key={idx} />
-                  </Link>
+                  {collections[0] ? (
+                    <Link
+                      to={`/collections/cabinets/${
+                        collections[0].id
+                      }/${collections[0].name
+                        .split(regex)
+                        .join("-")
+                        .toLowerCase()}/samples/}`}
+                    >
+                      <img src={thumbnail.url} id={id} key={idx} />
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="wrapper-img-main-inner--price">
                   <span className="old-price">
