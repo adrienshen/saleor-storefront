@@ -1,16 +1,19 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { CollectionBlock } from "../../components/Collection/CollectionBlock";
-import { FilterCollection } from "../../components/Collection/FilterCollection";
-import { GridCollection } from "../../components/Collection/GridCollection";
-import { ListCollection } from "../../components/Collection/ListCollection";
 import PageHeader from "../../components/Header/PageHeader";
+import { SubHeader } from "../../components/Collection/SubHeader";
 import "./scss/index.scss";
 
 const Page = props => {
   const { data, history } = props;
+  const [view, changeView] = useState("grid");
 
   const handleBackButton = () => {
     history.push("/");
+  };
+
+  const handleViewChange = type => {
+    changeView(type);
   };
 
   return (
@@ -24,17 +27,17 @@ const Page = props => {
       <div className="browse-cabinet__heading">
         <h3>Browse Cabinets</h3>
       </div>
-      <div className="collection">
-        <div className="collection-wrapper">
-          <FilterCollection />
-        </div>
-        <div className="collection-wrapper">
-          <GridCollection />
-          <ListCollection />
-        </div>
-      </div>
+
+      <SubHeader handleViewChange={handleViewChange} />
+
       <div className="collection-block">
-        <div className="collection-block__wrapper">
+        <div
+          className={
+            view === "grid"
+              ? "collection-block__grid collection-block__wrapper"
+              : "collection-block__wrapper collection-wrapper__list"
+          }
+        >
           {data.collections.edges.map((collection, i) => {
             return <CollectionBlock key={i} collect={collection.node} />;
           })}

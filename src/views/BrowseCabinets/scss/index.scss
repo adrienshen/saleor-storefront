@@ -1,4 +1,3 @@
-
 .browse-cabinet {
   padding: 17px;
 
@@ -15,6 +14,7 @@
       .cart-main {
         position: relative;
         margin-right: 20px;
+
         &-item {
           position: absolute;
           top: -4px;
@@ -35,14 +35,14 @@
 
       .cart-icon {
         .a {
-          stroke: #4E4E4E;
+          stroke: #4e4e4e;
         }
       }
 
       .search-icon {
         svg {
           & path:first-child {
-            fill: #4E4E4E;
+            fill: #4e4e4e;
           }
         }
       }
@@ -62,7 +62,7 @@
     margin-bottom: 37px;
 
     h3 {
-      color: #B09A51;
+      color: #b09a51;
       font-size: 25px;
     }
   }
@@ -82,7 +82,7 @@
         align-items: center;
 
         &-name {
-          color: #B09A51;
+          color: #b09a51;
           font-size: 14px;
         }
 
@@ -103,31 +103,29 @@
 
   .collection-block {
     &__wrapper {
-      display: grid;
-      grid-template-columns: repeat(2, auto);
-      column-gap: 14px;
-      row-gap: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      transition: all 0.2s ease-in-out;
 
       .block {
         position: relative;
         width: 100%;
-        padding-top: 100%;
+        flex: 1 0 100%;
+        max-width: 100%;
+        transition: all 0.2s ease-in-out;
 
         &-img {
           display: flex;
           height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-
-          img {
-            max-width: 100%;
-            object-fit: cover;
+          padding: 8px;
+          a {
             width: 100%;
-            height: 100%;
-
+            img {
+              max-width: 100%;
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
           }
 
           &__heartIcon {
@@ -140,6 +138,19 @@
             }
           }
         }
+      }
+    }
+    &__list {
+      grid-template-columns: repeat(1, auto);
+    }
+    &__grid {
+      .block {
+        position: relative;
+        width: 100%;
+        flex: 1 0 50%;
+        flex-grow: 1;
+        max-width: 50%;
+        transition: all 0.2s ease-in-out;
       }
     }
   }

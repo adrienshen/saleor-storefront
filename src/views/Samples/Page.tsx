@@ -1,20 +1,23 @@
 import topArrow from "images/arrow-down.svg";
 import bottomArrow from "images/arrow-up.svg";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
-import { FilterCollection } from "../../components/Collection/FilterCollection";
-import { GridCollection } from "../../components/Collection/GridCollection";
-import { ListCollection } from "../../components/Collection/ListCollection";
+import { SubHeader } from "../../components/Collection/SubHeader";
 
 import "./scss/index.scss";
 
 const Page = props => {
   const { data, history } = props;
+  const [view, changeView] = useState("grid");
   const handleBack = () => {
     history.push("/");
   };
   const regex = /\s|_|(?=[A-Z])/;
+
+  const handleViewChange = type => {
+    changeView(type);
+  };
 
   return (
     <div className="divImg sample-page">
@@ -29,15 +32,7 @@ const Page = props => {
         <h3>Samples</h3>
       </div>
 
-      <div className="collection">
-        <div className="collection-wrapper">
-          <FilterCollection />
-        </div>
-        <div className="collection-wrapper">
-          <GridCollection />
-          <ListCollection />
-        </div>
-      </div>
+      <SubHeader handleViewChange={handleViewChange} />
 
       <div className="wrapper-img">
         {data.products.edges.map(
