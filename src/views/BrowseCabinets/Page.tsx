@@ -5,6 +5,7 @@ import { GridCollection } from "../../components/Collection/GridCollection";
 import { ListCollection } from "../../components/Collection/ListCollection";
 import PageHeader from "../../components/Header/PageHeader";
 import "./scss/index.scss";
+import { SubHeader } from "../../components/Collection/SubHeader";
 
 const Page = props => {
   const { data, history } = props;
@@ -21,18 +22,9 @@ const Page = props => {
         search={true}
         handleClick={handleBackButton}
       />
-      <div className="browse-cabinet__heading">
-        <h3>Browse Cabinets</h3>
-      </div>
-      <div className="collection">
-        <div className="collection-wrapper">
-          <FilterCollection />
-        </div>
-        <div className="collection-wrapper">
-          <GridCollection />
-          <ListCollection />
-        </div>
-      </div>
+
+      <SubHeader title="Browse Cabinets" />
+
       <div className="collection-block">
         <div className="collection-block__wrapper">
           {data.collections.edges.map((collection, i) => {
