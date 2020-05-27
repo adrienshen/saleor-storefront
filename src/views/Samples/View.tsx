@@ -6,7 +6,7 @@ import { SaleorCategoryIds } from "../../constants";
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
-const View: React.FC<ViewProps> = ({ history }) => {
+export const View: React.FC<ViewProps> = ({ history }) => {
   const variables = {
     catId: SaleorCategoryIds.Sample,
     pageSize: 100,

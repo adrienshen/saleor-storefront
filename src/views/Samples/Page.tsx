@@ -1,17 +1,13 @@
-import topArrow from "images/arrow-down.svg";
-import bottomArrow from "images/arrow-up.svg";
 import React from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
 import { SubHeader } from "../../components/Collection/SubHeader";
 import "./scss/index.scss";
 
-const Page = props => {
-  const { data, history } = props;
+const Page = ({ data, history }) => {
   const handleBack = () => {
     history.push("/");
   };
-  const regex = /\s|_|(?=[A-Z])/;
 
   return (
     <div className="divImg sample-page">
@@ -22,11 +18,7 @@ const Page = props => {
         handleClick={handleBack}
       />
 
-      <div className="browse-cabinet__heading">
-        <h3>Samples</h3>
-      </div>
-
-      <SubHeader />
+      <SubHeader title="Samples" />
 
       <div className="wrapper-img">
         {data.products.edges.map(
