@@ -3,10 +3,11 @@ import { CollectionBlock } from "../../components/Collection/CollectionBlock";
 import PageHeader from "../../components/Header/PageHeader";
 import { SubHeader } from "../../components/Collection/SubHeader";
 import "./scss/index.scss";
+import { GridViewTypes } from "../../constants";
 
 const Page = props => {
   const { data, history } = props;
-  const [view, changeView] = useState("grid");
+  const [view, changeView] = useState(GridViewTypes.GRID);
 
   const handleBackButton = () => {
     history.push("/");
@@ -33,13 +34,19 @@ const Page = props => {
       <div className="collection-block">
         <div
           className={
-            view === "grid"
+            view === GridViewTypes.GRID
               ? "collection-block__grid collection-block__wrapper"
               : "collection-block__wrapper collection-wrapper__list"
           }
         >
           {data.collections.edges.map((collection, i) => {
-            return <CollectionBlock key={i} collect={collection.node} />;
+            return (
+              <CollectionBlock
+                currentView={view}
+                key={i}
+                collect={collection.node}
+              />
+            );
           })}
         </div>
       </div>
