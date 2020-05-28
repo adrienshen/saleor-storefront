@@ -14,6 +14,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
   const { data: order, loading } = useOrderDetails({ token });
+  console.log("data >> ", order, loading);
   const { data: user } = useUserDetails();
   const guest = !user;
 
