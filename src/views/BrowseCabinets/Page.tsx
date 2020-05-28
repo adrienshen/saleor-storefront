@@ -25,11 +25,8 @@ const Page = props => {
         search={true}
         handleClick={handleBackButton}
       />
-      <div className="browse-cabinet__heading">
-        <h3>Browse Cabinets</h3>
-      </div>
 
-      <SubHeader handleViewChange={handleViewChange} />
+      <SubHeader handleViewChange={handleViewChange} title="Browse Cabinets" />
 
       <div className="collection-block">
         <div

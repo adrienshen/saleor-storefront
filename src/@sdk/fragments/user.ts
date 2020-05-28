@@ -30,11 +30,13 @@ export const orderDetailFragment = gql`
     statusDisplay
     id
     number
+    created
     shippingAddress {
       ...Address
     }
     lines {
       productName
+      productSku
       quantity
       variant {
         ...ProductVariant

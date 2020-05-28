@@ -5,3 +5,6 @@ export enum GridViewTypes {
   Grid = "GRID",
   List = "LIST",
 }
+export enum SaleorCategoryIds {
+  Sample = "Q2F0ZWdvcnk6MjM=",
+}
