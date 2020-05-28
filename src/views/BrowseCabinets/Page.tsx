@@ -7,7 +7,7 @@ import { GridViewTypes } from "../../constants";
 
 const Page = props => {
   const { data, history } = props;
-  const [view, changeView] = useState(GridViewTypes.GRID);
+  const [view, changeView] = useState(GridViewTypes.Grid);
 
   const handleBackButton = () => {
     history.push("/");
@@ -34,7 +34,7 @@ const Page = props => {
       <div className="collection-block">
         <div
           className={
-            view === GridViewTypes.GRID
+            view === GridViewTypes.Grid
               ? "collection-block__grid collection-block__wrapper"
               : "collection-block__wrapper collection-wrapper__list"
           }

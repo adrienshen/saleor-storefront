@@ -7,7 +7,7 @@ export const ListCollection = ({ handleViewChange }) => {
   return (
     <div
       className="collection-wrapper__main"
-      onClick={() => handleViewChange(GridViewTypes.LIST)}
+      onClick={() => handleViewChange(GridViewTypes.List)}
     >
       <ReactSVG path={listIcon} className="collection-wrapper__main-icon" />
       <span className="collection-wrapper__main-name">List</span>
