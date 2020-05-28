@@ -39,6 +39,7 @@ export const checkoutProductVariantFragment = gql`
   fragment ProductVariant on ProductVariant {
     id
     name
+    sku
     pricing {
       onSale
       priceUndiscounted {
@@ -51,6 +52,12 @@ export const checkoutProductVariantFragment = gql`
     product {
       id
       name
+      category {
+        name
+      }
+      collections {
+        name
+      }
       thumbnail {
         url
         alt

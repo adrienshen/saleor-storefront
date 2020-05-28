@@ -4,4 +4,6 @@ export const serviceWorkerTimeout =
 export enum GridViewTypes {
   GRID = "GRID",
   LIST = "LIST",
+export enum SaleorCategoryIds {
+  Sample = "Q2F0ZWdvcnk6MjM=",
 }
