@@ -4,14 +4,14 @@ import PageHeader from "@temp/components/Header/PageHeader";
 import accessTime from "../../../images/access_time.svg";
 import doneAll from "../../../images/done_all.svg";
 
-const OrderPage = () => {
+const OrderPage = ({ history }) => {
+  const handleClick = () => {
+    history.push("/");
+  };
+
   return (
     <div className="inner-page-wrapper order-page-wrapper">
-      <PageHeader
-        back={true}
-        search={true}
-        // handleClick={handleClick}
-      />
+      <PageHeader back={true} search={true} handleClick={handleClick} />
       <div>
         <div className="wrapper-header order-wrapper-header">My Orders</div>
         <div className="filter-icon">
