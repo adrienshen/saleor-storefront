@@ -3,7 +3,7 @@ import { FilterCollection } from "./FilterCollection";
 import { GridCollection } from "./GridCollection";
 import { ListCollection } from "./ListCollection";
 
-export const SubHeader = ({ title }) => {
+export const SubHeader = ({ handleViewChange, title }) => {
   return (
     <div>
       <div className="browse-cabinet__heading">
@@ -15,8 +15,8 @@ export const SubHeader = ({ title }) => {
             <FilterCollection />
           </div>
           <div className="collection-wrapper">
-            <GridCollection />
-            <ListCollection />
+            <GridCollection handleViewChange={handleViewChange} />
+            <ListCollection handleViewChange={handleViewChange} />
           </div>
         </div>
       </div>
