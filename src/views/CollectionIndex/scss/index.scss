@@ -175,7 +175,7 @@
   .wrapper-img {
     display: grid;
     grid-template-columns: repeat(2, auto);
-    column-gap: $small-font-size;
+    column-gap: 0.5rem;
     row-gap: $small-font-size;
     margin-bottom: 2.125rem;
 
@@ -189,6 +189,7 @@
 
       &-inner {
         border: 1px solid transparent;
+        border-radius: 5px;
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -211,8 +212,8 @@
         }
 
         &--img {
-          height: calc(100% - 3.875rem);
-          margin: 0.5rem 0 0.875rem;
+          height: calc(100% - 4.875rem);
+          margin: 0.5rem 0 0.75rem;
 
           img {
             max-width: 100%;
@@ -235,6 +236,11 @@
           .new-price {
             font-size: 0.8125rem;
             color: $dull-orange;
+          }
+          .stock-message {
+            color: red;
+            font-size: 0.8125rem;
+            margin-left: 5px;
           }
         }
       }
