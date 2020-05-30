@@ -23,7 +23,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
   };
 
   const selectSample = (variantId: string, stock: number) => {
-    if (stock === 0) {
+    if (stock > 0) {
       if (samples.indexOf(variantId) > -1) {
         const image = samples.filter(img => img !== variantId);
         selectedSample(image);
