@@ -9,6 +9,10 @@ interface IPage {
   history: any;
 }
 
+enum LocalStorageKeys {
+  Cart = "cart",
+}
+
 export const Page = ({ data, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
   const [stockData, toggleStockMessage] = useState({
@@ -23,7 +27,10 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
   };
 
   const selectSample = (variantId: string, stock: number) => {
-    if (stock > 0) {
+    const cart = JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
+    const cartItem = cart.find(item => item.variantId === variantId);
+    const cartQuantity = (cartItem && cartItem.quantity) || 0;
+    if (stock > 0 && cartQuantity !== stock) {
       if (samples.indexOf(variantId) > -1) {
         const image = samples.filter(img => img !== variantId);
         selectedSample(image);
@@ -61,49 +68,51 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
         <div className="wrapper-img">
           {sampleExist > 0 ? (
             data.products.edges.map(
-              ({ node: { name, id, pricing, thumbnail, variants } }, idx) => {
-                return variants.map((item, index) => (
-                  <div className="wrapper-img-main" key={index}>
-                    <div
-                      className={
-                        samples
-                          ? samples.indexOf(item.id) > -1
-                            ? "wrapper-img-main-inner withBorder"
-                            : "wrapper-img-main-inner noBorder"
-                          : ""
-                      }
-                    >
-                      <div className="wrapper-img-main-inner--header">
-                        <span>{name}</span>
-                      </div>
-                      <div className="wrapper-img-main-inner--img">
-                        <img
-                          src={thumbnail.url}
-                          onClick={() =>
-                            selectSample(item.id, item.stockQuantity)
-                          }
-                          id={id}
-                          key={idx}
-                        />
-                      </div>
-                      <div className="wrapper-img-main-inner--price">
-                        {pricing.priceRange.start.gross.amount !==
-                          pricing.priceRange.start.net.amount && (
-                          <span className="old-price">
-                            <del>${pricing.priceRange.start.gross.amount}</del>
-                          </span>
-                        )}
-                        <span className="new-price">
-                          ${pricing.priceRange.start.net.amount}
+              ({ node: { name, id, pricing, thumbnail, variants } }, idx) => (
+                <div className="wrapper-img-main" key={idx}>
+                  <div
+                    className={
+                      samples
+                        ? samples.indexOf(variants[0].id) > -1
+                          ? "wrapper-img-main-inner withBorder"
+                          : "wrapper-img-main-inner noBorder"
+                        : ""
+                    }
+                  >
+                    <div className="wrapper-img-main-inner--header">
+                      <span>{name}</span>
+                    </div>
+                    <div className="wrapper-img-main-inner--img">
+                      <img
+                        src={thumbnail.url}
+                        onClick={() =>
+                          selectSample(
+                            variants[0].id,
+                            variants[0].stockQuantity
+                          )
+                        }
+                        id={id}
+                        key={idx}
+                      />
+                    </div>
+                    <div className="wrapper-img-main-inner--price">
+                      {pricing.priceRange.start.gross.amount !==
+                        pricing.priceRange.start.net.amount && (
+                        <span className="old-price">
+                          <del>${pricing.priceRange.start.gross.amount}</del>
                         </span>
-                        {stockData.id === item.id && !stockData.isInStock && (
+                      )}
+                      <span className="new-price">
+                        ${pricing.priceRange.start.net.amount}
+                      </span>
+                      {stockData.id === variants[0].id &&
+                        !stockData.isInStock && (
                           <span className="stock-message">Out of stock</span>
                         )}
-                      </div>
                     </div>
                   </div>
-                ));
-              }
+                </div>
+              )
             )
           ) : (
             <div className="wrapper-coming-soon">

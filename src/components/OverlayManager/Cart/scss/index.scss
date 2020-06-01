@@ -28,16 +28,16 @@
   }
 
   &__list {
-    padding: 0.75rem;
+    padding: 1rem;
     height: calc(100vh - 16rem);
     overflow: auto;
 
     &__item {
-      padding: $spacer;
+      padding: $spacer $spacer 0.5rem $spacer;
       display: flex;
       background: #fff;
-      box-shadow: 0 3px 6px #00000029;
-      margin-bottom: $spacer;
+      box-shadow: 0 3px 6px 1px #00000029;
+      margin-bottom: 1.5rem;
       position: relative;
 
       img {
@@ -51,7 +51,7 @@
 
         p {
           color: $light-grayish-orange;
-          font-size: 1rem;
+          font-size: 0.75rem;
           line-height: 1.1875rem;
           font-weight: bolder;
         }
@@ -60,7 +60,7 @@
           display: flex;
           flex-direction: column;
           margin-top: $spacer / 2;
-          margin-bottom: $spacer * 2;
+          margin-bottom: $spacer;
 
           span {
             color: $suva-grey;

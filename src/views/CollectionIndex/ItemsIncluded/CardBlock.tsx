@@ -5,6 +5,10 @@ enum AttributeNames {
   Dimemsions = "Dimensions",
 }
 
+enum LocalStorageKeys {
+  Cart = "cart",
+}
+
 function getAttributes(attributes: any) {
   return attributes.map(att => {
     return {
@@ -35,12 +39,21 @@ export const CardBlock = ({ node, add }) => {
   }
   const dimensions = findField(attributes, AttributeNames.Dimemsions);
   const sku = node.variants[0].sku;
+  const stock = node.variants[0].stockQuantity;
+  const cart = JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
+  const cartItem = cart.find(item => item.variantId === firstVariantId);
+  const cartQuantity = (cartItem && cartItem.quantity) || 0;
+  const [stockQuantity, setStockQuantity] = React.useState({
+    id: firstVariantId,
+    stock: stock - cartQuantity,
+  });
+  const isDisableInc = stockQuantity.stock === 0;
   return (
     <div className="addcart-card">
       <div className="addcart-card--img">
         <div className="img-wrapper">
           <img src={doubleDoorImg} alt="Avatar" />
-          <div className="small-img"></div>
+          <div className="small-img" />
         </div>
       </div>
       <div className="addcart-card-container">
@@ -49,6 +62,7 @@ export const CardBlock = ({ node, add }) => {
         <div className="addcart-card-container--sub-header">
           {sku && <span>SKU: {sku}</span>}
           {dimensions && <span>Dimensions: {dimensions}</span>}
+          <span>Stock: {stockQuantity.stock}</span>
         </div>
 
         <div className="addcart-card-container--detail">
@@ -58,29 +72,38 @@ export const CardBlock = ({ node, add }) => {
             </strong>
           </span>
           <div className="detail-counter">
-            <span
-              className="qty-operator"
+            <button
               onClick={() => {
                 if (count < 1) {
                   return;
                 }
+                setStockQuantity({
+                  id: firstVariantId,
+                  stock: stockQuantity.stock + 1,
+                });
                 setCount(count - 1);
               }}
+              className="qty-operator"
             >
               -
-            </span>
+            </button>
             <span className="qty-text">{count}</span>
-            <span
-              className="qty-operator"
+            <button
               onClick={() => {
                 if (count > 9) {
                   return;
                 }
+                setStockQuantity({
+                  id: firstVariantId,
+                  stock: stockQuantity.stock - 1,
+                });
                 setCount(count + 1);
               }}
+              className="qty-operator"
+              disabled={isDisableInc}
             >
               +
-            </span>
+            </button>
           </div>
         </div>
 

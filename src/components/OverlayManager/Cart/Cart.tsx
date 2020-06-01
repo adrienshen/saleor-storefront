@@ -72,7 +72,7 @@ export function CartBasic({ overlay, cartData }) {
                         <div className="overlay__header">
                           <ReactSVG
                             path={chevronLeft}
-                            onClick={() => null}
+                            onClick={() => history.back()}
                             className="overlay__header__close-icon"
                           />
                           <ReactSVG

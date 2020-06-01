@@ -6,6 +6,10 @@ import ReactSVG from "react-svg";
 import editIcon from "../../../images/baseline-edit-24px.svg";
 import cancelIcon from "../../../images/cancel-24px.svg";
 
+enum LocalStorageKeys {
+  Cart = "cart",
+}
+
 const selectedItem = { id: null, stock: 0 };
 
 const ProductList: React.SFC<{
@@ -22,9 +26,13 @@ const ProductList: React.SFC<{
       </div>
       <ul className="cart__list">
         {lines.map(line => {
+          const cart =
+            JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
+          const cartItem = cart.find(item => item.variantId === line.id);
+          const cartQuantity = (cartItem && cartItem.quantity) || 0;
           if (selectedItem.id !== line.id) {
             selectedItem.id = line.id;
-            selectedItem.stock = line.stockQuantity - line.quantity;
+            selectedItem.stock = line.stockQuantity - cartQuantity;
           }
           return (
             <li key={line.id} className="cart__list__item">
@@ -89,7 +97,7 @@ const QauntSelect: React.SFC<any> = props => {
     selectedItem.stock = stockQuantity.stock + 1;
     setStockQuantity(selectedItem);
   }
-  const isDisableInc = stockQuantity.stock === quantity;
+  const isDisableInc = stockQuantity.stock === 0;
   return (
     <div className="quantselect">
       <button onClick={decrement} className="quantselect__increment">
