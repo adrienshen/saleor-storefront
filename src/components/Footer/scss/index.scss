@@ -2,10 +2,11 @@
 
 .footer {
   @media (max-width: $small-screen) {
-    position: absolute;
+    position: fixed;
+    left: 0;
     bottom: 0;
     height: 62px;
-    background: #2A3330;
+    background: #2a3330;
     width: 100%;
     padding: 12px;
     border-radius: 12px 12px 0 0;
@@ -116,7 +117,6 @@
       background: #2a3330;
       padding: 14px 10px 0;
       border-radius: 50% 50% 0 0;
-
     }
   }
 }

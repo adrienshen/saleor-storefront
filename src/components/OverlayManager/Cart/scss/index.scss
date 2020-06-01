@@ -1,34 +1,43 @@
 @import "../../../../globalStyles/scss/variables.scss";
 
 .cart {
-  width: 100vw;
-  max-width: 100vw;
-  background: $gray-light;
   padding: 1rem;
-  height: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    padding: 0 0.25rem 0 0.9375rem;
+
+    span {
+      font-size: 1.125rem;
+      line-height: 1.375rem;
+    }
+  }
 
   .overlay__header {
-    justify-content: initial;
+    justify-content: space-between;
 
-    &__close-icon {
-      margin-right: auto;
+    .injected-svg {
+      g {
+        path {
+          fill: $dark-gray;
+        }
+      }
     }
   }
 
   &__list {
     padding: 0.75rem;
-    height: calc(100vh - 11.5rem);
+    height: calc(100vh - 16rem);
     overflow: auto;
 
     &__item {
       padding: $spacer;
-      border-bottom: 1px solid $gray-light;
-      border-radius: 4px;
       display: flex;
-      align-content: stretch;
       background: #fff;
-      box-shadow: 0px 4px 8px #aaa;
-      margin-bottom: $spacer * 2;
+      box-shadow: 0 3px 6px #00000029;
+      margin-bottom: $spacer;
       position: relative;
 
       img {
@@ -38,23 +47,24 @@
 
       &__details {
         width: 100%;
-        padding: 0 $spacer;
+        padding: 0 0 0 $spacer;
 
         p {
-          line-height: 1.5;
-          color: $background-tan;
+          color: $light-grayish-orange;
+          font-size: 1rem;
+          line-height: 1.1875rem;
+          font-weight: bolder;
         }
 
         &__variant {
           display: flex;
-          flex-flow: column;
-          justify-content: space-between;
+          flex-direction: column;
           margin-top: $spacer / 2;
           margin-bottom: $spacer * 2;
 
           span {
-            color: $gray;
-            font-size: $small-font-size;
+            color: $suva-grey;
+            font-size: 0.625rem;
           }
         }
 
@@ -62,71 +72,52 @@
           display: flex;
           flex-flow: row nowrap;
           justify-content: space-between;
+          align-items: center;
 
           span {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
-          }
-        }
-
-        &__delete-icon {
-          background-color: $gray-light;
-          border-radius: $spacer;
-          width: 1.5rem;
-          height: 1.5rem;
-          text-align: center;
-          line-height: 1.5rem;
-          margin-top: $spacer / 2;
-          cursor: pointer;
-
-          svg * {
-            transition: 0.3s;
-          }
-
-          &:hover {
-            svg * {
-              fill: $turquoise;
-            }
           }
         }
       }
     }
   }
 
-  &__remove {
+  &__icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     background: #444;
-    color: #eee;
-    text-align: center;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    font-size: 1.2rem;
+    border-radius: 0.313rem;
+
+    & > div {
+      display: flex;
+    }
+  }
+
+  &__remove {
     position: absolute;
     right: -10px;
     top: -10px;
-    box-shadow: -2px 2px 8px #555;
   }
 
   &__footer {
     display: flex;
-    flex-direction: row nowrap;
+    flex-direction: row;
     justify-content: space-between;
     background-color: #fff;
     padding: $spacer;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 3.875rem;
     width: 100vw;
-    box-shadow: 2px 2px 12px #909090;
+    box-shadow: 2px -2px 6px #00000029;
     border-radius: 0.75rem 0.75rem 0 0;
 
     &__subtotoal {
       display: flex;
-      padding-bottom: $spacer;
       justify-content: space-between;
       align-items: center;
       width: 50%;
@@ -134,11 +125,10 @@
     }
 
     &__button {
-      margin: 0.5rem 1.3rem;
-      text-align: center;
-
       button {
         width: 100%;
+        padding: 0.6875rem 1.375rem;
+        border-radius: 0.625rem;
       }
     }
 
@@ -146,6 +136,8 @@
       font-weight: 400;
       margin-right: 1rem;
       min-width: 50px;
+      display: flex;
+      flex-direction: column;
 
       small {
         color: #909090;
@@ -182,25 +174,23 @@
 
 .quantselect {
   display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 100px;
 
   button {
-    display: block;
-    width: 1.8rem;
-    height: 1.8rem;
-    background: $background-tan;
+    display: flex;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #af9a50;
     color: #fff;
-    border: 2px solid #f5f5f5;
     border-radius: 50%;
-    text-align: center;
-    font-size: 20px;
+    font-size: 1.125rem;
+    line-height: 1.25rem;
   }
 
   span {
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: 400;
+    margin: 0 0.875rem;
   }
 }

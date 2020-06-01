@@ -2,8 +2,11 @@ import * as React from "react";
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
 import { LineI } from "../../CartTable/ProductRow";
+import ReactSVG from "react-svg";
+import editIcon from "../../../images/baseline-edit-24px.svg";
+import cancelIcon from "../../../images/cancel-24px.svg";
 
-let selectedItem = { id: null, stock: 0 };
+const selectedItem = { id: null, stock: 0 };
 
 const ProductList: React.SFC<{
   lines: LineI[];
@@ -12,42 +15,50 @@ const ProductList: React.SFC<{
   subtract(variantId: string, quantity: number): void;
 }> = ({ lines, remove, add, subtract }) => {
   return (
-    <ul className="cart__list">
-      {lines.map(line => {
-        if (selectedItem.id !== line.id) {
-          selectedItem.id = line.id;
-          selectedItem.stock = line.stockQuantity - line.quantity;
-        }
-        return (
-          <li key={line.id} className="cart__list__item">
-            <Thumbnail source={line.product} />
-            <div className="cart__list__item__details">
-              <p>{line.product.name}</p>
-              <div className="cart__list__item__details__variant">
-                <span>SKU: {`W1230-CYOHH`}</span>
-                <span>Dimension: {`10"w x 12"h x 24"d`}</span>
-                <span>Stock: {selectedItem.stock} </span>
+    <div>
+      <div className="cart__header">
+        <span>Colored Parrot Cushion</span>
+        <ReactSVG path={editIcon} className="cart__edit cart__icon" />
+      </div>
+      <ul className="cart__list">
+        {lines.map(line => {
+          if (selectedItem.id !== line.id) {
+            selectedItem.id = line.id;
+            selectedItem.stock = line.stockQuantity - line.quantity;
+          }
+          return (
+            <li key={line.id} className="cart__list__item">
+              <Thumbnail source={line.product} />
+              <div className="cart__list__item__details">
+                <p>{line.product.name}</p>
+                <div className="cart__list__item__details__variant">
+                  <span>SKU: {`W1230-CYOHH`}</span>
+                  <span>Dimension: {`10"w x 12"h x 24"d`}</span>
+                  <span>Stock: {selectedItem.stock} </span>
+                </div>
+                <div className="cart__list__item__details__pricing">
+                  <p>
+                    <TaxedMoney taxedMoney={line.pricing.price} />
+                  </p>
+                  <QauntSelect
+                    id={line.id}
+                    quantity={line.quantity}
+                    add={add}
+                    subtract={subtract}
+                    stock={selectedItem.stock}
+                  />
+                </div>
               </div>
-              <div className="cart__list__item__details__pricing">
-                <p>
-                  <TaxedMoney taxedMoney={line.pricing.price} />
-                </p>
-                <QauntSelect
-                  id={line.id}
-                  quantity={line.quantity}
-                  add={add}
-                  subtract={subtract}
-                  stock={selectedItem.stock}
-                />
-              </div>
-            </div>
-            <div className="cart__remove" onClick={() => remove(line.id)}>
-              x
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+              <ReactSVG
+                path={cancelIcon}
+                onClick={() => remove(line.id)}
+                className="cart__remove cart__icon"
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
