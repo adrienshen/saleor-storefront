@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
 import { SubHeader } from "../../components/Collection/SubHeader";
+import { GridViewTypes } from "../../constants";
 import "./scss/index.scss";
 
 const Page = ({ data, history }) => {
+  const [view, changeView] = useState(GridViewTypes.Grid);
   const handleBack = () => {
     history.push("/");
+  };
+
+  const handleViewChange = type => {
+    changeView(type);
   };
 
   return (
@@ -18,7 +24,7 @@ const Page = ({ data, history }) => {
         handleClick={handleBack}
       />
 
-      <SubHeader title="Samples" />
+      <SubHeader handleViewChange={handleViewChange} title="Samples" />
 
       <div className="wrapper-img">
         {data.products.edges.map(
