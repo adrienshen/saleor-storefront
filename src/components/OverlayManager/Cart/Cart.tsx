@@ -67,7 +67,6 @@ export function CartBasic({ overlay, cartData }) {
                       () => geolocalization.country.code,
                       defaultCountry.code
                     );
-                    console.log("Cart", data);
                     return (
                       <div className="cart">
                         <div className="overlay__header">
