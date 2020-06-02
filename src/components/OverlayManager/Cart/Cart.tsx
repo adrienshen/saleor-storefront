@@ -122,7 +122,7 @@ export function CartBasic({ overlay, cartData }) {
                         ) : (
                           <Empty overlayHide={null} />
                         )}
-                        <Footer activeItem="cart" />
+                        <Footer />
                       </div>
                     );
                   }}
