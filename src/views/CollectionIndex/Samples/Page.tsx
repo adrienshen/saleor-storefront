@@ -15,10 +15,6 @@ enum LocalStorageKeys {
 
 export const Page = ({ data, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
-  const [stockData, toggleStockMessage] = useState({
-    id: null,
-    isInStock: true,
-  });
   const collect = [];
   const sampleExist = data.products.totalCount;
 
@@ -26,20 +22,12 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
     history.goBack();
   };
 
-  const selectSample = (variantId: string, stock: number) => {
-    const cart = JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
-    const cartItem = cart.find(item => item.variantId === variantId);
-    const cartQuantity = (cartItem && cartItem.quantity) || 0;
-    if (stock > 0 && cartQuantity !== stock) {
-      if (samples.indexOf(variantId) > -1) {
-        const image = samples.filter(img => img !== variantId);
-        selectedSample(image);
-      } else {
-        selectedSample([...samples, variantId]);
-      }
-      toggleStockMessage({ id: variantId, isInStock: true });
+  const selectSample = (variantId: string) => {
+    if (samples.indexOf(variantId) > -1) {
+      const image = samples.filter(img => img !== variantId);
+      selectedSample(image);
     } else {
-      toggleStockMessage({ id: variantId, isInStock: false });
+      selectedSample([...samples, variantId]);
     }
   };
 
@@ -54,7 +42,24 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
 
     selectedSample([]);
   };
-
+  let showSample = false;
+  sampleExist > 0 &&
+    data.products &&
+    data.products.edges &&
+    data.products.edges.map(({ node: { variants } }) => {
+      if (
+        variants &&
+        variants.length > 0 &&
+        variants[0].stockQuantity &&
+        variants[0].stockQuantity > 0
+      ) {
+        const cart =
+          JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
+        const cartItem = cart.find(item => item.variantId === variants[0].id);
+        const cartQuantity = (cartItem && cartItem.quantity) || 0;
+        showSample = cartQuantity !== variants[0].stockQuantity;
+      }
+    });
   return (
     <div className="inner-page-wrapper">
       <PageHeader
@@ -66,7 +71,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
       <div>
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
-          {sampleExist > 0 ? (
+          {showSample ? (
             data.products.edges.map(
               ({ node: { name, id, pricing, thumbnail, variants } }, idx) => (
                 <div className="wrapper-img-main" key={idx}>
@@ -85,12 +90,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                     <div className="wrapper-img-main-inner--img">
                       <img
                         src={thumbnail.url}
-                        onClick={() =>
-                          selectSample(
-                            variants[0].id,
-                            variants[0].stockQuantity
-                          )
-                        }
+                        onClick={() => selectSample(variants[0].id)}
                         id={id}
                         key={idx}
                       />
@@ -105,10 +105,6 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                       <span className="new-price">
                         ${pricing.priceRange.start.net.amount}
                       </span>
-                      {stockData.id === variants[0].id &&
-                        !stockData.isInStock && (
-                          <span className="stock-message">Out of stock</span>
-                        )}
                     </div>
                   </div>
                 </div>
@@ -120,8 +116,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
             </div>
           )}
         </div>
-
-        {sampleExist > 0 && (
+        {showSample && (
           <button
             type="button"
             className="home-page__btn"

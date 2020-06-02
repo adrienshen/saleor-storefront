@@ -10,14 +10,16 @@ enum LocalStorageKeys {
   Cart = "cart",
 }
 
-const selectedItem = { id: null, stock: 0 };
-
 const ProductList: React.SFC<{
   lines: LineI[];
   remove(variantId: string): void;
   add(variantId: string, quantity: number): void;
   subtract(variantId: string, quantity: number): void;
 }> = ({ lines, remove, add, subtract }) => {
+  const [stockQuantity, setStockQuantity] = React.useState({
+    id: null,
+    stock: 0,
+  });
   return (
     <div>
       <div className="cart__header">
@@ -30,19 +32,23 @@ const ProductList: React.SFC<{
             JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
           const cartItem = cart.find(item => item.variantId === line.id);
           const cartQuantity = (cartItem && cartItem.quantity) || 0;
-          if (selectedItem.id !== line.id) {
-            selectedItem.id = line.id;
-            selectedItem.stock = line.stockQuantity - cartQuantity;
+          if (stockQuantity.id !== line.id) {
+            setStockQuantity({
+              id: line.id,
+              stock: line.stockQuantity - cartQuantity,
+            });
           }
           return (
             <li key={line.id} className="cart__list__item">
-              <Thumbnail source={line.product} />
+              <div className="cart__list__item__photo">
+                <Thumbnail source={line.product} />
+              </div>
               <div className="cart__list__item__details">
                 <p>{line.product.name}</p>
                 <div className="cart__list__item__details__variant">
                   <span>SKU: {`W1230-CYOHH`}</span>
                   <span>Dimension: {`10"w x 12"h x 24"d`}</span>
-                  <span>Stock: {selectedItem.stock} </span>
+                  <span>Stock: {stockQuantity.stock} </span>
                 </div>
                 <div className="cart__list__item__details__pricing">
                   <p>
@@ -53,7 +59,8 @@ const ProductList: React.SFC<{
                     quantity={line.quantity}
                     add={add}
                     subtract={subtract}
-                    stock={selectedItem.stock}
+                    stockQuantity={stockQuantity}
+                    setStockQuantity={setStockQuantity}
                   />
                 </div>
               </div>
@@ -72,19 +79,16 @@ const ProductList: React.SFC<{
 
 const QauntSelect: React.SFC<any> = props => {
   const [quantity, setQuantity] = React.useState(props.quantity || 0);
-  const [stockQuantity, setStockQuantity] = React.useState({
-    id: props.id,
-    stock: props.stock,
-  });
   function increment() {
     if (quantity + 1 > 10) {
       return;
     }
     props.add(props.id, 1);
     setQuantity(quantity + 1);
-    selectedItem.id = props.id;
-    selectedItem.stock = stockQuantity.stock - 1;
-    setStockQuantity(selectedItem);
+    props.setStockQuantity({
+      id: props.id,
+      stock: props.stockQuantity.stock - 1,
+    });
   }
 
   function decrement() {
@@ -93,11 +97,12 @@ const QauntSelect: React.SFC<any> = props => {
     }
     props.subtract(props.id, 1);
     setQuantity(quantity - 1);
-    selectedItem.id = props.id;
-    selectedItem.stock = stockQuantity.stock + 1;
-    setStockQuantity(selectedItem);
+    props.setStockQuantity({
+      id: props.id,
+      stock: props.stockQuantity.stock + 1,
+    });
   }
-  const isDisableInc = stockQuantity.stock === 0;
+  const isDisableInc = props.stockQuantity.stock === 0;
   return (
     <div className="quantselect">
       <button onClick={decrement} className="quantselect__increment">
