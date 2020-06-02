@@ -42,8 +42,8 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
 
     selectedSample([]);
   };
-  let showSample = false;
-  sampleExist > 0 &&
+  const checkStockStatus =
+    sampleExist > 0 &&
     data.products &&
     data.products.edges &&
     data.products.edges.map(({ node: { variants } }) => {
@@ -57,9 +57,10 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
           JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
         const cartItem = cart.find(item => item.variantId === variants[0].id);
         const cartQuantity = (cartItem && cartItem.quantity) || 0;
-        showSample = cartQuantity !== variants[0].stockQuantity;
+        return cartQuantity !== variants[0].stockQuantity;
       }
     });
+  const showSample = (checkStockStatus && checkStockStatus[0]) || false;
   return (
     <div className="inner-page-wrapper">
       <PageHeader
