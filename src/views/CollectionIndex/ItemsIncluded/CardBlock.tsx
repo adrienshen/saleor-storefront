@@ -49,71 +49,73 @@ export const CardBlock = ({ node, add }) => {
   });
   const isDisableInc = stockQuantity.stock === 0;
   return (
-    <div className="addcart-card">
-      <div className="addcart-card--img">
-        <div className="img-wrapper">
-          <img src={doubleDoorImg} alt="Avatar" />
-          <div className="small-img" />
+    stockQuantity.stock &&
+    stockQuantity.stock > 0 && (
+      <div className="addcart-card">
+        <div className="addcart-card--img">
+          <div className="img-wrapper">
+            <img src={doubleDoorImg} alt="Avatar" />
+            <div className="small-img" />
+          </div>
         </div>
-      </div>
-      <div className="addcart-card-container">
-        <div className="addcart-card-container--header">{node.name}</div>
+        <div className="addcart-card-container">
+          <div className="addcart-card-container--header">{node.name}</div>
+          <div className="addcart-card-container--sub-header">
+            {sku && <span>SKU: {sku}</span>}
+            {dimensions && <span>Dimensions: {dimensions}</span>}
+            <span>Stock: {stockQuantity.stock}</span>
+          </div>
 
-        <div className="addcart-card-container--sub-header">
-          {sku && <span>SKU: {sku}</span>}
-          {dimensions && <span>Dimensions: {dimensions}</span>}
-          <span>Stock: {stockQuantity.stock}</span>
-        </div>
+          <div className="addcart-card-container--detail">
+            <span className="detail-price">
+              <strong>
+                ${node.pricing.priceRange.start.gross.amount.toFixed(2)}
+              </strong>
+            </span>
+            <div className="detail-counter">
+              <button
+                onClick={() => {
+                  if (count < 1) {
+                    return;
+                  }
+                  setStockQuantity({
+                    id: firstVariantId,
+                    stock: stockQuantity.stock + 1,
+                  });
+                  setCount(count - 1);
+                }}
+                className="qty-operator"
+              >
+                -
+              </button>
+              <span className="qty-text">{count}</span>
+              <button
+                onClick={() => {
+                  if (count > 9) {
+                    return;
+                  }
+                  setStockQuantity({
+                    id: firstVariantId,
+                    stock: stockQuantity.stock - 1,
+                  });
+                  setCount(count + 1);
+                }}
+                className="qty-operator"
+                disabled={isDisableInc}
+              >
+                +
+              </button>
+            </div>
+          </div>
 
-        <div className="addcart-card-container--detail">
-          <span className="detail-price">
-            <strong>
-              ${node.pricing.priceRange.start.gross.amount.toFixed(2)}
-            </strong>
-          </span>
-          <div className="detail-counter">
-            <button
-              onClick={() => {
-                if (count < 1) {
-                  return;
-                }
-                setStockQuantity({
-                  id: firstVariantId,
-                  stock: stockQuantity.stock + 1,
-                });
-                setCount(count - 1);
-              }}
-              className="qty-operator"
-            >
-              -
-            </button>
-            <span className="qty-text">{count}</span>
-            <button
-              onClick={() => {
-                if (count > 9) {
-                  return;
-                }
-                setStockQuantity({
-                  id: firstVariantId,
-                  stock: stockQuantity.stock - 1,
-                });
-                setCount(count + 1);
-              }}
-              className="qty-operator"
-              disabled={isDisableInc}
-            >
-              +
+          <div className="addcart-card-container--btn">
+            <button onClick={addItems}>
+              {" "}
+              {loading ? <span>Loading...</span> : <span>Add to Cart</span>}
             </button>
           </div>
         </div>
-
-        <div className="addcart-card-container--btn">
-          <button onClick={addItems}>
-            {" "}
-            {loading ? <span>Loading...</span> : <span>Add to Cart</span>}
-          </button>
-        </div>
       </div>
-    </div>
+    )
   );
 };
