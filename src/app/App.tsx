@@ -25,9 +25,8 @@ const App: React.FC<RouteComponentProps> = ({
           </header>
         )}
         <Routes />
-        {!orderConfirmationPage && pathname === "/" && (
-          <Footer activeItem="home" />
-        )}
+        {!orderConfirmationPage &&
+          (pathname === "/" || pathname === "/my-account") && <Footer />}
         <OverlayManager />
       </div>
     </>

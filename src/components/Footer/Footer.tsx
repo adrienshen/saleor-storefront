@@ -4,48 +4,55 @@ import AccountIcon from "../../images/account-icon.svg";
 import CartIcon from "../../images/cart-icon.svg";
 import HomeIcon from "../../images/home-icon.svg";
 import MoreIcon from "../../images/more-icon.svg";
+import { Link } from "react-router-dom";
 import "./scss/index.scss";
 
-interface FooterProps {
-  activeItem: string;
-}
+const Footer: React.FC = () => {
+  const path = window.location.pathname;
 
-const Footer: React.FC<FooterProps> = ({ activeItem }: FooterProps) => (
-  <div className="footer" id="footer">
-    <div className="footer-small">
-      <div
-        className={`footer-small__icon ${activeItem === "home" &&
-          "footer-small__icon-selected"}`}
-      >
-        <ReactSVG path={HomeIcon} />
-        <span className="footer-small__icon-name">Home</span>
-      </div>
+  return (
+    <div className="footer" id="footer">
+      <div className="footer-small">
+        <div
+          className={`footer-small__icon ${
+            path === "/" ? "footer-small__icon-selected" : ""
+          }`}
+        >
+          <Link to="/">
+            <ReactSVG className="footer-icon" path={HomeIcon} />
+            <span className="footer-small__icon-name">Home</span>
+          </Link>
+        </div>
 
-      <div
-        className={`footer-small__icon ${activeItem === "cart" &&
-          "footer-small__icon-selected"}`}
-      >
-        <ReactSVG path={CartIcon} />
-        <span className="footer-small__icon-name">Cart</span>
-      </div>
+        <div
+          className={`footer-small__icon ${
+            path === "/cart" ? "footer-small__icon-selected" : ""
+          }`}
+        >
+          <Link to="/cart">
+            <ReactSVG className="footer-icon" path={CartIcon} />
+            <span className="footer-small__icon-name">Cart</span>
+          </Link>
+        </div>
 
-      <div
-        className={`footer-small__icon ${activeItem === "account" &&
-          "footer-small__icon-selected"}`}
-      >
-        <ReactSVG path={AccountIcon} />
-        <span className="footer-small__icon-name">Account</span>
-      </div>
+        <div
+          className={`footer-small__icon ${
+            path === "/my-account" ? "footer-small__icon-selected" : ""
+          }`}
+        >
+          <Link to="/my-account">
+            <ReactSVG className="footer-icon" path={AccountIcon} />
+            <span className="footer-small__icon-name">Account</span>
+          </Link>
+        </div>
 
-      <div
-        className={`footer-small__icon ${activeItem === "more" &&
-          "footer-small__icon-selected"}`}
-      >
-        <ReactSVG path={MoreIcon} />
-        <span className="footer-small__icon-name">More</span>
+        <div className="footer-small__icon">
+          <ReactSVG className="footer-icon" path={MoreIcon} />
+          <span className="footer-small__icon-name">More</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Footer;
