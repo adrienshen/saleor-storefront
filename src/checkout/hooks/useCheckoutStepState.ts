@@ -21,14 +21,7 @@ export const useCheckoutStepState = (
   cardData: CardData,
   dummyStatus: string
 ): CheckoutStep => {
-  const isShippingRequiredForProducts = () => {
-    // Shipping is always required
-    return true;
-  };
-
-  const { storedValue: contactFields } = useLocalStorage(
-    "contactFields"
-  );
+  const { storedValue: contactFields } = useLocalStorage("contactFields");
 
   const getStep = () => {
     const { firstName, phone, email } = contactFields || {};
@@ -36,7 +29,7 @@ export const useCheckoutStepState = (
       return CheckoutStep.Contact;
     }
 
-    if (!checkout && variantsProducts && isShippingRequiredForProducts()) {
+    if (!checkout && variantsProducts) {
       return CheckoutStep.ShippingAddress;
     } else if (!checkout && variantsProducts) {
       return CheckoutStep.BillingAddress;

@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { TypedMutation } from "../../../core/mutations";
 import {
   completeCheckout,
-  completeCheckoutVariables
+  completeCheckoutVariables,
 } from "./types/completeCheckout";
 
 const completeCheckoutMutation = gql`
