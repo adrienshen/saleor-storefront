@@ -14,8 +14,4 @@ const DEFAULT_PROPS = {
 
 storiesOf("@components/checkout/CheckoutSummary", module)
   .addParameters({ component: CheckoutSummary })
-  .add("default", () => (
-    <div style={{ width: "400px" }}>
-      <CheckoutSummary {...DEFAULT_PROPS} />
-    </div>
-  ));
+  .add("default", () => <CheckoutSummary {...DEFAULT_PROPS} />);

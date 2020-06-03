@@ -14,24 +14,25 @@ export const CheckoutSummary: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <div className="checkout-summary">
-      <div className="contact-info">
+      <div className="info contact-info">
         <h3>Contact Information</h3>
-        <div>{fullName}</div>
-        <div>{email}</div>
-        <div>{phoneNumber}</div>
+        <div className="user-info">{fullName}</div>
+        <div className="user-info">{email}</div>
+        <div className="user-info">{phoneNumber}</div>
       </div>
-      <div className="address-info">
+      <div className="info address-info">
         <h3>Shipping & Billing</h3>
-        <div>{addressLineOne}</div>
-        <div>{addressLineTwo}</div>
-        <div>{addressLineThree}</div>
+        <div className="user-info">{addressLineOne}</div>
+        <div className="user-info">{addressLineTwo}</div>
+        <div className="user-info">{addressLineThree}</div>
       </div>
       <div className="card-info">
         <h3>Card Details</h3>
-        <div>
-          {" "}
-          <CreditCardIcon creditCardProvider="visa" />
-          {creditCardEnding}
+        <div className="credit-card">
+          <div className="credit-card__icon">
+            <CreditCardIcon creditCardProvider="visa" />
+          </div>
+          <div className="credit-card__info">{creditCardEnding}</div>
         </div>
       </div>
     </div>
