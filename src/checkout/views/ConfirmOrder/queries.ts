@@ -12,6 +12,7 @@ const completeCheckoutMutation = gql`
       errors {
         field
         message
+        code
       }
       order {
         id

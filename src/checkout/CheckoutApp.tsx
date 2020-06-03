@@ -48,22 +48,22 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
     dummyStatus
   );
   const stepFromPath = useCheckoutStepFromPath(pathname);
+  const notReady =
+    cartLoading ||
+    checkoutLoading ||
+    variantsProductsLoading ||
+    !step ||
+    (!stepFromPath && checkoutBaseUrl !== pathname);
 
   return (
     <div className="checkout">
       <div className="checkout__menu">
-        <Link to={appBaseUrl}>Ret</Link>
+        <Link to={appBaseUrl}>Return</Link>
       </div>
       <div className="container">
         <Online>
           {(() => {
-            if (
-              cartLoading ||
-              checkoutLoading ||
-              variantsProductsLoading ||
-              !step ||
-              (!stepFromPath && checkoutBaseUrl !== pathname)
-            ) {
+            if (notReady) {
               return <Loader />;
             }
 
@@ -71,12 +71,12 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
               return <Redirect to={appBaseUrl} />;
             }
 
-            if (
-              ((!checkout && !variantsProducts) || step < stepFromPath) &&
-              checkoutBaseUrl !== pathname
-            ) {
-              return <Redirect to={checkoutBaseUrl} />;
-            }
+            // if (
+            //   ((!checkout && !variantsProducts) || step < stepFromPath) &&
+            //   checkoutBaseUrl !== pathname
+            // ) {
+            //   return <Redirect to={checkoutBaseUrl} />;
+            // }
 
             return <CheckoutRoutes />;
           })()}

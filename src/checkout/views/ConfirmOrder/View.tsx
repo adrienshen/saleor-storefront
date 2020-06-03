@@ -79,12 +79,12 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                   )
                 }
               >
-                {(completeCheckout, { loading }) => (
+                {(complete, { loading }) => (
                   <CheckoutNextButton
                     type="submit"
                     disabled={loading}
                     onClick={() =>
-                      completeCheckout({
+                      complete({
                         variables: {
                           checkoutId: checkout.id,
                         },
