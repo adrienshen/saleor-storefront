@@ -1,20 +1,27 @@
-import { Paths } from "@temp/views/CollectionIndex/Page";
 import * as React from "react";
-import { Link } from "react-router-dom";
 import PageHeader from "../../../components/Header/PageHeader";
 import { DetailRow } from "@temp/components/Collection/DetailRow";
 
 export const Page = props => {
-  const specsDetails = JSON.parse(props.data.collection.extraFields) || [];
-  const details =
-    specsDetails &&
-    specsDetails.specifications &&
-    specsDetails.specifications.length > 0 &&
-    specsDetails.specifications.map(item =>
-      Object.keys(item).map(key => {
-        return { key, value: item[key] };
-      })
+  const specsDetails =
+    (props.data &&
+      props.data.collection &&
+      JSON.parse(props.data.collection.extraFields)) ||
+    [];
+
+  const getDetails = data => {
+    return (
+      data &&
+      data.specifications &&
+      data.specifications.length > 0 &&
+      data.specifications.map(item =>
+        Object.keys(item).map(key => ({ key, value: item[key] }))
+      )
     );
+  };
+
+  const details = getDetails(specsDetails);
+
   const handleClick = () => {
     props.history.goBack();
   };
@@ -29,10 +36,14 @@ export const Page = props => {
       />
       <div>
         <div className="wrapper-header">Set Details</div>
-        {details.map((detail, i) => {
+        {details.map((detail, idx) => {
           if (detail && detail[0]) {
             return (
-              <DetailRow key={i} name={detail[0].key} value={detail[0].value} />
+              <DetailRow
+                key={idx}
+                name={detail[0].key}
+                value={detail[0].value}
+              />
             );
           }
         })}
