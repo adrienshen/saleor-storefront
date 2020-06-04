@@ -12,14 +12,14 @@ interface IPage {
 export const Page = ({ data, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
   const collect = [];
-  const sampleExist = data.products.totalCount;
+  const sampleExist = data?.products?.totalCount || 0;
 
   const handleBack = () => {
     history.goBack();
   };
 
   const selectSample = (variantId: string) => {
-    if (samples.indexOf(variantId) > -1) {
+    if (samples?.indexOf(variantId) > -1) {
       const image = samples.filter(img => img !== variantId);
       selectedSample(image);
     } else {
@@ -32,12 +32,13 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
   }, [samples]);
 
   const handleOrderSamples = () => {
-    samples.forEach((s: string) => {
-      cart.add(s, 1);
+    samples.forEach((sample: string) => {
+      cart.add(sample, 1);
     });
-
     selectedSample([]);
   };
+
+  const getAmount = price => {};
 
   return (
     <div className="inner-page-wrapper">
@@ -51,13 +52,13 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
           {sampleExist > 0 ? (
-            data.products.edges.map(
+            data?.products?.edges?.map(
               ({ node: { name, id, pricing, thumbnail, variants } }, idx) => (
                 <div className="wrapper-img-main" key={idx}>
                   <div
                     className={
                       samples
-                        ? samples.indexOf(variants[0].id) > -1
+                        ? samples.indexOf(variants[0]?.id) > -1
                           ? "wrapper-img-main-inner withBorder"
                           : "wrapper-img-main-inner noBorder"
                         : ""
@@ -75,14 +76,15 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                       />
                     </div>
                     <div className="wrapper-img-main-inner--price">
-                      {pricing.priceRange.start.gross.amount !==
-                        pricing.priceRange.start.net.amount && (
-                        <span className="old-price">
-                          <del>${pricing.priceRange.start.gross.amount}</del>
-                        </span>
-                      )}
+                      {pricing.priceRange.start &&
+                        pricing.priceRange.start.gross?.amount !==
+                          pricing.priceRange.start.net?.amount && (
+                          <span className="old-price">
+                            <del>${pricing.priceRange.start.gross?.amount}</del>
+                          </span>
+                        )}
                       <span className="new-price">
-                        ${pricing.priceRange.start.net.amount}
+                        ${pricing.priceRange.start.net?.amount}
                       </span>
                     </div>
                   </div>

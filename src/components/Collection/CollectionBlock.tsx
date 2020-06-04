@@ -5,7 +5,7 @@ import heartFillIcon from "../../images/favorite-fill.svg";
 import heartIcon from "../../images/favorite.svg";
 
 export const CollectionBlock = props => {
-  const { collect, currentView } = props;
+  const { collection, currentView } = props;
   const [heart, setWishlist] = useState(heartIcon);
   const [view, changeView] = useState("grid");
 
@@ -27,8 +27,10 @@ export const CollectionBlock = props => {
           className="block-img__heartIcon"
           onClick={handleWishlist}
         />
-        <Link to={`/collections/cabinets/${collect.id}/${collect.slug}`}>
-          <img src={collect.backgroundImage.url} />
+        <Link
+          to={`/collections/cabinets/${collection?.id}/${collection?.slug}`}
+        >
+          <img src={collection?.backgroundImage?.url} />
         </Link>
       </div>
     </div>
