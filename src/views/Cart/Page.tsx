@@ -15,12 +15,15 @@ import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { maybe } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../Product/queries";
 import { CartBasic } from "@temp/components/OverlayManager/Cart";
+import { UserActionFeedback } from "../../components/UserActionFeedback";
+import { History } from "history";
 
 interface PageProps {
   checkout: CheckoutContextInterface;
   overlay: OverlayContextInterface;
   cart: CartInterface;
   shop: getShop_shop;
+  history: History;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -41,6 +44,7 @@ const Page: React.FC<PageProps> = ({
     loading: cartLoading,
     changeQuantity,
   },
+  history,
 }) => {
   const alert = useAlert();
   const { data: user } = useUserDetails();
@@ -65,7 +69,7 @@ const Page: React.FC<PageProps> = ({
     return <Loader full />;
   }
   if (!lines.length) {
-    return <EmptyCart />;
+    return <UserActionFeedback page="cart_empty" history={history} />;
   }
   const productTableProps = {
     add,

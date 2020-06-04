@@ -14,6 +14,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   match: {
     params: { token },
   },
+  history,
 }) => {
   const handleBack = () => {
     window.history.back();
@@ -34,6 +35,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                         checkout={checkout}
                         cart={cart}
                         shop={shop}
+                        history={history}
                       />
                     )}
                   </ShopContext.Consumer>
