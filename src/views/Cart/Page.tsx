@@ -7,7 +7,7 @@ import { TaxedMoney } from "@components/containers";
 import { useUserDetails } from "@sdk/react";
 
 import { CheckoutContextInterface } from "../../checkout/context";
-import { CartTable, EmptyCart, Loader } from "../../components";
+import { CartTable, Loader } from "../../components";
 import { CartInterface } from "../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../components/CartProvider/utils";
 import { OverlayContextInterface } from "../../components/Overlay/context";

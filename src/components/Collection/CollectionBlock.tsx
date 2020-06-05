@@ -28,7 +28,7 @@ export const CollectionBlock = props => {
           onClick={handleWishlist}
         />
         <Link to={`/collections/cabinets/${collect.id}/${collect.slug}`}>
-          <img src={collect.backgroundImage && collect.backgroundImage.url} />
+          <img src={collect.backgroundImage.url} />
         </Link>
       </div>
     </div>
