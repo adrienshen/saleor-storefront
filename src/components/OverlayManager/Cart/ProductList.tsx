@@ -10,29 +10,29 @@ const ProductList: React.SFC<{
   subtract(variantId: string, quantity: number): void;
 }> = ({ lines, remove, add, subtract }) => (
   <ul className="cart__list">
-    {lines.map(line => {
+    {lines?.map(line => {
       return (
-        <li key={line.id} className="cart__list__item">
-          <Thumbnail source={line.product} />
+        <li key={line?.id} className="cart__list__item">
+          <Thumbnail source={line?.product} />
           <div className="cart__list__item__details">
-            <p>{line.product.name}</p>
+            <p>{line?.product?.name}</p>
             <div className="cart__list__item__details__variant">
               <span>SKU: {`W1230-CYOHH`}</span>
               <span>Dimension: {`10"w x 12"h x 24"d`}</span>
             </div>
             <div className="cart__list__item__details__pricing">
               <p>
-                <TaxedMoney taxedMoney={line.pricing.price} />
+                <TaxedMoney taxedMoney={line?.pricing?.price} />
               </p>
               <QauntSelect
-                id={line.id}
-                quantity={line.quantity}
+                id={line?.id}
+                quantity={line?.quantity}
                 add={add}
                 subtract={subtract}
               />
             </div>
           </div>
-          <div className="cart__remove" onClick={() => remove(line.id)}>
+          <div className="cart__remove" onClick={() => remove(line?.id)}>
             x
           </div>
         </li>

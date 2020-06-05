@@ -38,8 +38,6 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
     selectedSample([]);
   };
 
-  const getAmount = price => {};
-
   return (
     <div className="inner-page-wrapper">
       <PageHeader
