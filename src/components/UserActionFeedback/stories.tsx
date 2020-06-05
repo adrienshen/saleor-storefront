@@ -1,11 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { History } from "history";
 import { UserActionFeedback } from ".";
 
 const DEFAULT_PROPS = {
   page: "message_sent",
-  history: {} as History,
+  history: {},
 };
 
 storiesOf("@components/UserActionFeedback", module)
