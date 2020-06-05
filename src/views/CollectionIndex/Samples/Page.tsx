@@ -74,7 +74,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                       />
                     </div>
                     <div className="wrapper-img-main-inner--price">
-                      {pricing.priceRange.start &&
+                      {pricing?.priceRange?.start &&
                         pricing.priceRange.start.gross?.amount !==
                           pricing.priceRange.start.net?.amount && (
                           <span className="old-price">

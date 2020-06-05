@@ -4,7 +4,6 @@ import { RichTextContent } from "@components/atoms";
 
 export const Page = props => {
   const { data } = props;
-  const description = JSON.parse(data.collection.descriptionJson);
 
   const handleClick = () => {
     props.history.goBack();
@@ -25,7 +24,7 @@ export const Page = props => {
         <div className="wrapper-description">
           <div>
             <RichTextContent
-              descriptionJson={data.collection.descriptionJson}
+              descriptionJson={data?.collection?.descriptionJson}
             />
           </div>
         </div>

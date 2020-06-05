@@ -44,7 +44,7 @@ export function CartBasic({ overlay, cartData }) {
               {({ defaultCountry, geolocalization }) => (
                 <TypedProductVariantsQuery
                   displayLoader={false}
-                  variables={{ ids: cart.lines.map(line => line.variantId) }}
+                  variables={{ ids: cart?.lines?.map(line => line.variantId) }}
                   skip={!cart.lines.length}
                   alwaysRender
                 >
@@ -62,8 +62,8 @@ export function CartBasic({ overlay, cartData }) {
                     }
 
                     const locale = maybe(
-                      () => geolocalization.country.code,
-                      defaultCountry.code
+                      () => geolocalization?.country?.code,
+                      defaultCountry?.code
                     );
                     return (
                       <div className="cart">
@@ -74,7 +74,7 @@ export function CartBasic({ overlay, cartData }) {
                             className="overlay__header__close-icon"
                           />
                         </div>
-                        {cart.lines.length && data ? (
+                        {cart?.lines?.length && data ? (
                           <>
                             <ProductList
                               lines={extractCartLines(data, cart.lines, locale)}
@@ -89,7 +89,7 @@ export function CartBasic({ overlay, cartData }) {
                                   <small>
                                     (
                                     {cart.lines
-                                      .map(line => line.quantity)
+                                      .map(line => line?.quantity)
                                       .reduce(
                                         (sum, next) => sum + next,
                                         0
