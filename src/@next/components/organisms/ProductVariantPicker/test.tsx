@@ -4,7 +4,6 @@ import React from "react";
 import { components } from "react-select";
 
 import { OverlayItem } from "@components/molecules";
-import { SelectSidebar } from "@components/organisms";
 
 import { ProductVariantPicker } from ".";
 import { productVariants } from "./fixtures";
@@ -147,7 +146,6 @@ describe("<ProductVariantPicker />", () => {
       .simulate("focus");
     expect(
       wrapper
-        .find(SelectSidebar)
         .at(1)
         .find(OverlayItem)
         .at(0)
@@ -155,7 +153,6 @@ describe("<ProductVariantPicker />", () => {
     ).toBe(true);
     expect(
       wrapper
-        .find(SelectSidebar)
         .at(1)
         .find(OverlayItem)
         .at(1)
@@ -163,7 +160,6 @@ describe("<ProductVariantPicker />", () => {
     ).toBe(false);
     expect(
       wrapper
-        .find(SelectSidebar)
         .at(1)
         .find(OverlayItem)
         .at(2)

@@ -7,7 +7,6 @@ import { DebounceChange, ProductsFeatured, TextField } from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
 
@@ -110,13 +109,6 @@ const Page: React.FC<PageProps> = ({
         </div>
       </div>
       <div className="container">
-        <FilterSidebar
-          show={showFilters}
-          hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
-        />
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}

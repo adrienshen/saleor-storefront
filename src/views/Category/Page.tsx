@@ -11,7 +11,6 @@ import {
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
 
@@ -86,13 +85,6 @@ const Page: React.FC<PageProps> = ({
     <div className="category">
       <div className="container">
         <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
-        <FilterSidebar
-          show={showFilters}
-          hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
-        />
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}

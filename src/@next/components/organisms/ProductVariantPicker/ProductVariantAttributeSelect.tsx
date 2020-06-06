@@ -9,7 +9,6 @@ import {
   IProductVariantsAttributesSelectedValues,
 } from "@types";
 
-import { SelectSidebar } from "../SelectSidebar";
 import * as S from "./styles";
 
 export const ProductVariantAttributeSelect: React.FC<{
@@ -114,7 +113,7 @@ export const ProductVariantAttributeSelect: React.FC<{
           onChange={() => null}
           contentRight={getRightInputContent(!!selectedValue)}
         />
-        <SelectSidebar
+        {/* <SelectSidebar
           options={attributeOptions}
           selectedOptions={selectedValuesList}
           disabledOptions={disabledValuesList}
@@ -123,7 +122,7 @@ export const ProductVariantAttributeSelect: React.FC<{
           hide={() => setShowSelectSidebar(false)}
           onSelect={handleSelectValueInSidebar}
           target={selectSidebarTarget}
-        />
+        /> */}
       </>
     );
   } else {
