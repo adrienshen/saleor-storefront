@@ -42,7 +42,7 @@ export const invalidTokenLinkWithTokenHandlerComponent = (
     });
   };
   const link = onError((error: ResponseError) => {
-    if (error.networkError && error.networkError.statusCode === 401) {
+    if (error.networkError?.statusCode === 401) {
       tokenExpirationCallback();
     }
   });
