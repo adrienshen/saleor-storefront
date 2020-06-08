@@ -68,13 +68,13 @@ export default class CartProvider extends React.Component<
   syncCheckoutFromCart = async () => {
     const { checkout } = this.props.checkout;
     const { lines } = this.state;
-    const checkoutLines = checkout.lines.map(
+    const checkoutLines = checkout.lines?.map(
       ({ quantity, variant: { id } }) => ({ quantity, variantId: id })
     );
 
     if (lines.length) {
       if (!isEqual(lines, checkoutLines)) {
-        const linestoRemove = pullAllBy(checkoutLines, lines, "variantId").map(
+        const linestoRemove = pullAllBy(checkoutLines, lines, "variantId")?.map(
           ({ variantId }) => ({
             quantity: 0,
             variantId,
@@ -82,13 +82,13 @@ export default class CartProvider extends React.Component<
         );
         this.changeQuantity([...linestoRemove, ...lines]);
       }
-    } else if (checkoutLines.length) {
+    } else if (checkoutLines?.length) {
       this.changeQuantity(checkoutLines);
     }
   };
 
   getLine = (variantId: string): CartLineInterface =>
-    this.state.lines.find(line => line.variantId === variantId);
+    this.state.lines?.find(line => line.variantId === variantId);
 
   changeQuantity = async (lines: CartLine[]) => {
     this.setState({ loading: true });
@@ -137,7 +137,7 @@ export default class CartProvider extends React.Component<
         const updatedLines = [
           ...pullAllBy(prevState.lines, lines, "variantId"),
           ...lines,
-        ].filter(({ quantity }) => !!quantity);
+        ]?.filter(({ quantity }) => !!quantity);
         localStorage.setItem("cart", JSON.stringify(updatedLines));
         return { lines: updatedLines, loading: false };
       });
@@ -164,7 +164,7 @@ export default class CartProvider extends React.Component<
   clearErrors = () => this.setState({ errors: [] });
 
   getQuantity = () =>
-    this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
+    this.state.lines?.reduce((sum, line) => sum + line.quantity, 0);
 
   remove = variantId => this.changeQuantity([{ variantId, quantity: 0 }]);
 

@@ -17,8 +17,8 @@ const getRef = (isSelected: boolean, ref: React.Ref<Ref>) =>
 const SelectOptionsList = React.forwardRef<Ref, ISelectOptionsList>(
   ({ activeOption, options, onChange, setOpen, updateOptions }, ref) => (
     <>
-      {options.length
-        ? options.map(({ label, value }) => {
+      {options?.length
+        ? options.map(({ label, value }, idx) => {
             const isSelected = activeOption.value === value;
             return (
               <p
@@ -26,7 +26,7 @@ const SelectOptionsList = React.forwardRef<Ref, ISelectOptionsList>(
                 className={classNames("select__option", {
                   "select__option--selected": isSelected,
                 })}
-                key={value}
+                key={value + idx}
                 onClick={() => {
                   updateOptions({ label, value }, onChange);
                   setOpen(false);

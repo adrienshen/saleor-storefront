@@ -38,9 +38,9 @@ const Table: React.FC<TableProps> = ({
           </tr>
         </thead>
         <tbody>
-          {lines.map(line => (
+          {lines?.map((line, idx) => (
             <ProductRow
-              key={line.id}
+              key={idx}
               line={line}
               mediumScreen={mediumScreen}
               {...rowProps}

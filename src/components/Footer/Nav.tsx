@@ -4,36 +4,43 @@ import "./scss/index.scss";
 
 import { Link } from "@temp/@next/components/atoms/SocialMediaIcon/styles";
 
-const MAIN_MENU = [{
-  href: '/',
-  title: 'Home',
-}, {
-  href: '/cart',
-  title: 'Cart',
-}, {
-  href: '/account',
-  title: 'Account',
-}, {
-  href: '/more',
-  title: 'More',
-}];
+const MAIN_MENU = [
+  {
+    href: "/",
+    title: "Home",
+  },
+  {
+    href: "/cart",
+    title: "Cart",
+  },
+  {
+    href: "/account",
+    title: "Account",
+  },
+  {
+    href: "/more",
+    title: "More",
+  },
+];
 
 class Nav extends React.PureComponent {
   render() {
     return (
       <footer className="footer-nav">
-        {MAIN_MENU.map(item => {
-          return  <MenuItem item={item} />
+        {MAIN_MENU.map((item, idx) => {
+          return <MenuItem item={item} key={idx} />;
         })}
       </footer>
     );
   }
 }
 
-function MenuItem({item}) {
-  return <Link className="menu-item" href={item.href}>
-    <span>{item.title}</span>
-  </Link>
+function MenuItem({ item }) {
+  return (
+    <Link className="menu-item" href={item.href}>
+      <span>{item.title}</span>
+    </Link>
+  );
 }
 
 export default Nav;

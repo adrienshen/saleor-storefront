@@ -28,7 +28,7 @@ interface FormState<Values> {
 function groupErrorsByFields(
   errors: FormError[]
 ): { [key: string]: FormError[] } {
-  return errors.reduce((o, error) => {
+  return errors?.reduce((o, error) => {
     const key = error.field || NON_FIELD_ERROR;
     (o[key] = o[key] || []).push(error);
     return o;
@@ -37,7 +37,7 @@ function groupErrorsByFields(
 
 function removeDuplicatedErrors(errors) {
   const keys = [];
-  return errors.filter(error => {
+  return errors?.filter(error => {
     const key = error.message + error.field || "";
     const filter = !keys.includes(key);
     keys.push(key);
@@ -50,12 +50,12 @@ class Form<Values> extends React.Component<
   FormState<Values>
 > {
   static getDerivedStateFromProps(props, state) {
-    const propsKey = (props.errors || [])
-      .map(error => error.field || NON_FIELD_ERROR)
+    const propsKey = props.errors
+      ?.map(error => error.field || NON_FIELD_ERROR)
       .sort()
       .join();
-    const stateKey = (state.errors || [])
-      .map(error => error.field || NON_FIELD_ERROR)
+    const stateKey = state.errors
+      ?.map(error => error.field || NON_FIELD_ERROR)
       .sort()
       .join();
     if (propsKey !== stateKey) {
@@ -103,7 +103,7 @@ class Form<Values> extends React.Component<
     const { target: input } = event;
 
     this.setState(state => {
-      const errors = state.errors.filter(error => error.field !== input.name);
+      const errors = state.errors?.filter(error => error.field !== input.name);
       if (!input.validity.valid) {
         errors.push({ message: input.validationMessage, field: input.name });
       }
@@ -123,7 +123,7 @@ class Form<Values> extends React.Component<
 
   renderWrappedChildren(children) {
     // Traverse through all children
-    return React.Children.map(children, (child: React.ReactElement<any>) => {
+    return React.Children?.map(children, (child: React.ReactElement<any>) => {
       // This is support for non-node elements (eg. pure text), they have no props
       if (!child || !child.props) {
         return child;

@@ -51,7 +51,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         match = item;
         return true;
       }
-      return item.children && item.children.some(find);
+      return item.children?.some(find);
     }
     this.props.items.some(find);
     return match;
@@ -95,9 +95,9 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
           </>
         )}
 
-        {displayedItems.map(item => (
+        {displayedItems?.map((item, idx) => (
           <NavItem
-            key={item.id}
+            key={item.id + idx}
             hideOverlay={hideOverlay}
             showSubItems={this.handleShowSubItems}
             {...item}

@@ -25,7 +25,7 @@ export interface TextFieldProps
 
 const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
   const baseClass = "input__field";
-  const errorsClass = errors && errors.length ? " input__field--error" : "";
+  const errorsClass = errors?.length ? " input__field--error" : "";
   const iconLeftClass = iconLeft ? " input__field--left-icon" : "";
   const styleTypeClass = styleType === "grey" ? " input__field--grey" : "";
 
@@ -41,7 +41,7 @@ const TextField: React.FC<TextFieldProps> = ({
   half,
   ...rest
 }) => (
-  <div className={`input${half ? ' half' : ''}`}>
+  <div className={`input${half ? " half" : ""}`}>
     {iconLeft ? <span className="input__icon-left">{iconLeft}</span> : null}
     {iconRight ? <span className="input__icon-right">{iconRight}</span> : null}
     <div className="input__content">
@@ -53,7 +53,7 @@ const TextField: React.FC<TextFieldProps> = ({
     </div>
     {errors && (
       <span className="input__error">
-        {errors.map(error => error.message).join(" ")}
+        {errors?.map(error => error.message).join(" ")}
       </span>
     )}
     {helpText && <span className="input__help-text">{helpText}</span>}
