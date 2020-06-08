@@ -33,7 +33,7 @@ const renderAddressesList = ({
         <AddressSummary address={address} email={address.email} />
         <Option
           selected={isSelected}
-          value={`${id}`}
+          value={`${idx}`}
           label="Deliver to this address"
         />
       </div>
