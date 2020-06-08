@@ -22,7 +22,7 @@ type ViewProps = RouteComponentProps<{
 export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
-    Object.keys(valueObj).forEach(value => {
+    Object.keys(valueObj)?.forEach(value => {
       str.push(value + "_" + valueObj[value].join("_"));
     });
     return str.join(".");
@@ -51,9 +51,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   const onFiltersChange = (name, value) => {
-    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-      if (attributeFilters[name].includes(value)) {
-        if (filters.attributes[`${name}`].length === 1) {
+    if (attributeFilters?.hasOwnProperty(name)) {
+      if (attributeFilters[name]?.includes(value)) {
+        if (filters.attributes[`${name}`]?.length === 1) {
           const att = { ...attributeFilters };
           delete att[`${name}`];
           setAttributeFilters({
@@ -189,7 +189,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               );
             }
 
-            if (data && data.category === null) {
+            if (data?.category === null) {
               return <NotFound />;
             }
 

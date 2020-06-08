@@ -51,10 +51,10 @@ export const Page = props => {
       />
       <div>
         <div className="myAccount-wrapper">
-          {Paths.map((path, i) => (
+          {Paths.map((path, idx) => (
             <Link
               to={`${path.path}`}
-              key={i}
+              key={idx}
               className="myAccount-wrapper-link"
             >
               <img src={path.image} />

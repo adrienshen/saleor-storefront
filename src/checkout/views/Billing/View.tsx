@@ -29,23 +29,18 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   );
   const { lines: cardLines } = React.useContext(CartContext);
   const { data: variantsProducts } = useVariantsProducts({
-    ids: cardLines ? cardLines.map(line => line.variantId) : [],
+    ids: cardLines?.map(line => line.variantId) || [],
   });
   const isShippingRequired = () => {
-    if (checkout && checkout.isShippingRequired) {
+    if (checkout?.isShippingRequired) {
       return true;
     } else if (checkout) {
       return false;
     } else if (variantsProducts) {
-      const isShippingRequired =
-        variantsProducts.edges &&
-        variantsProducts.edges.some(
-          ({ node }) => node.product.productType.isShippingRequired
-        );
-      if (isShippingRequired) {
-        return true;
-      }
-      return false;
+      const isShippingRequired = variantsProducts.edges?.some(
+        ({ node }) => node.product?.productType?.isShippingRequired
+      );
+      return !!isShippingRequired;
     }
     return false;
   };

@@ -12,7 +12,7 @@ const OtherProducts: React.FC<{
       <h4 className="product-page__other-products__title">
         Other products in this category
       </h4>
-      <ProductList products={products.map(({ node }) => node)} />
+      <ProductList products={products?.map(({ node }) => node)} />
     </div>
   </div>
 );
