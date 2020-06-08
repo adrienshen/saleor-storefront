@@ -1,9 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { pageType } from "./types";
 import { UserActionFeedback } from ".";
 
 const DEFAULT_PROPS = {
-  page: "message_sent",
+  page: pageType.MESSAGE_SENT,
   history: {},
 };
 

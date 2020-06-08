@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactSVG from "react-svg";
 import { IProps } from "./types";
-import { UserAction } from "./UserActionList";
+import { PageFeedbackTypes } from "./PageFeedbackTypes";
 import crossIcon from "images/cross-clear.svg";
 import pinkBackground from "images/pink-background.svg";
 import Button from "@temp/components/Button";
@@ -33,14 +33,17 @@ export const UserActionFeedback: React.FC<IProps> = ({
         style={{ backgroundImage: `url(${pinkBackground})` }}
       >
         <div className="message-page__empty-icon-circle">
-          <ReactSVG path={UserAction[page]?.icon} className="empty-icon" />
+          <ReactSVG
+            path={PageFeedbackTypes[page]?.icon}
+            className="empty-icon"
+          />
         </div>
       </div>
-      <h4>{UserAction[page]?.message}</h4>
-      <p>{UserAction[page]?.detail}</p>
+      <h4>{PageFeedbackTypes[page]?.message}</h4>
+      <p>{PageFeedbackTypes[page]?.detail}</p>
       <div className="message-page__empty__action">
         <Button className="btn" onClick={handleButtonClick}>
-          {UserAction[page]?.buttonText}
+          {PageFeedbackTypes[page]?.buttonText}
         </Button>
       </div>
     </div>

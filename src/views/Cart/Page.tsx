@@ -16,6 +16,7 @@ import { maybe } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../Product/queries";
 import { CartBasic } from "@temp/components/OverlayManager/Cart";
 import { UserActionFeedback } from "../../components/UserActionFeedback";
+import { pageType } from "../../components/UserActionFeedback/types";
 import { History } from "history";
 
 interface PageProps {
@@ -69,7 +70,7 @@ const Page: React.FC<PageProps> = ({
     return <Loader full />;
   }
   if (!lines.length) {
-    return <UserActionFeedback page="cart_empty" history={history} />;
+    return <UserActionFeedback page={pageType.CART_EMPTY} history={history} />;
   }
   const productTableProps = {
     add,
