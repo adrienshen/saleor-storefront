@@ -7,7 +7,7 @@ import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
-import { AvailableColors } from "../../views/CollectionIndex/Colors";
+import { AvailableColors } from "../../views/CollectionIndex/ColorSelection";
 import { BrowseCabinets } from "../../views/BrowseCabinets";
 import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";

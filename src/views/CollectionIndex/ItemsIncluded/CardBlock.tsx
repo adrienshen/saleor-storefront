@@ -35,6 +35,7 @@ export const CardBlock = ({ node, add }) => {
   }
   const dimensions = findField(attributes, AttributeNames.Dimemsions);
   const sku = node.variants[0].sku;
+  console.log("vad", node.variants[0]);
   return (
     <div className="addcart-card">
       <div className="addcart-card--img">
