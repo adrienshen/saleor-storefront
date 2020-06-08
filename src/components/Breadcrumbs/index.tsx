@@ -27,7 +27,7 @@ export const extractBreadcrumbs = (category: Category_category) => {
 
   let breadcrumbs = [constructLink(category)];
 
-  if (category.ancestors.edges.length) {
+  if (category.ancestors?.edges?.length) {
     const ancestorsList = category.ancestors.edges.map(edge =>
       constructLink(edge.node)
     );
@@ -37,7 +37,7 @@ export const extractBreadcrumbs = (category: Category_category) => {
 };
 
 const getBackLink = (breadcrumbs: Breadcrumb[]) =>
-  breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/";
+  breadcrumbs?.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/";
 
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
@@ -53,7 +53,7 @@ const Breadcrumbs: React.FC<{
           <li>
             <Link to={baseUrl}>Home</Link>
           </li>
-          {breadcrumbs.map((breadcrumb, index) => (
+          {breadcrumbs?.map((breadcrumb, index) => (
             <li
               key={breadcrumb.value}
               className={classNames({

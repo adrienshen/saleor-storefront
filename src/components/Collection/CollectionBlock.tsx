@@ -27,10 +27,8 @@ export const CollectionBlock = props => {
           className="block-img__heartIcon"
           onClick={handleWishlist}
         />
-        <Link
-          to={`/collections/cabinets/${collection?.id}/${collection?.slug}`}
-        >
-          <img src={collection?.backgroundImage?.url} />
+        <Link to={`/collections/cabinets/${collection.id}/${collection.slug}`}>
+          <img src={collection.backgroundImage?.url} />
         </Link>
       </div>
     </div>

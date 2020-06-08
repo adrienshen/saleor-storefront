@@ -38,7 +38,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
     data: variantsProducts,
     loading: variantsProductsLoading,
   } = useVariantsProducts({
-    ids: cartLines ? cartLines.map(line => line.variantId) : [],
+    ids: cartLines?.map(line => line.variantId) || [],
   });
 
   const step = useCheckoutStepState(

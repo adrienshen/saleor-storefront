@@ -36,12 +36,12 @@ const Page = props => {
               : "collection-block__wrapper collection-wrapper__list"
           }
         >
-          {data?.collections?.edges?.map((collection, idx) => {
+          {data.collections?.edges?.map((collection, idx) => {
             return (
               <CollectionBlock
                 currentView={view}
                 key={idx}
-                collection={collection?.node}
+                collection={collection.node}
               />
             );
           })}

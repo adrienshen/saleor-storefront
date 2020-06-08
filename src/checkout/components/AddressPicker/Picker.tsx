@@ -18,7 +18,7 @@ const renderAddressesList = ({
   onAddressSelect,
   selectedAddress,
 }: IAddressPickerProps) =>
-  addresses.map((address, id) => {
+  addresses?.map((address, id) => {
     const isSelected = selectedAddress === address;
     return (
       <div

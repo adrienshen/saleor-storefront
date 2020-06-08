@@ -12,7 +12,7 @@ interface IPage {
 export const Page = ({ data, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
   const collect = [];
-  const sampleExist = data?.products?.totalCount || 0;
+  const sampleExist = data.products?.totalCount || 0;
 
   const handleBack = () => {
     history.goBack();
@@ -50,7 +50,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
         <div className="wrapper-header">Samples</div>
         <div className="wrapper-img">
           {sampleExist > 0 ? (
-            data?.products?.edges?.map(
+            data.products?.edges?.map(
               ({ node: { name, id, pricing, thumbnail, variants } }, idx) => (
                 <div className="wrapper-img-main" key={idx}>
                   <div
@@ -74,7 +74,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                       />
                     </div>
                     <div className="wrapper-img-main-inner--price">
-                      {pricing?.priceRange?.start &&
+                      {pricing.priceRange?.start &&
                         pricing.priceRange.start.gross?.amount !==
                           pricing.priceRange.start.net?.amount && (
                           <span className="old-price">

@@ -22,8 +22,8 @@ function findField(fields: any, name: string) {
 export const CardBlock = ({ node, add }) => {
   const [count, setCount] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
-  const attributes = getAttributes(node?.attributes);
-  const firstVariantId = node?.variants[0]?.id;
+  const attributes = getAttributes(node.attributes);
+  const firstVariantId = node.variants[0]?.id;
   function addItems() {
     if (!count || !node.id) {
       return;
@@ -34,7 +34,7 @@ export const CardBlock = ({ node, add }) => {
     setTimeout(() => setLoading(false), 1000);
   }
   const dimensions = findField(attributes, AttributeNames.Dimemsions);
-  const sku = node?.variants[0]?.sku;
+  const sku = node.variants[0]?.sku;
   return (
     <div className="addcart-card">
       <div className="addcart-card--img">
@@ -44,7 +44,7 @@ export const CardBlock = ({ node, add }) => {
         </div>
       </div>
       <div className="addcart-card-container">
-        <div className="addcart-card-container--header">{node?.name}</div>
+        <div className="addcart-card-container--header">{node.name}</div>
 
         <div className="addcart-card-container--sub-header">
           {sku && <span>SKU: {sku}</span>}
@@ -54,7 +54,7 @@ export const CardBlock = ({ node, add }) => {
         <div className="addcart-card-container--detail">
           <span className="detail-price">
             <strong>
-              ${node?.pricing?.priceRange?.start?.gross?.amount?.toFixed(2)}
+              ${node.pricing?.priceRange?.start?.gross?.amount?.toFixed(2)}
             </strong>
           </span>
           <div className="detail-counter">
