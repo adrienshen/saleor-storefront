@@ -1,0 +1,36 @@
+@import "../../../../globalStyles/scss/variables.scss";
+
+.checkout-summary {
+  padding: 1.063rem;
+
+  h3 {
+    margin: 1.875rem 0 1rem;
+    color: $dull-orange;
+    font-size: 1.2rem;
+  }
+
+  .user-info {
+    margin-top: 0.938rem;
+  }
+
+  .info {
+    margin-bottom: 2.5rem;
+  }
+
+  .card-info {
+    .credit-card {
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        margin-right: 0.938rem;
+        .dBCCAM div > div {
+          display: flex;
+        }
+      }
+      &__info {
+        font-weight: 600;
+      }
+    }
+  }
+}
