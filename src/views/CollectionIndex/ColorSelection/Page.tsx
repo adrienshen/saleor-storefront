@@ -1,6 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
-import { IColorItem, IPage, IPosition } from "./types";
+import { IPage, IPosition } from "./types";
 import PageHeader from "../../../components/Header/PageHeader";
 
 export const Page = ({ data, history }: IPage) => {
@@ -11,19 +11,6 @@ export const Page = ({ data, history }: IPage) => {
     history.goBack();
   };
 
-  const handleChangeColor = (type: IPosition, selectedColor: IColorItem) => {
-    if (type === IPosition.Top) {
-      setTopColor({ topColor: selectedColor });
-    } else {
-      setBottomColor({ bottomColor: selectedColor });
-    }
-  };
-
-  const topColorItems =
-    data?.filter(item => item.position === IPosition.Top) || [];
-  const bottomColorItems =
-    data?.filter(item => item.position === IPosition.Bottom) || [];
-  console.log("top-error", topColor);
   return (
     <div className="inner-page-wrapper">
       <PageHeader
@@ -36,46 +23,43 @@ export const Page = ({ data, history }: IPage) => {
         <div className="wrapper-header">Available Colors</div>
         <div className="wrapper-header">Available colors for this set</div>
         <div>TOP COLORS</div>
-        {topColorItems?.length > 1 ? (
-          topColorItems.map((item, idx) => (
-            <div
-              className={classNames("color", {
-                selected: topColor && item === topColor,
-              })}
-            >
-              <img
-                src={item.image.url}
-                alt={item.image.alt}
-                key={idx}
-                onClick={() => handleChangeColor(IPosition.Top, item)}
-              />
-            </div>
-          ))
-        ) : (
-          <div>No top colors available</div>
-        )}
+        <ColorItem
+          selectedColor={topColor}
+          colorsList={
+            data?.filter(item => item.position === IPosition.Top) || []
+          }
+          setSelectedColor={setTopColor}
+        />
         <div>BOTTOM COLORS</div>
-        {bottomColorItems?.length > 1 ? (
-          bottomColorItems.map((item, idx) => (
-            <div
-              className={classNames("color", {
-                selected: bottomColor && item === bottomColor,
-              })}
-            >
-              <img
-                src={item.image.url}
-                alt={item.image.alt}
-                key={idx}
-                onClick={() => handleChangeColor(IPosition.Bottom, item)}
-              />
-            </div>
-          ))
-        ) : (
-          <div>No bottom colors available</div>
-        )}
+        <ColorItem
+          selectedColor={bottomColor}
+          colorsList={
+            data?.filter(item => item.position === IPosition.Bottom) || []
+          }
+          setSelectedColor={setBottomColor}
+        />
       </div>
     </div>
   );
+};
+
+const ColorItem: React.SFC<any> = props => {
+  const colors = props.colorsList;
+  const selectedColor = props.selectedColor;
+  return colors?.map((item, idx) => (
+    <div
+      className={classNames("color", {
+        selected: selectedColor && item === selectedColor,
+      })}
+    >
+      <img
+        src={item.image?.url}
+        alt={item.image?.alt}
+        key={idx}
+        onClick={() => props.setSelectedColor(item)}
+      />
+    </div>
+  ));
 };
 
 export default Page;
