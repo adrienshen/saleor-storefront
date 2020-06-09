@@ -1,36 +1,16 @@
 import * as React from "react";
-import ReactSVG from "react-svg";
-import ModeIcon from "../../images/outline-brightness_2-24px.svg";
-import EditIcon from "../../images/baseline-edit.svg";
-import ReturnPolicyIcon from "../../images/outline-kitchen-24px.svg";
-import TermsConditionIcon from "../../images/outline-book-24px.svg";
-import FAQIcon from "../../images/outline-local_library-24px.svg";
-import OurTeamIcon from "../../images/outline-group-24px.svg";
-import ContactUsIcon from "../../images/outline-question_answer-24px.svg";
-import "./scss/index.scss";
+import { RouteComponentProps } from "react-router-dom";
+import Page from "./Page";
 
-const dataList = [
-  { icon: ModeIcon, name: "Dark Mode" },
-  { icon: EditIcon, name: "How to Measure" },
-  { icon: ReturnPolicyIcon, name: "Shipping & Return Policy" },
-  { icon: TermsConditionIcon, name: "Terms & Conditions" },
-  { icon: FAQIcon, name: "FAQ" },
-  { icon: OurTeamIcon, name: "Our Team" },
-  { icon: ContactUsIcon, name: "Contact Us" },
-];
+type ViewProps = RouteComponentProps<{ id: string }>;
 
-const View: React.FC<{}> = () => {
+export const View: React.FC<ViewProps> = ({ match, history }) => {
   return (
-    <>
-      <div className="">
-        {dataList.map((item, idx) => (
-          <div className="" key={idx}>
-            <ReactSVG path={item.icon} className="" />
-            <div className="">{item.name}</div>
-          </div>
-        ))}
+    <div className="home-page">
+      <div>
+        <Page history={history} />
       </div>
-    </>
+    </div>
   );
 };
 
