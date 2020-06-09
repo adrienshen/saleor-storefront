@@ -6,6 +6,7 @@ import ReactSVG from "react-svg";
 
 import {
   Button,
+  Footer,
   Offline,
   OfflinePlaceholder,
   Online,
@@ -25,6 +26,7 @@ import ProductList from "./ProductList";
 
 import chevronUpImg from "../../../images/chevron-up.svg";
 import chevronLeft from "../../../images/chevron-left.svg";
+import searchIcon from "../../../images/search-icon.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   return (
@@ -70,7 +72,7 @@ export function CartBasic({ overlay, cartData }) {
                         <div className="overlay__header">
                           <ReactSVG
                             path={chevronLeft}
-                            onClick={() => null}
+                            onClick={() => history.back()}
                             className="overlay__header__close-icon"
                           />
                         </div>
@@ -84,8 +86,8 @@ export function CartBasic({ overlay, cartData }) {
                             />
                             <div className="cart__footer">
                               <div className="cart__footer__subtotoal">
-                                <span className="cart__footer__price-label">
-                                  <div>Total</div>
+                                <div className="cart__footer__price-label">
+                                  <span>Total</span>
                                   <small>
                                     (
                                     {cart.lines
@@ -96,7 +98,7 @@ export function CartBasic({ overlay, cartData }) {
                                       )}{" "}
                                     items)
                                   </small>
-                                </span>
+                                </div>
                                 <span className="cart__footer__price">
                                   {getTotal(data, cart.lines, locale)}
                                 </span>
@@ -115,6 +117,7 @@ export function CartBasic({ overlay, cartData }) {
                         ) : (
                           <Empty overlayHide={null} />
                         )}
+                        <Footer />
                       </div>
                     );
                   }}
