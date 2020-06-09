@@ -26,7 +26,6 @@ import ProductList from "./ProductList";
 
 import chevronUpImg from "../../../images/chevron-up.svg";
 import chevronLeft from "../../../images/chevron-left.svg";
-import searchIcon from "../../../images/search-icon.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   return (
