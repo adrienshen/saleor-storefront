@@ -278,6 +278,16 @@
       z-index: -1;
     }
   }
+  .colors {
+    display: flex;
+    justify-content: flex-start;
+    .color-item {
+    }
+    .selected {
+      border: #2a3330;
+      border-radius: 15px;
+    }
+  }
 }
 
 .specification-wrapper {
