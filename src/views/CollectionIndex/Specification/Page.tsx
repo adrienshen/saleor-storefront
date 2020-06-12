@@ -1,8 +1,9 @@
 import * as React from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 import { RichTextContent } from "@components/atoms";
+import { ICollection } from "../../Collection/types/Collection";
 
-export const Page = props => {
+export const Page = (props: ICollection) => {
   const { data } = props;
   const description = JSON.parse(data.collection.descriptionJson);
 

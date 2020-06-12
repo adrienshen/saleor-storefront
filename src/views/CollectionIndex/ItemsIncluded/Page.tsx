@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
-import { Select } from "../../../@next/components/atoms/Select";
+import { Select } from "@components/atoms";
 import { CardBlock } from "./CardBlock";
 import { CartInterface } from "@temp/components/CartProvider/context";
+import { Collection_products_edges } from "@temp/views/Collection/types/Collection";
+import { History } from "history";
 
 interface IPageProps {
-  history: any;
-  products: any;
+  history: History;
+  products: Collection_products_edges[];
   cart: CartInterface;
 }
 

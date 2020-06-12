@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
 import { SubHeader } from "../../components/Collection/SubHeader";
 import { GridViewTypes } from "../../constants";
+import { ICollectionProducts } from "../Collection/types/Collection";
 import "./scss/index.scss";
 
-const Page = ({ data, history }) => {
+const Page = ({ data, history }: ICollectionProducts) => {
   const [view, changeView] = useState(GridViewTypes.Grid);
   const handleBack = () => {
     history.push("/");
   };
 
-  const handleViewChange = type => {
+  const handleViewChange = (type: GridViewTypes) => {
     changeView(type);
   };
 
