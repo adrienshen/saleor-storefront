@@ -13,7 +13,9 @@ const ProductList: React.SFC<{
     {lines.map(line => {
       return (
         <li key={line.id} className="cart__list__item">
-          <Thumbnail source={line.product} />
+          <div className="cart__list__item__photo">
+            <Thumbnail source={line.product} />
+          </div>
           <div className="cart__list__item__details">
             <p>{line.product.name}</p>
             <div className="cart__list__item__details__variant">
