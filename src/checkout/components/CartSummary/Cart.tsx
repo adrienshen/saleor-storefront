@@ -23,7 +23,7 @@ const Cart: React.FC<{
             <>
               {data.productVariants?.edges?.map(({ node }, idx) => (
                 <Line
-                  key={node.id + idx}
+                  key={idx}
                   {...node}
                   quantity={
                     lines.find(({ variantId }) => variantId === node.id)
