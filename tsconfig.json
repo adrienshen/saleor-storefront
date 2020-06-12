@@ -8,7 +8,7 @@
     "sourceMap": true,
     "target": "es6",
     "noUnusedLocals": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "paths": {
       "@temp/*": ["./src/*"],
       "@app/*": ["./src/@next/*"],
