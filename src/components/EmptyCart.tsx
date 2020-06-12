@@ -1,4 +1,3 @@
-import arrowLeftIcon from "images/arrow-left.svg";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";

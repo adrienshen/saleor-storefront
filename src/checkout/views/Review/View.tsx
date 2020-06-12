@@ -1,17 +1,14 @@
 import "./scss/index.scss";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import { History } from "history";
 import * as React from "react";
 import { AlertManager, useAlert } from "react-alert";
-import { generatePath, RouteComponentProps } from "react-router";
-import { Link } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
 
 import { orderConfirmationUrl } from "../../../app/routes";
-import { Button } from "../../../components";
 import { CartContext } from "../../../components/CartProvider/context";
 import { CheckoutContext } from "../../context";
-import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
 import { completeCheckout } from "./types/completeCheckout";
 import { CheckoutNextButton } from "@temp/components/Button";
@@ -53,16 +50,12 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
   const alert = useAlert();
-  const {
-    checkout,
-    clear: clearCheckout,
-  } = React.useContext(CheckoutContext);
+  const { checkout, clear: clearCheckout } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
 
   return (
     <>
       <div className="checkout-review">
-
         <div className="checkout__step checkout__step--inactive">
           <CheckoutTitle>Confirm Order</CheckoutTitle>
         </div>

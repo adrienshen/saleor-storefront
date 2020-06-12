@@ -4,7 +4,6 @@ import { RichTextContent } from "@components/atoms";
 
 export const Page = props => {
   const { data } = props;
-  const description = JSON.parse(data.collection.descriptionJson);
 
   const handleClick = () => {
     props.history.goBack();

@@ -1,5 +1,4 @@
 import "./scss/index.scss";
-import PageHeader from "../../components/Header/PageHeader";
 
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
@@ -15,10 +14,6 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
     params: { token },
   },
 }) => {
-  const handleBack = () => {
-    window.history.back();
-  };
-
   return (
     <div className="cart-page">
       <CheckoutContext.Consumer>

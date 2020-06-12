@@ -5,9 +5,8 @@ import heartFillIcon from "../../images/favorite-fill.svg";
 import heartIcon from "../../images/favorite.svg";
 
 export const CollectionBlock = props => {
-  const { collect, currentView } = props;
+  const { collect } = props;
   const [heart, setWishlist] = useState(heartIcon);
-  const [view, changeView] = useState("grid");
 
   const handleWishlist = e => {
     const img = e.target.getAttribute("data-src");
