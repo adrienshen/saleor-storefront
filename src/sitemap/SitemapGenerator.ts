@@ -1,7 +1,7 @@
 import fs from "fs";
 import { chunk } from "lodash";
 import path from "path";
-import { buildSitemapIndex, createSitemap } from "sitemap";
+const { buildSitemapIndex, createSitemap } = require("sitemap");
 
 interface IOptionsProps {
   urls?: [object?];
