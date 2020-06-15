@@ -20,16 +20,16 @@ type ViewProps = RouteComponentProps<{
 }>;
 
 export const FilterQuerySet = {
-  encode(valueObj) {
-    const str = [];
+  encode(valueObj: any) {
+    const str: string[] = [];
     Object.keys(valueObj).forEach(value => {
       str.push(value + "_" + valueObj[value].join("_"));
     });
     return str.join(".");
   },
 
-  decode(strValue) {
-    const obj = {};
+  decode(strValue: string) {
+    const obj: any = {};
     const propsWithValues = strValue.split(".").filter(n => n);
     propsWithValues.map(value => {
       const propWithValues = value.split("_").filter(n => n);
@@ -50,8 +50,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     setAttributeFilters({});
   };
 
-  const onFiltersChange = (name, value) => {
-    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
+  const onFiltersChange = (name: string, value: string) => {
+    if (attributeFilters?.hasOwnProperty(name)) {
       if (attributeFilters[name].includes(value)) {
         if (filters.attributes[`${name}`].length === 1) {
           const att = { ...attributeFilters };
@@ -63,7 +63,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           setAttributeFilters({
             ...attributeFilters,
             [`${name}`]: attributeFilters[`${name}`].filter(
-              item => item !== value
+              (item: string) => item !== value
             ),
           });
         }

@@ -5,8 +5,8 @@ import React from "react";
 import { AddressFormModal } from ".";
 
 jest.mock("@sdk/react", () => ({
-  useCreateUserAddress: () => [jest.fn(), { data: null, error: null }],
-  useUpdateUserAddress: () => [jest.fn(), { data: null, error: null }],
+  useCreateUserAddress: () => [jest.fn(), { data: "", error: "" }],
+  useUpdateUserAddress: () => [jest.fn(), { data: "", error: "" }],
 }));
 
 const DEFAULT_PROPS = {

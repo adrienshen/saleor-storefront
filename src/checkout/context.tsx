@@ -28,7 +28,7 @@ export interface CheckoutContextInterface {
   clear?(): void;
 }
 
-export const defaultContext = {
+export const defaultContext: CheckoutContextInterface = {
   cardData: null,
   checkout: null,
   clear: () => null,

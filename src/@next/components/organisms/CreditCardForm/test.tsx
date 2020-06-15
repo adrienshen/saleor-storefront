@@ -7,6 +7,7 @@ import { TextField } from "@components/molecules";
 import { CreditCardFormContent as CreditCardForm } from "./CreditCardFormContent";
 import * as S from "./styles";
 import { ICustomInputProps, PropsWithFormik } from "./types";
+import { ICardErrors } from "src/core/payments/braintree";
 
 describe("<CreditCardForm />", () => {
   const CARD_TEXT = {
@@ -27,7 +28,7 @@ describe("<CreditCardForm />", () => {
       expirationMonth: null,
       expirationYear: null,
       number: null,
-    },
+    } as ICardErrors,
     disabled: false,
     handleChange: jest.fn(),
     handleSubmit: jest.fn(),
@@ -82,7 +83,7 @@ describe("<CreditCardForm />", () => {
           message: "Expiration year is invalid",
         },
         number: { field: "number", message: "Wrong number" },
-      };
+      } as ICardErrors;
 
       const inputs = renderCreditCardForm({
         ...DEFAULT_PROPS,

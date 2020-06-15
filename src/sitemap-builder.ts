@@ -4,9 +4,12 @@ import {
   getCategories,
   getCollections,
   getProducts,
-  SitemapGenerator
+  SitemapGenerator,
 } from "./sitemap";
 
+interface IURL {
+  url: string;
+}
 const distDir = path.join(__dirname, "../dist");
 
 const generateSitemap = async (hostname: string) => {
@@ -15,13 +18,13 @@ const generateSitemap = async (hostname: string) => {
   sitemap.add({ url: "/" });
   sitemap.add({ url: "/page/about/" });
 
-  await getCategories(({ url }) => {
+  await getCategories(({ url }: IURL) => {
     sitemap.add({ url });
   });
-  await getCollections(({ url }) => {
+  await getCollections(({ url }: IURL) => {
     sitemap.add({ url });
   });
-  await getProducts(({ url }) => {
+  await getProducts(({ url }: IURL) => {
     sitemap.add({ url });
   });
 
