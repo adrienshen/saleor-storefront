@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactSVG from "react-svg";
-import arrowLeftIcon from "../../images/arrow-left.svg";
+import arrowLeftIcon from "../../images/chevron-left.svg";
 import cartIcon from "../../images/cart-icon.svg";
 import searchIcon from "../../images/search-icon.svg";
 import { Link } from "react-router-dom";
