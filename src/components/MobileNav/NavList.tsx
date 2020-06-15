@@ -46,7 +46,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
 
   findItemById(id: string): INavItem {
     let match = null;
-    function find(item) {
+    function find(item: INavItem) {
       if (item.id === id) {
         match = item;
         return true;

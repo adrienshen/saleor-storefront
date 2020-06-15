@@ -5,9 +5,23 @@ import cartIcon from "../../images/cart-icon.svg";
 import searchIcon from "../../images/search-icon.svg";
 import { Link } from "react-router-dom";
 
-import { CartContext } from "../../components/CartProvider/context";
+import {
+  CartContext,
+  CartLineInterface,
+} from "../../components/CartProvider/context";
 
-export default props => {
+interface IProps {
+  back: boolean;
+  cart: boolean;
+  search: boolean;
+  handleClick: () => void;
+}
+
+interface IPageHeaderProps extends IProps {
+  cartLines: CartLineInterface[];
+}
+
+export default (props: IProps) => {
   return (
     <CartContext.Consumer>
       {cart => <PageHeader cartLines={cart.lines} {...props} />}
@@ -15,7 +29,13 @@ export default props => {
   );
 };
 
-const PageHeader = ({ handleClick, back, search, cart, cartLines }: any) => {
+const PageHeader = ({
+  handleClick,
+  back,
+  search,
+  cart,
+  cartLines,
+}: IPageHeaderProps) => {
   let cartItemsCount = 0;
   if (cartLines && cartLines.length) {
     cartItemsCount = cartLines

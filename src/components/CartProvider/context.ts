@@ -17,7 +17,7 @@ export interface CartInterface {
   lines: CartLineInterface[];
   loading: boolean;
   add(variantId: string, quantity?: number): void;
-  changeQuantity(lines: CartLine[]);
+  changeQuantity(lines: CartLine[]): void;
   clear(): void;
   clearErrors(): void;
   getQuantity(): number;

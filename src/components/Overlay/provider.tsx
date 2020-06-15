@@ -5,7 +5,7 @@ import {
   OverlayContext,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "./context";
 
 class Provider extends React.Component<
@@ -13,7 +13,7 @@ class Provider extends React.Component<
   OverlayContextInterface
 > {
   notificationCloseDelay = 2500;
-  constructor(props) {
+  constructor(props: RouteComponentProps) {
     super(props);
     this.state = {
       context: null,
@@ -24,7 +24,7 @@ class Provider extends React.Component<
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: RouteComponentProps) {
     if (
       this.props.location.pathname !== prevProps.location.pathname &&
       this.state.type !== OverlayType.message

@@ -7,17 +7,19 @@ import { tokenVeryficationMutation } from "./queries";
 import { TokenAuth_tokenCreate_user } from "./types/TokenAuth";
 import { VerifyToken } from "./types/VerifyToken";
 
+interface IProps {
+  refreshUser: boolean;
+  apolloClient: ApolloClient<any>;
+  onUserLogin: () => void;
+  onUserLogout: () => void;
+  tokenExpirationHandler?(callback: () => void): void;
+}
+
 export default class UserProvider extends React.Component<
-  {
-    refreshUser: boolean;
-    apolloClient: ApolloClient<any>;
-    onUserLogin: () => void;
-    onUserLogout: () => void;
-    tokenExpirationHandler?(callback: () => void): void;
-  },
+  IProps,
   UserContextInterface
 > {
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
     if (props.tokenExpirationHandler) {
       props.tokenExpirationHandler(this.logout);
@@ -56,10 +58,15 @@ export default class UserProvider extends React.Component<
     this.props.onUserLogout();
   };
 
-  authenticate = async token => {
+  authenticate = async (token: string) => {
     this.setState({ loading: true });
     const { apolloClient } = this.props;
-    let state = { errors: null, loading: false, token: null, user: null };
+    let state = {
+      errors: null,
+      loading: false,
+      token: null,
+      user: null,
+    } as UserContextInterface;
 
     try {
       const {

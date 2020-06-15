@@ -1,6 +1,16 @@
 import { media, styled } from "@styles";
 import { Size } from "./types";
 
+interface ISize {
+  size: Size;
+}
+
+interface IFontSize {
+  size: Size;
+  theme: {
+    button: { typography: { fontSize: string; smallFontSize: string } };
+  };
+}
 const padding = {
   md: "0.9rem 3.7rem",
   sm: "0.1rem 2rem",
@@ -17,7 +27,7 @@ export const Primary = styled.button<{
   size: Size;
 }>`
   background-color: #bfad71;
-  padding: ${props => padding[props.size]};
+  padding: ${(props: ISize) => padding[props.size]};
   border: none;
   border-radius: 12px;
   outline: none;
@@ -51,7 +61,7 @@ export const Primary = styled.button<{
 
 export const Secondary = styled(Primary)`
   background-color: transparent;
-    ${props => props.theme.button.colors.secondary.color};
+  ${props => props.theme.button.colors.secondary.color};
   border: 2px solid #bfad71;
   color: #bfad71;
 
@@ -67,7 +77,8 @@ export const Text = styled.span<{ size: Size }>`
     theme: {
       button: { typography },
     },
-  }) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
+  }: IFontSize) =>
+    fontSize(typography.fontSize, typography.smallFontSize)[size]};
   font-weight: 400;
   line-height: ${props => props.theme.typography.baseLineHeight};
 `;

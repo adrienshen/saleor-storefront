@@ -2,14 +2,16 @@ import React from "react";
 
 import { CreditCardForm } from "@components/organisms";
 
-import { PROVIDERS } from "../../../../../core/config";
+import { PROVIDERS } from "@temp/core/config";
 import {
   braintreePayment,
   ErrorData,
   IPaymentCardError,
   PaymentData,
-} from "../../../../../core/payments/braintree";
-import { maybe, removeEmptySpaces } from "../../../../../core/utils";
+} from "@temp/core/payments/braintree";
+import { maybe, removeEmptySpaces } from "@temp/core/utils";
+import { ICardErrors, ICardInputs } from "src/core/payments/braintree";
+
 import { ProviderProps } from "../../View";
 
 const INITIAL_CARD_ERROR_STATE = {
@@ -18,7 +20,7 @@ const INITIAL_CARD_ERROR_STATE = {
     expirationMonth: null,
     expirationYear: null,
     number: null,
-  },
+  } as ICardErrors,
   nonFieldError: "",
 };
 
@@ -50,7 +52,7 @@ const CreditCard = ({
         }))
       );
 
-    const tokenizeCcCard = async creditCard => {
+    const tokenizeCcCard = async (creditCard: any) => {
       setCardErrors(INITIAL_CARD_ERROR_STATE);
       try {
         const cardData = (await braintreePayment(
@@ -66,7 +68,7 @@ const CreditCard = ({
       }
     };
 
-    const handleSubmit = async formData => {
+    const handleSubmit = async (formData: ICardInputs) => {
       setLoadingState(true);
       const creditCard = {
         billingAddress: { postalCode },

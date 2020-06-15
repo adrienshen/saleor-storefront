@@ -17,7 +17,7 @@ interface FormProps<Values> {
   errors?: FormError[];
   data?: Values;
   formRef?: React.RefObject<HTMLFormElement>;
-  onSubmit?(event: React.FormEvent<any>, data: Values);
+  onSubmit?: (event: React.FormEvent<any>, data: Values) => void;
 }
 
 interface FormState<Values> {
@@ -28,15 +28,15 @@ interface FormState<Values> {
 function groupErrorsByFields(
   errors: FormError[]
 ): { [key: string]: FormError[] } {
-  return errors.reduce((o, error) => {
+  return errors.reduce((o: any, error) => {
     const key = error.field || NON_FIELD_ERROR;
-    (o[key] = o[key] || []).push(error);
+    ((o[key] = o[key]) || []).push(error);
     return o;
   }, {});
 }
 
-function removeDuplicatedErrors(errors) {
-  const keys = [];
+function removeDuplicatedErrors(errors: FormError[]) {
+  const keys: string[] = [];
   return errors.filter(error => {
     const key = error.message + error.field || "";
     const filter = !keys.includes(key);
@@ -49,7 +49,10 @@ class Form<Values> extends React.Component<
   FormProps<Values>,
   FormState<Values>
 > {
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(
+    props: FormProps<any>,
+    state: FormState<any>
+  ) {
     const propsKey = (props.errors || [])
       .map(error => error.field || NON_FIELD_ERROR)
       .sort()
@@ -72,17 +75,17 @@ class Form<Values> extends React.Component<
 
   ref: React.RefObject<HTMLFormElement> = React.createRef();
 
-  constructor(props) {
+  constructor(props: FormProps<Values>) {
     super(props);
     const errors = props.errors || [];
-    const data = props.data || {};
+    const data = props.data;
     this.state = {
       data,
       errors,
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: FormProps<Values>) {
     if (
       JSON.stringify(prevProps.errors) !== JSON.stringify(this.props.errors)
     ) {
@@ -92,14 +95,14 @@ class Form<Values> extends React.Component<
     }
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const { onSubmit } = this.props;
     if (onSubmit !== undefined) {
       onSubmit(event, this.state.data);
     }
   };
 
-  handleInputError = event => {
+  handleInputError = (event: any) => {
     const { target: input } = event;
 
     this.setState(state => {
@@ -111,7 +114,7 @@ class Form<Values> extends React.Component<
     });
   };
 
-  handleFieldChange = event => {
+  handleFieldChange = (event: any) => {
     const fieldName = event.target.name;
     const { value } = event.target;
 
@@ -121,7 +124,7 @@ class Form<Values> extends React.Component<
     });
   };
 
-  renderWrappedChildren(children) {
+  renderWrappedChildren = (children: React.ReactNode) => {
     // Traverse through all children
     return React.Children.map(children, (child: React.ReactElement<any>) => {
       // This is support for non-node elements (eg. pure text), they have no props
@@ -136,21 +139,21 @@ class Form<Values> extends React.Component<
         });
       }
       if (child.type === TextField || child.type === NumberFormat) {
-        const defaultValue = this.state.data[child.props.name];
+        const defaultValue = (this.state.data as any)[child.props.name];
         const groupedErrors = groupErrorsByFields(this.state.errors);
         const errors = groupedErrors[child.props.name] || [];
 
         return React.cloneElement(child, {
           defaultValue,
           errors,
-          onBlur: event => {
+          onBlur: (event: any) => {
             this.handleInputError(event);
 
             if (child.props.onBlur) {
               child.props.onBlur(event);
             }
           },
-          onChange: event => {
+          onChange: (event: any) => {
             this.handleFieldChange(event);
 
             this.handleInputError(event);
@@ -159,7 +162,7 @@ class Form<Values> extends React.Component<
               child.props.onChange(event);
             }
           },
-          onInvalid: event => {
+          onInvalid: (event: any) => {
             if (child.props.onInvalid) {
               child.props.onInvalid(event);
             }
@@ -171,20 +174,20 @@ class Form<Values> extends React.Component<
         let defaultValue;
         if (
           child.props.name === "country" &&
-          this.state.data[child.props.name]
+          (this.state.data as any)[child.props.name]
         ) {
           defaultValue = {
-            label: this.state.data[child.props.name].country,
-            value: this.state.data[child.props.name].code,
+            label: (this.state.data as any)[child.props.name].country,
+            value: (this.state.data as any)[child.props.name].code,
           };
         } else {
-          defaultValue = this.state.data[child.props.name];
+          defaultValue = (this.state.data as any)[child.props.name];
         }
 
         return React.cloneElement(child, {
           defaultValue,
 
-          onChange: value => {
+          onChange: (value: string) => {
             this.setState(state => {
               const data = { ...state.data, [child.props.name]: value };
               return { data };
@@ -192,7 +195,8 @@ class Form<Values> extends React.Component<
           },
         });
       } else if (child.props.type === "checkbox") {
-        const defaultValue = this.state.data[child.props.name] || false;
+        const defaultValue =
+          (this.state.data as any)[child.props.name] || false;
         return React.cloneElement(child, {
           defaultValue,
 
@@ -200,7 +204,7 @@ class Form<Values> extends React.Component<
             this.setState(state => {
               const data = {
                 ...state.data,
-                [child.props.name]: !state.data[child.props.name],
+                [child.props.name]: !(state.data as any)[child.props.name],
               };
               return { data };
             });
@@ -209,7 +213,7 @@ class Form<Values> extends React.Component<
       }
       return child;
     });
-  }
+  };
 
   render = () => {
     const { children, formRef, className, ...otherProps } = this.props;

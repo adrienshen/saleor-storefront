@@ -18,7 +18,8 @@ export const Wrapper = styled.div<{ status: IProps["status"] }>`
   bottom: ${props => props.theme.spacing.spacer};
   right: ${props => props.theme.spacing.spacer};
   border-left: 0.4rem solid;
-  border-color: ${props => borderColors(props.theme)[props.status!]};
+  border-color: ${(props: { theme: DefaultTheme }) =>
+    borderColors(props.theme)[props.status!]};
 `;
 
 export const TopWrapper = styled.div`

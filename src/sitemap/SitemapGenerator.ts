@@ -3,6 +3,17 @@ import { chunk } from "lodash";
 import path from "path";
 import { buildSitemapIndex, createSitemap } from "sitemap";
 
+interface IOptionsProps {
+  urls?: [object?];
+  chunks?: object[][];
+  sitemapSize?: number;
+  sitemapName?: string;
+  hostname?: string;
+  cacheTime?: number;
+  destinationDir?: string;
+  sitemaps?: [string?];
+}
+
 class SitemapGenerator {
   urls: [object?];
   chunks: object[][];
@@ -13,7 +24,7 @@ class SitemapGenerator {
   destinationDir: string;
   sitemaps: [string?];
 
-  constructor(options) {
+  constructor(options: IOptionsProps) {
     this.sitemaps = [];
     this.urls = [];
     this.hostname = options.hostname;
