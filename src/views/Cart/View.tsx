@@ -13,6 +13,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   match: {
     params: { token },
   },
+  history,
 }) => {
   return (
     <div className="cart-page">
@@ -29,6 +30,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                         checkout={checkout}
                         cart={cart}
                         shop={shop}
+                        history={history}
                       />
                     )}
                   </ShopContext.Consumer>

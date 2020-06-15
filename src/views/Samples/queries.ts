@@ -9,12 +9,10 @@ import {
   Collection,
   CollectionVariables,
 } from "../Collection/types/Collection";
-import { productVariantFragment } from "@temp/@sdk/fragments/products";
 
 export const getAllSamples = gql`
   ${basicProductFragment}
   ${productPricingFragment}
-  ${productVariantFragment}
   query Sample($after: String, $pageSize: Int, $catId: ID) {
     products(
       after: $after
