@@ -373,6 +373,7 @@ export interface Collection {
    * List of the shop's attributes.
    */
   attributes: Collection_attributes | null;
+  collections: Collection_products | null;
 }
 
 export interface CollectionVariables {
@@ -423,5 +424,10 @@ export interface ICollectionProducts {
 
 export interface ICollection {
   data: Collection;
+  history: History;
+}
+
+export interface ICollections {
+  data: { collections: Collection_products };
   history: History;
 }

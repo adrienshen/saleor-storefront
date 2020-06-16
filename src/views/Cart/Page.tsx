@@ -100,7 +100,7 @@ const Page: React.FC<PageProps> = ({
             if (error) {
               return <span>There was an graphql error</span>;
             }
-            return <CartBasic cartData={data} overlay={null} />;
+            return <CartBasic />;
           }}
         </TypedProductVariantsQuery>
       )}
