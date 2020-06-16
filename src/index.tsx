@@ -124,7 +124,7 @@ const startApp = async () => {
           );
         }
       });
-      return null;
+      return <div />;
     };
 
     const Checkout = ({ children }: { children: React.ReactNode }) => {

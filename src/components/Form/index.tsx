@@ -124,7 +124,7 @@ class Form<Values> extends React.Component<
     });
   };
 
-  renderWrappedChildren = (children: React.ReactNode) => {
+  renderWrappedChildren: any = (children: React.ReactNode) => {
     // Traverse through all children
     return React.Children.map(children, (child: React.ReactElement<any>) => {
       // This is support for non-node elements (eg. pure text), they have no props

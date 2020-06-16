@@ -14,6 +14,8 @@ import {
 
 import "./scss/index.scss";
 
+let accountManagerFn: any;
+
 const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   const [query] = useQueryParams({
     email: StringParam,
@@ -38,7 +40,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   };
 
   React.useEffect(() => {
-    this.accountManagerFn({
+    accountManagerFn({
       variables: { email: query.email, token: query.token },
     })
       .then((result: IResult) => {
@@ -61,7 +63,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <TypedAccountConfirmMutation>
       {accountConfirm => {
-        this.accountManagerFn = accountConfirm;
+        accountManagerFn = accountConfirm;
         return <div />;
       }}
     </TypedAccountConfirmMutation>
