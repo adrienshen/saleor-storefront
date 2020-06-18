@@ -27,7 +27,7 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({
-  shop: { geolocalization, defaultCountry },
+  shop: {},
   checkout: {
     checkout,
     loading: checkoutLoading,
@@ -94,11 +94,11 @@ const Page: React.FC<PageProps> = ({
             ids: variantIds,
           }}
         >
-          {({ data, error }) => {
+          {({ error }) => {
             if (error) {
               return <span>There was an graphql error</span>;
             }
-            return <CartBasic cartData={data} overlay={null} />;
+            return <CartBasic />;
           }}
         </TypedProductVariantsQuery>
       )}

@@ -46,7 +46,7 @@ const completeCheckout = (
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
-    params: { token },
+    params: {},
   },
 }) => {
   const alert = useAlert();

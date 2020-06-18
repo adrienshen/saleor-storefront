@@ -4,7 +4,7 @@ import { ThemeContext } from "styled-components";
 
 import { Label } from "../Label";
 import { Select } from "../Select";
-
+import { CustomComponents } from "../Select/types";
 import { useHandlerWhenClickedOutside } from "../../../hooks";
 import { Icon } from "../Icon";
 import * as S from "./styles";
@@ -21,7 +21,7 @@ export const DropdownSelect: React.FC<IProps> = ({
     setMenuIsOpen(false);
   });
 
-  const customComponents = {
+  const customComponents: CustomComponents = {
     Control: () => (
       <S.SortLine onClick={() => setMenuIsOpen(!menuIsOpen)}>
         <Label>Sort by:</Label>

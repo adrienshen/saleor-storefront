@@ -1,7 +1,7 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
-
+import { ActiveFiltersAttribute } from "./types";
 import { ProductListHeader } from ".";
 
 const clearFilterMock = jest.fn();
@@ -11,7 +11,7 @@ const openFiltersMenuMock = jest.fn();
 
 const DEFAULT_PROPS = {
   activeFilters: 0,
-  activeFiltersAttributes: [],
+  activeFiltersAttributes: [] as ActiveFiltersAttribute[],
   clearFilters: clearFilterMock,
   numberOfProducts: 255,
   onChange: onChangeMock,

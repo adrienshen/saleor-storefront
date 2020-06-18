@@ -2,14 +2,15 @@ import * as React from "react";
 
 import "./scss/index.scss";
 
+interface IMenuDropdownProps {
+  head: React.ReactElement<{}>;
+  content: React.ReactElement<{}>;
+}
 class MenuDropdown extends React.Component<
-  {
-    head: React.ReactElement<{}>;
-    content: React.ReactElement<{}>;
-  },
+  IMenuDropdownProps,
   { active: boolean }
 > {
-  constructor(props) {
+  constructor(props: IMenuDropdownProps) {
     super(props);
     this.state = { active: false };
   }

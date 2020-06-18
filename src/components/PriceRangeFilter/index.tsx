@@ -62,7 +62,7 @@ class PriceRangeFilter extends React.Component<
   }
 
   render() {
-    const Control = props => (
+    const Control = (props: any) => (
       <components.Control {...props} isFocused={this.state.active} />
     );
 

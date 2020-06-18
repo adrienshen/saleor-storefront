@@ -4,11 +4,7 @@ import { generatePath } from "react-router";
 import { FormAddressType } from "../../../components";
 import { CartLineInterface } from "../../../components/CartProvider/context";
 import { maybe } from "../../../core/utils";
-import {
-  CartSummary,
-  GuestAddressForm,
-  Steps,
-} from "../../components";
+import { CartSummary, GuestAddressForm, Steps } from "../../components";
 import { CheckoutStep } from "../../context";
 import { shippingOptionsUrl } from "../../routes";
 import { ICheckoutData, ICheckoutUserArgs } from "../../types";
@@ -54,7 +50,6 @@ const Page: React.FC<IShippingPageProps> = ({
   shop,
   user,
   lines,
-  update,
   updateShippingAddress: [
     updateAddress,
     { loading: updateAddressLoading, error: updateAddressError },
@@ -67,17 +62,15 @@ const Page: React.FC<IShippingPageProps> = ({
   const loading = createCheckoutLoading || updateAddressLoading;
   const email = maybe(() => user.email, null);
 
-  const { storedValue: contactFields } = useLocalStorage(
-    "contactFields"
-  );
+  const { storedValue: contactFields } = useLocalStorage("contactFields");
 
   const onSaveShippingAddressHandler = async (formData: FormAddressType) => {
     formData = {
       ...formData,
       firstName: contactFields.firstName,
-      lastName: '',
+      lastName: "",
       phone: contactFields.phone,
-    }
+    };
 
     if (!checkoutId) {
       const data = computeCheckoutData(formData, lines);

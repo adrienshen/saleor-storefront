@@ -9,7 +9,12 @@ import FAQIcon from "images/outline-local_library-24px.svg";
 import OurTeamIcon from "images/outline-group-24px.svg";
 import ContactUsIcon from "images/outline-question_answer-24px.svg";
 import ToggleIcon from "images/toggle.svg";
+import H from "history";
 import "./scss/index.scss";
+
+interface IProps {
+  history: H.History;
+}
 
 export const Lists = [
   {
@@ -42,7 +47,7 @@ export const Lists = [
   },
 ];
 
-export const Page = props => {
+export const Page = (props: IProps) => {
   const handleClick = () => {
     props.history.goBack();
   };

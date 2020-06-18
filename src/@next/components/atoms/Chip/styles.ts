@@ -2,6 +2,15 @@ import { styled } from "@styles";
 
 import { Size } from "./types";
 
+interface ISize {
+  size: Size;
+}
+
+interface IFontSize {
+  size: Size;
+  theme: { chip: { typography: { fontSize: string; smallFontSize: string } } };
+}
+
 const padding = {
   md: "0.4rem 0.4rem 0.4rem 0.8rem",
   sm: "0.1rem",
@@ -23,7 +32,7 @@ export const Primary = styled.div<{
   size: Size;
 }>`
   background-color: ${props => props.theme.chip.colors[props.color].background};
-  padding: ${props => padding[props.size]};
+  padding: ${(props: ISize) => padding[props.size]};
   border: none;
   transition: 0.3s;
   outline: none;
@@ -48,10 +57,11 @@ export const Text = styled.span<{ size: Size }>`
     theme: {
       chip: { typography },
     },
-  }) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
+  }: IFontSize) =>
+    fontSize(typography.fontSize, typography.smallFontSize)[size]};
   font-weight: ${props => props.theme.typography.boldFontWeight};
   line-height: ${props => props.theme.typography.baseLineHeight};
-  margin-right: ${props => paddingCloseButton[props.size]};
+  margin-right: ${(props: ISize) => paddingCloseButton[props.size]};
   vertical-align: middle;
 `;
 
@@ -59,7 +69,7 @@ export const CloseButton = styled.button<{
   size: Size;
   color: "primary" | "secondary";
 }>`
-  padding: ${props => paddingCloseButton[props.size]};
+  padding: ${(props: ISize) => paddingCloseButton[props.size]};
   vertical-align: middle;
   cursor: pointer;
   border-radius: 1rem;

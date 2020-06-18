@@ -21,7 +21,7 @@ describe("<CreditCardForm />", () => {
     ccNumber: "444",
   };
 
-  const DEFAULT_PROPS = {
+  const DEFAULT_PROPS: any = {
     cardErrors: {
       cvv: null,
       expirationMonth: null,
@@ -74,7 +74,7 @@ describe("<CreditCardForm />", () => {
     });
 
     it("should pass `errors` list props if error occurs", () => {
-      const CARD_ERRORS = {
+      const CARD_ERRORS: any = {
         cvv: null,
         expirationMonth: null,
         expirationYear: {
