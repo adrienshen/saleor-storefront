@@ -3,7 +3,7 @@ import { components } from "react-select";
 import { ThemeContext } from "styled-components";
 
 import { Icon, InputLabel, Select } from "@components/atoms";
-
+import { CustomComponents } from "@components/atoms/Select/types";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -40,7 +40,7 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
     },
   };
 
-  const customComponents = {
+  const customComponents: CustomComponents = {
     Control: (props: any) => {
       const customTheme = React.useContext(ThemeContext);
       return (

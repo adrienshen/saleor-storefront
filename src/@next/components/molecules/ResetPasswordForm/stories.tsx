@@ -5,7 +5,7 @@ import React from "react";
 import { ResetPasswordForm } from ".";
 
 const DEFAULT_PROPS = {
-  errors: [],
+  errors: [] as any[],
   handleBlur: () => action("handleBlur"),
   handleChange: () => action("handleChange"),
   handleSubmit: () => action("handleSubmit"),

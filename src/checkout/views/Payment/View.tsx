@@ -103,7 +103,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                 checkout
               );
               const loading = loadingPayment || paymentCreateLoading;
-              const optionProps = providerName => ({
+              const optionProps = (providerName: string) => ({
                 key: providerName,
                 onSelect: () => setSelectedGeteway(providerName),
                 selected: selectedGeteway === providerName,

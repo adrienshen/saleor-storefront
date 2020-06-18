@@ -7,16 +7,14 @@ type ViewProps = RouteComponentProps<{ slug: string }>;
 
 export const View: React.FC<ViewProps> = ({
   match: {
-    params: { slug },
+    params: {},
   },
   history,
 }) => (
   <div className="home-page">
     <TypedCollectionQuery errorPolicy="all">
       {({ data }) => {
-        return (
-            <Page data={data} history={history}/>
-        );
+        return <Page data={data} history={history} />;
       }}
     </TypedCollectionQuery>
   </div>

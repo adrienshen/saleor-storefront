@@ -1,4 +1,11 @@
-const getVariantsStructuredData = variants => {
+import {
+  ProductDetails_product,
+  ProductDetails_product_variants,
+} from "@temp/views/Product/types/ProductDetails";
+
+const getVariantsStructuredData = (
+  variants: ProductDetails_product_variants[]
+) => {
   const inStock = "https://schema.org/InStock";
   const outOfStock = "https://schema.org/OutOfStock";
   return variants.map(variant => ({
@@ -11,7 +18,7 @@ const getVariantsStructuredData = variants => {
   }));
 };
 
-export const structuredData = product => {
+export const structuredData = (product: ProductDetails_product) => {
   const images = product.images.map(image => new URL(image.url).pathname);
   const variants = product.variants;
 

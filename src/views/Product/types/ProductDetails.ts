@@ -724,6 +724,7 @@ export interface ProductDetails_product {
    */
   variants: (ProductDetails_product_variants | null)[] | null;
   seoDescription: string | null;
+  description?: string | null;
   seoTitle: string | null;
   /**
    * Whether the product is in stock and visible or not.

@@ -18,30 +18,6 @@ interface CarouselType extends CarouselProps {
 const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
   const settings = {
     className: "carousel",
-    renderBottomCenterControls: () => null,
-    renderCenterLeftControls: ({ previousSlide, currentSlide }) =>
-      currentSlide !== 0 ? (
-        <div
-          onClick={previousSlide}
-          className="carousel__control carousel__control--left"
-        >
-          <ReactSVG path={arrowImg} />
-        </div>
-      ) : null,
-    renderCenterRightControls: ({
-      nextSlide,
-      currentSlide,
-      slideCount,
-      slidesToShow,
-    }) =>
-      slideCount - slidesToShow !== currentSlide ? (
-        <div
-          onClick={nextSlide}
-          className="carousel__control carousel__control--right"
-        >
-          <ReactSVG path={arrowImg} />
-        </div>
-      ) : null,
     ...rest,
   };
   const carousel = (slides: number) => (
@@ -52,12 +28,12 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
 
   return (
     <Media query={{ maxWidth: smallScreen }}>
-      {matches =>
+      {(matches: boolean) =>
         matches ? (
           carousel(1)
         ) : (
           <Media query={{ maxWidth: mediumScreen }}>
-            {matches => carousel(matches ? 2 : 4)}
+            {(matches: boolean) => carousel(matches ? 2 : 4)}
           </Media>
         )
       }

@@ -144,13 +144,13 @@ export default class CartProvider extends React.Component<
     }
   };
 
-  add = (variantId, quantity = 1) => {
+  add = (variantId: string, quantity = 1) => {
     const line = this.getLine(variantId);
     const newQuantity = line ? line.quantity + quantity : quantity;
     this.changeQuantity([{ variantId, quantity: newQuantity }]);
   };
 
-  subtract = (variantId, quantity = 1) => {
+  subtract = (variantId: string, quantity = 1) => {
     const line = this.getLine(variantId);
     const newQuantity = line ? line.quantity - quantity : quantity;
     this.changeQuantity([{ variantId, quantity: newQuantity }]);
@@ -166,7 +166,8 @@ export default class CartProvider extends React.Component<
   getQuantity = () =>
     this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
 
-  remove = variantId => this.changeQuantity([{ variantId, quantity: 0 }]);
+  remove = (variantId: string) =>
+    this.changeQuantity([{ variantId, quantity: 0 }]);
 
   render() {
     return (

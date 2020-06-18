@@ -23,7 +23,7 @@ const DEFAULT_PROPS = {
     { code: "FI", country: "Finland" },
     { code: "GB", country: "Great Britain" },
   ],
-  value: null,
+  value: "",
 };
 
 describe("<InputSelect />", () => {

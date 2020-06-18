@@ -78,10 +78,7 @@ const computeCheckoutData = (
 const View: React.FC<IBillingPageProps> = ({
   checkoutId,
   checkout,
-  createCheckout: [
-    create,
-    { loading: createCheckoutLoading, error: createCheckoutError },
-  ],
+  createCheckout: [create],
   proceedToNextStepData,
   shippingAsBilling,
   shop,

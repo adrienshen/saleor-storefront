@@ -1,10 +1,12 @@
 import * as React from "react";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
+import { History } from "history";
 
 import { useUserDetails } from "@sdk/react";
 import { smallScreen } from "@styles/constants";
 import AddressBook from "../../account/AddressBook/AddressBook";
+import { User } from "../../components/User/types/User";
 
 import "./scss/index.scss";
 
@@ -20,7 +22,7 @@ import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
 import { Breadcrumbs, Loader } from "../../components";
 
-const returnTab: any = (path: string, userDetails, history) => {
+const returnTab: any = (path: string, userDetails: User, history: History) => {
   let tabContent = <></>;
   switch (path) {
     case accountUrl: {

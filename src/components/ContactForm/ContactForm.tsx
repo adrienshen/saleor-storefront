@@ -8,13 +8,7 @@ import { useLocalStorage } from "@hooks";
 import { withRouter, generatePath } from "react-router";
 import { shippingAddressUrl } from "@temp/checkout/routes";
 
-const ContactForm: React.FC<any> = ({
-  buttonText,
-  errors,
-  loading,
-  children,
-  history,
-}) => {
+const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
   const {
     storedValue: contactFields,
     setValue: setContactFields,

@@ -23,7 +23,7 @@ interface ProductDescriptionProps {
   name: string;
   pricing: ProductDetails_product_pricing;
   addToCart(varinatId: string, quantity?: number): void;
-  setVariantId(variantId: string);
+  setVariantId(variantId: string): void;
 }
 
 interface ProductDescriptionState {

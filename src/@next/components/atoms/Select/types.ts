@@ -1,3 +1,10 @@
+export interface CustomComponents {
+  Control: (props?: any) => JSX.Element | null;
+  IndicatorSeparator: (props?: any) => JSX.Element | null;
+  IndicatorsContainer: (props?: any) => JSX.Element | null;
+  Option: (props?: any) => JSX.Element | null;
+}
+
 export interface IProps {
   value: any;
   name?: string;
@@ -12,11 +19,6 @@ export interface IProps {
   onChange: (value: any, name?: any) => void;
   clearable?: boolean;
   clearValue?: () => void;
-  customComponents?: {
-    Control: (props?: any) => JSX.Element | null;
-    IndicatorSeparator: (props?: any) => JSX.Element | null;
-    IndicatorsContainer: (props?: any) => JSX.Element | null;
-    Option: (props?: any) => JSX.Element | null;
-  };
+  customComponents?: CustomComponents;
   placeholder?: string;
 }
