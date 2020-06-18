@@ -31,7 +31,7 @@ function findField(fields: any[], name: string) {
 export const CardBlock = ({ node, add }: IProps) => {
   const [count, setCount] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
-  const attributes: { attribute: string; value: string }[] = getAttributes(
+  const attributes: Array<{ attribute: string; value: string }> = getAttributes(
     node.attributes
   );
   const firstVariantId = node.variants[0].id;

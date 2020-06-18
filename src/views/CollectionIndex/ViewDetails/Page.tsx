@@ -38,7 +38,7 @@ export const Page = (props: ICollection) => {
       <div>
         <div className="wrapper-header">Set Details</div>
         {details.map(
-          (detail: { key: string; value: string }[], idx: number) => {
+          (detail: Array<{ key: string; value: string }>, idx: number) => {
             if (detail && detail[0]) {
               return (
                 <DetailRow

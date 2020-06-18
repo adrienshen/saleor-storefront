@@ -14,13 +14,13 @@ import { ICardErrors, ICardInputs } from "src/core/payments/braintree";
 
 import { ProviderProps } from "../../View";
 
-const INITIAL_CARD_ERROR_STATE = {
+const INITIAL_CARD_ERROR_STATE: any = {
   fieldErrors: {
     cvv: null,
     expirationMonth: null,
     expirationYear: null,
     number: null,
-  } as ICardErrors,
+  },
   nonFieldError: "",
 };
 

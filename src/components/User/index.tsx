@@ -61,12 +61,12 @@ export default class UserProvider extends React.Component<
   authenticate = async (token: string) => {
     this.setState({ loading: true });
     const { apolloClient } = this.props;
-    let state = {
+    let state: any = {
       errors: null,
       loading: false,
       token: null,
       user: null,
-    } as UserContextInterface;
+    };
 
     try {
       const {

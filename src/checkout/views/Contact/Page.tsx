@@ -2,10 +2,11 @@ import * as React from "react";
 import styled from "styled-components";
 import { ContactForm } from "../../../components";
 import { Stepper } from "@temp/checkout/components/Stepper";
+import { Checkout } from "@temp/checkout/types/Checkout";
 
 interface IProps {
   checkoutId: string;
-  checkout: any;
+  checkout: Checkout;
 }
 
 const Page: React.FC<IProps> = () => {
