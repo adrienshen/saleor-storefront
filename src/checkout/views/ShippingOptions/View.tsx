@@ -46,7 +46,7 @@ class View extends React.Component<
 
     return (
       <CheckoutContext.Consumer>
-        {({ checkout, update, step }) => (
+        {({ checkout, update }) => (
           <div className="checkout-shipping-options">
             <CartSummary checkout={checkout}>
               <Steps

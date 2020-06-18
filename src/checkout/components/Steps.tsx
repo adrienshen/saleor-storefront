@@ -1,4 +1,4 @@
-import { styled } from '@styles';
+import { styled } from "@styles";
 import * as React from "react";
 
 import { useVariantsProducts } from "@sdk/react";
@@ -6,7 +6,12 @@ import { useVariantsProducts } from "@sdk/react";
 import { VariantsProducts_productVariants } from "@sdk/queries/types/VariantsProducts";
 import { CartContext } from "../../components/CartProvider/context";
 import { CheckoutStep } from "../context";
-import { billingUrl, shippingAddressUrl, shippingOptionsUrl, contactUrl } from "../routes";
+import {
+  billingUrl,
+  shippingAddressUrl,
+  shippingOptionsUrl,
+  contactUrl,
+} from "../routes";
 import { Checkout } from "../types/Checkout";
 
 const steps = [
@@ -14,7 +19,7 @@ const steps = [
     header: "Contact Details",
     path: contactUrl,
     step: CheckoutStep.Contact,
-    type: 'contact',
+    type: "contact",
   },
   {
     header: "Shipping Address",
@@ -65,7 +70,7 @@ const Steps: React.FC<{
   step: CheckoutStep;
   token?: string;
   checkout?: Checkout;
-}> = ({ checkout, step: currentStep, token, children }) => {
+}> = ({ checkout, step: currentStep, children }) => {
   const { lines: cardLines } = React.useContext(CartContext);
   const { data: variantsProducts } = useVariantsProducts({
     ids: cardLines ? cardLines.map(line => line.variantId) : [],
@@ -75,7 +80,7 @@ const Steps: React.FC<{
 
   return (
     <>
-      {availableSteps.map(({ header, step, path }, index) => (
+      {availableSteps.map(({ header, step }) => (
         <React.Fragment key={step}>
           {currentStep === step && (
             <>

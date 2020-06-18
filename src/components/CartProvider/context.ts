@@ -27,16 +27,16 @@ export interface CartInterface {
 
 /* tslint:disable:no-empty */
 export const CartContext = createContext<CartInterface>({
-  add: (variantId, quantity = 1) => {},
-  changeQuantity: (lines: CartLine[]) => {},
+  add: () => {},
+  changeQuantity: () => {},
   clear: () => {},
   clearErrors: () => {},
   errors: null,
   getQuantity: () => 0,
   lines: [],
   loading: false,
-  remove: variantId => {},
-  subtract: (variantId, quantity = 1) => {},
+  remove: () => {},
+  subtract: () => {},
 });
 /* tslint:enable:no-empty */
 

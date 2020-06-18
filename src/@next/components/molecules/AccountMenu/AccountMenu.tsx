@@ -22,7 +22,7 @@ const L = [
   },
 ];
 
-export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
+export const AccountMenu: React.FC<IProps> = ({ active }: IProps) => {
   return (
     <S.Wrapper>
       <S.MenuHeader>Account Information</S.MenuHeader>

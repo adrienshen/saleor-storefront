@@ -13,7 +13,7 @@ const Page: React.FC<{
   categories: ProductsList_categories;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
   shop: ProductsList_shop;
-}> = ({ loading, categories, backgroundImage, shop }) => {
+}> = ({ shop }) => {
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">

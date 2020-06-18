@@ -7,7 +7,7 @@ import { ICollectionProducts } from "../Collection/types/Collection";
 import "./scss/index.scss";
 
 const Page = ({ data, history }: ICollectionProducts) => {
-  const [view, changeView] = useState(GridViewTypes.Grid);
+  const [_view, changeView] = useState(GridViewTypes.Grid);
   const handleBack = () => {
     history.push("/");
   };
@@ -29,10 +29,7 @@ const Page = ({ data, history }: ICollectionProducts) => {
 
       <div className="wrapper-img">
         {data.products.edges.map(
-          (
-            { node: { name, id, pricing, thumbnail, variants, collections } },
-            idx
-          ) => (
+          ({ node: { name, id, pricing, thumbnail, collections } }, idx) => (
             <div className="wrapper-img-main" key={idx}>
               <div className="wrapper-img-main-inner noBorder">
                 <div className="wrapper-img-main-inner--header">

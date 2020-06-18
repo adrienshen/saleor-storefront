@@ -38,21 +38,21 @@ export const Page = ({ products, history, cart }: IPageProps) => {
           <div className="select-value--item">
             <Select
               value={10}
-              onChange={value => onChange()}
+              onChange={() => onChange()}
               placeholder="Width"
             />
           </div>
           <div className="select-value--item">
             <Select
               value={10}
-              onChange={value => onChange()}
+              onChange={() => onChange()}
               placeholder="Height"
             />
           </div>
           <div className="select-value--item">
             <Select
               value={10}
-              onChange={value => onChange()}
+              onChange={() => onChange()}
               placeholder="Depth"
             />
           </div>

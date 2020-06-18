@@ -38,7 +38,7 @@ export const defaultContext: CheckoutContextInterface = {
   step: CheckoutStep.ShippingAddress,
   syncUserCheckout: false,
   syncWithCart: false,
-  update: (checkoutData: {}) => null,
+  update: () => null,
 };
 
 export const CheckoutContext = createContext<CheckoutContextInterface>(

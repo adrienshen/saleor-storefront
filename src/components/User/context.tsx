@@ -16,10 +16,10 @@ export interface UserContextInterface {
 
 /* tslint:disable:no-empty */
 export const UserContext = React.createContext<UserContextInterface>({
-  authenticate: token => {},
+  authenticate: () => {},
   errors: null,
   loading: false,
-  login: (token, user) => {},
+  login: () => {},
   logout: () => {},
   token: null,
   user: null,
