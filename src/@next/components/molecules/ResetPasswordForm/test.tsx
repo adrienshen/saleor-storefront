@@ -6,7 +6,7 @@ import { ResetPasswordForm } from ".";
 
 describe("<ResetPasswordForm />", () => {
   const DEFAULT_PROPS = {
-    errors: [],
+    errors: [] as any[],
     handleBlur: () => jest.fn(),
     handleChange: () => jest.fn(),
     handleSubmit: () => jest.fn(),

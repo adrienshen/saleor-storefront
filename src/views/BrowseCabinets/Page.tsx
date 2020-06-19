@@ -4,8 +4,9 @@ import PageHeader from "../../components/Header/PageHeader";
 import { SubHeader } from "../../components/Collection/SubHeader";
 import "./scss/index.scss";
 import { GridViewTypes } from "../../constants";
+import { ICollections } from "../Collection/types/Collection";
 
-const Page = props => {
+const Page = (props: ICollections) => {
   const { data, history } = props;
   const [view, changeView] = useState(GridViewTypes.Grid);
 
@@ -13,7 +14,7 @@ const Page = props => {
     history.push("/");
   };
 
-  const handleViewChange = type => {
+  const handleViewChange = (type: GridViewTypes) => {
     changeView(type);
   };
 

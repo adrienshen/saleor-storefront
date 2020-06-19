@@ -124,10 +124,10 @@ const startApp = async () => {
           );
         }
       });
-      return null;
+      return <div />;
     };
 
-    const Checkout = ({ children }) => {
+    const Checkout = ({ children }: { children: React.ReactNode }) => {
       const user = useUserDetails();
       return (
         <>

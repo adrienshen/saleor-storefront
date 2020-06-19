@@ -18,7 +18,7 @@ const View: React.FC<ViewProps> = ({ match, history }) => {
   return (
     <div className="home-page">
       <TypedCollectionSampleQuery errorPolicy="all" variables={variables}>
-        {({ data, refetch }) => {
+        {({ data }) => {
           return (
             <CartContext.Consumer>
               {cart => (

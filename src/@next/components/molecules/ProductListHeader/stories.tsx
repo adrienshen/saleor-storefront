@@ -1,10 +1,10 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-
+import { IProps } from "./types";
 import { ProductListHeader } from ".";
 
-const DEFAULT_PROPS = {
+const DEFAULT_PROPS: IProps = {
   activeFilters: 0,
   activeFiltersAttributes: [],
   clearFilters: action("clearFilters"),

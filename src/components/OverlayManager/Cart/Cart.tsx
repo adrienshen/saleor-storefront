@@ -30,12 +30,12 @@ import chevronLeft from "../../../images/chevron-left.svg";
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   return (
     <Overlay context={overlay}>
-      <CartBasic overlay={overlay} cartData={null} />
+      <CartBasic />
     </Overlay>
   );
 };
 
-export function CartBasic({ overlay, cartData }) {
+export function CartBasic() {
   return (
     <>
       <Online>

@@ -1,12 +1,13 @@
 import * as React from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 import { DetailRow } from "@temp/components/Collection/DetailRow";
+import { ICollection } from "../../Collection/types/Collection";
 
-export const Page = props => {
+export const Page = (props: ICollection) => {
   const specsDetails = JSON.parse(props.data?.collection?.extraFields) || [];
 
-  const getDetails = data => {
-    return data?.specifications?.map(item =>
+  const getDetails = (data: any) => {
+    return data?.specifications?.map((item: any) =>
       Object.keys(item).map(key => ({ key, value: item[key] }))
     );
   };
@@ -27,15 +28,19 @@ export const Page = props => {
       />
       <div>
         <div className="wrapper-header">Set Details</div>
-        {details?.map((detail, idx) => {
-          return (
-            <DetailRow
-              key={idx}
-              name={detail[0]?.key}
-              value={detail[0]?.value}
-            />
-          );
-        })}
+        {details?.map(
+          (detail: Array<{ key: string; value: string }>, idx: number) => {
+            if (detail && detail[0]) {
+              return (
+                <DetailRow
+                  key={idx}
+                  name={detail[0].key}
+                  value={detail[0].value}
+                />
+              );
+            }
+          }
+        )}
       </div>
     </div>
   );

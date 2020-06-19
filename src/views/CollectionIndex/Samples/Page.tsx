@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 import { CartInterface } from "@temp/components/CartProvider/context";
+import { Collection_products } from "../../Collection/types/Collection";
 
 interface IPage {
-  data: any;
+  data: { products: Collection_products };
   cart: CartInterface;
   collectionId: string;
   history: any;
@@ -11,7 +12,7 @@ interface IPage {
 
 export const Page = ({ data, cart, collectionId, history }: IPage) => {
   const [samples, selectedSample] = useState([]);
-  const collect = [];
+  const collect: any = [];
   const sampleExist = data.products?.totalCount || 0;
 
   const handleBack = () => {
@@ -51,7 +52,10 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
         <div className="wrapper-img">
           {sampleExist > 0 ? (
             data.products?.edges?.map(
-              ({ node: { name, id, pricing, thumbnail, variants } }, idx) => (
+              (
+                { node: { name, id, pricing, thumbnail, variants } },
+                idx: number
+              ) => (
                 <div className="wrapper-img-main" key={idx}>
                   <div
                     className={

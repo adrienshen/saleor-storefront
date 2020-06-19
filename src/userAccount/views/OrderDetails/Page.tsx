@@ -64,7 +64,6 @@ const Page: React.FC<{
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}
-            paragraphRef={this.shippingAddressRef}
           />
         </div>
       </div>

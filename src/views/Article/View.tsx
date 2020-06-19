@@ -8,9 +8,9 @@ import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
 import Page from "./Page";
 import { TypedArticleQuery } from "./query";
-import { Article_shop } from "./types/Article";
+import { Article_shop, Article_page } from "./types/Article";
 
-const canDisplay = page =>
+const canDisplay = (page: Article_page) =>
   maybe(() => !!page && !!page.title && !!page.contentJson);
 const getHeaderImage = (shop: Article_shop) =>
   maybe(() => shop.homepageCollection.backgroundImage.url);

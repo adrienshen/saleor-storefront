@@ -3,6 +3,7 @@
 // This file was automatically generated and should not be edited.
 
 import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
+import { History } from "history";
 
 // ====================================================
 // GraphQL query operation: Collection
@@ -27,6 +28,8 @@ export interface Collection_collection {
   seoDescription: string | null;
   seoTitle: string | null;
   backgroundImage: Collection_collection_backgroundImage | null;
+  extraFields: string;
+  descriptionJson: string;
 }
 
 export interface Collection_products_edges_node_thumbnail {
@@ -262,6 +265,9 @@ export interface Collection_products_edges_node {
    */
   pricing: Collection_products_edges_node_pricing | null;
   category: Collection_products_edges_node_category | null;
+  variants: IVariants[];
+  collections: Collection_collection[];
+  attributes: IAttributes[];
 }
 
 export interface Collection_products_edges {
@@ -367,6 +373,7 @@ export interface Collection {
    * List of the shop's attributes.
    */
   attributes: Collection_attributes | null;
+  collections: Collection_products | null;
 }
 
 export interface CollectionVariables {
@@ -378,4 +385,49 @@ export interface CollectionVariables {
   priceLte?: number | null;
   priceGte?: number | null;
   slug?: string;
+}
+
+export interface IAttribute {
+  __typename: "Attribute";
+  id: string;
+  name: string | null;
+}
+
+export interface IAttributes {
+  __typename: "SelectedAttribute";
+  attribute: IAttribute;
+  values: (IAttributes_values | null)[];
+}
+
+export interface IAttributes_values {
+  __typename: "AttributeValue";
+  id: string;
+  name: string | null;
+  value: string | null;
+}
+
+export interface IVariants {
+  __typename: "ProductVariant";
+  id: string;
+  sku: string;
+  name: string;
+  stockQuantity: number;
+  isAvailable: boolean | null;
+  pricing: Collection_products_edges_node_pricing[] | null;
+  attributes: IAttributes[];
+}
+
+export interface ICollectionProducts {
+  data: { products: Collection_products };
+  history: History;
+}
+
+export interface ICollection {
+  data: Collection;
+  history: History;
+}
+
+export interface ICollections {
+  data: { collections: Collection_products };
+  history: History;
 }

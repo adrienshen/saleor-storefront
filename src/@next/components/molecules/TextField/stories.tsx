@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 import { TextField } from ".";
 
 const DEFAULT_PROPS = {
-  errors: [],
+  errors: [] as any[],
   label: "Label",
   onChange: action("onChange"),
   value: "Value",

@@ -26,7 +26,7 @@ const Table: React.FC<TableProps> = ({
   ...rowProps
 }) => (
   <Media query={{ minWidth: smallScreen }}>
-    {mediumScreen => (
+    {(mediumScreen: boolean) => (
       <table className="cart-table">
         <thead>
           <tr>

@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
 import { useLocalStorage } from "../../@next/hooks/useLocalStorage";
+import { ICollection } from "../Collection/types/Collection";
 
 export const Paths = [
   {
@@ -28,7 +29,7 @@ export const Paths = [
   },
 ];
 
-const Page = props => {
+const Page = (props: ICollection) => {
   const { storedValue: show, setValue: showOverlay } = useLocalStorage(
     "show",
     "false"

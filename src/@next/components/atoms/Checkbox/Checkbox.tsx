@@ -17,7 +17,7 @@ export const Checkbox: React.FC<IProps> = ({
   return (
     <S.Checkbox
       ref={ref}
-      onClick={evt => {
+      onClick={(evt: React.MouseEvent<HTMLElement>) => {
         evt.preventDefault();
         onChange(evt);
         if (ref.current) {

@@ -8,7 +8,10 @@ import { Link } from "react-router-dom";
 
 import { baseUrl } from "../../app/routes";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
-import { Category_category } from "../../views/Category/types/Category";
+import {
+  Category_category,
+  Category_category_ancestors_edges_node,
+} from "../../views/Category/types/Category";
 
 export interface Breadcrumb {
   value: string;
@@ -16,7 +19,9 @@ export interface Breadcrumb {
 }
 
 export const extractBreadcrumbs = (category: Category_category) => {
-  const constructLink = item => ({
+  const constructLink = (
+    item: Category_category | Category_category_ancestors_edges_node
+  ) => ({
     link: [
       `/category`,
       `/${slugify(item.name)}`,
@@ -47,7 +52,7 @@ const Breadcrumbs: React.FC<{
       minWidth: smallScreen,
     }}
   >
-    {matches =>
+    {(matches: boolean) =>
       matches ? (
         <ul className="breadcrumbs">
           <li>

@@ -11,21 +11,23 @@ import {
   Overlay,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "../..";
 import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../../images/x.svg";
 import ForgottenPassword from "./ForgottenPassword";
 
-class Login extends React.Component<
-  { overlay: OverlayContextInterface; active?: "login" | "register" },
-  { active: "login" | "register" }
-> {
+interface IProps {
+  overlay: OverlayContextInterface;
+  active?: "login" | "register";
+}
+
+class Login extends React.Component<IProps, { active: "login" | "register" }> {
   static defaultProps = {
     active: "login",
   };
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       active: props.active,

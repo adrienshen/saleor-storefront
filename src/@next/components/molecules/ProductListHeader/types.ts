@@ -3,7 +3,7 @@ interface SortOptions {
   label: string;
 }
 
-interface ActiveFiltersAttribute {
+export interface ActiveFiltersAttribute {
   attributeSlug: string;
   valueSlug: string;
   valueName: string;

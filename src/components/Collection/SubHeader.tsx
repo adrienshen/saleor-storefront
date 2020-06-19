@@ -2,8 +2,14 @@ import * as React from "react";
 import { FilterCollection } from "./FilterCollection";
 import { GridCollection } from "./GridCollection";
 import { ListCollection } from "./ListCollection";
+import { GridViewTypes } from "@temp/constants";
 
-export const SubHeader = ({ handleViewChange, title }) => {
+interface IProps {
+  handleViewChange: (type: GridViewTypes) => void;
+  title: string;
+}
+
+export const SubHeader = ({ handleViewChange, title }: IProps) => {
   return (
     <div>
       <div className="browse-cabinet__heading">

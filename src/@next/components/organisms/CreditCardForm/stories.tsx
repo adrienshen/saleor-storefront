@@ -1,17 +1,18 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-
+import { IProps } from "./types";
+import { ICardErrors } from "src/core/payments/braintree";
 import { CreditCardForm } from ".";
 
-const ERRORS = {
+const ERRORS: ICardErrors = {
   cvv: null,
   expirationMonth: null,
   expirationYear: null,
   number: null,
 };
 
-const PROPS = {
+const PROPS: IProps = {
   cardErrors: ERRORS,
   disabled: false,
   handleSubmit: action("onSubmit"),

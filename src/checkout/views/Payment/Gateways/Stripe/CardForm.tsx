@@ -7,7 +7,7 @@ import {
 
 import { ErrorMessage } from "@components/atoms";
 
-import { PROVIDERS } from "../../../../../core/config";
+import { PROVIDERS } from "@temp/core/config";
 import { ProviderProps } from "../../View";
 
 const CardForm = ({
@@ -20,7 +20,7 @@ const CardForm = ({
 }: ProviderProps & ReactStripeElements.InjectedStripeProps) => {
   const [errors, setErrors] = React.useState([]);
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoadingState(true);
 

@@ -3,13 +3,19 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 import heartFillIcon from "../../images/favorite-fill.svg";
 import heartIcon from "../../images/favorite.svg";
+import { GridViewTypes } from "@temp/constants";
 
-export const CollectionBlock = props => {
-  const { collection, currentView } = props;
+interface IProps {
+  currentView: GridViewTypes;
+  key: number;
+  collection: any;
+}
+
+export const CollectionBlock = (props: IProps) => {
+  const { collection } = props;
   const [heart, setWishlist] = useState(heartIcon);
-  const [view, changeView] = useState("grid");
 
-  const handleWishlist = e => {
+  const handleWishlist = (e: any) => {
     const img = e.target.getAttribute("data-src");
 
     if (img === "/images/favorite.svg") {

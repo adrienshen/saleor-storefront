@@ -78,7 +78,7 @@ const ORDERS = [
   },
 ];
 
-(global as any).matchMedia = (media: any) => ({
+(global as any).matchMedia = () => ({
   addListener: jest.fn(),
   matches: true,
   removeListener: jest.fn(),

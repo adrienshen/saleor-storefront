@@ -8,8 +8,8 @@ import { AccountTile } from "./AccountTile";
 import { PasswordTile } from "./PasswordTile";
 
 jest.mock("@sdk/react", () => ({
-  useAccountUpdate: () => [jest.fn(), { data: null, error: null }],
-  usePasswordChange: () => [jest.fn(), { data: null, error: null }],
+  useAccountUpdate: () => [jest.fn(), { data: "", error: "" }],
+  usePasswordChange: () => [jest.fn(), { data: "", error: "" }],
   useUserDetails: () => ({ data: { firstName: "John", lastName: "Doe" } }),
 }));
 

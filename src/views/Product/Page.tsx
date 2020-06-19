@@ -19,6 +19,11 @@ import { ProductGallery } from "../../@next/components/organisms/";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
+interface IProps {
+  product: ProductDetails_product;
+  variantId: string;
+}
+
 class Page extends React.PureComponent<
   { product: ProductDetails_product },
   { variantId: string }
@@ -26,7 +31,7 @@ class Page extends React.PureComponent<
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
 
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       variantId: "",
@@ -41,7 +46,7 @@ class Page extends React.PureComponent<
     return this.props.product?.images?.length > 1;
   }
 
-  populateBreadcrumbs = product => [
+  populateBreadcrumbs = (product: ProductDetails_product) => [
     {
       link: generateCategoryUrl(product.category?.id, product.category?.name),
       value: product.category?.name,
@@ -68,7 +73,7 @@ class Page extends React.PureComponent<
     }
   };
 
-  renderImages = product => {
+  renderImages = (product: ProductDetails_product) => {
     const images = this.getImages();
     if (images?.length) {
       return images?.map((image, idx) => (
@@ -113,7 +118,7 @@ class Page extends React.PureComponent<
 
             {/*  */}
             <Media query={{ maxWidth: smallScreen }}>
-              {matches =>
+              {(matches: any) =>
                 matches ? (
                   <>
                     <GalleryCarousel images={this.getImages()} />

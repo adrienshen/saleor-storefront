@@ -4,9 +4,10 @@ import { META_DEFAULTS } from "../../core/config";
 import { default as MetaConsumer } from "./consumer";
 import { MetaContextInterface, Provider as MetaProvider } from "./context";
 
-const removeEmpty = obj => {
-  const newObj = {};
+const removeEmpty = (obj: any) => {
+  const newObj: any = {};
   Object.keys(obj).forEach(prop => {
+    const key = obj[prop];
     if (obj[prop] && obj[prop] !== "") {
       newObj[prop] = obj[prop];
     }

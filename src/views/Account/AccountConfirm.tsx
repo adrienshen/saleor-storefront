@@ -7,8 +7,14 @@ import { BASE_URL } from "../../core/config";
 
 import { RouteComponentProps } from "react-router";
 import { TypedAccountConfirmMutation } from "./queries";
+import {
+  AccountConfirm_accountConfirm_errors,
+  IResult,
+} from "./types/AccountConfirm";
 
 import "./scss/index.scss";
+
+let accountManagerFn: any;
 
 const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   const [query] = useQueryParams({
@@ -18,7 +24,9 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
 
   const alert = useAlert();
 
-  const displayConfirmationAlert = anyErrors => {
+  const displayConfirmationAlert = (
+    anyErrors: AccountConfirm_accountConfirm_errors[]
+  ) => {
     const isError = anyErrors?.length > 0;
     alert.show(
       {
@@ -32,15 +40,15 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   };
 
   React.useEffect(() => {
-    this.accountManagerFn({
+    accountManagerFn({
       variables: { email: query.email, token: query.token },
     })
-      .then(result => {
+      .then((result: IResult) => {
         const possibleErrors = result.data.confirmAccount.errors;
         displayConfirmationAlert(possibleErrors);
       })
       .catch(() => {
-        const errors = [
+        const errors: any[] = [
           {
             message: "Something went wrong while activating your account.",
           },
@@ -55,7 +63,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <TypedAccountConfirmMutation>
       {accountConfirm => {
-        this.accountManagerFn = accountConfirm;
+        accountManagerFn = accountConfirm;
         return <div />;
       }}
     </TypedAccountConfirmMutation>
