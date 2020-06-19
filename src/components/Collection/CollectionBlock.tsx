@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export const CollectionBlock = (props: IProps) => {
-  const { collect, currentView } = props;
+  const { collect } = props;
   const [heart, setWishlist] = useState(heartIcon);
 
   const handleWishlist = (e: any) => {
