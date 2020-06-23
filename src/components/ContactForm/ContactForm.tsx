@@ -8,7 +8,13 @@ import { useLocalStorage } from "@hooks";
 import { withRouter, generatePath } from "react-router";
 import { shippingAddressUrl } from "@temp/checkout/routes";
 
-const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
+interface IProps {
+  errors: any;
+  loading: boolean;
+  children: React.ReactChildren;
+}
+
+const ContactForm: React.FC<IProps> = ({ errors, loading, children }) => {
   const {
     storedValue: contactFields,
     setValue: setContactFields,
@@ -61,4 +67,4 @@ const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
   );
 };
 
-export default withRouter(ContactForm);
+export default ContactForm;
