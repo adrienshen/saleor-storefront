@@ -68,7 +68,7 @@ const Steps: React.FC<{
   step: CheckoutStep;
   token?: string;
   checkout?: Checkout;
-}> = ({ checkout, step: children }) => {
+}> = ({ checkout, step: currentStep, children }) => {
   const { lines: cardLines } = React.useContext(CartContext);
   const { data: variantsProducts } = useVariantsProducts({
     ids: cardLines?.map(line => line.variantId) || [],
@@ -80,13 +80,13 @@ const Steps: React.FC<{
     <>
       {availableSteps?.map(({ header, step }) => (
         <React.Fragment key={step}>
-          currentStep === step && (
-          <>
-            <div className="checkout__step">
-              <H4>{header}</H4>
-            </div>
-            <div className="checkout__content">{children}</div>
-          </>
+          {currentStep === step && (
+            <>
+              <div className="checkout__step">
+                <H4>{header}</H4>
+              </div>
+              <div className="checkout__content">{children}</div>
+            </>
           )}
         </React.Fragment>
       ))}
