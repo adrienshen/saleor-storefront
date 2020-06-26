@@ -13,7 +13,7 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { baseUrl as checkoutUrl } from "../../../checkout/routes";
+import { contactUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { CartContext } from "../../CartProvider/context";
@@ -107,7 +107,7 @@ export function CartBasic() {
                                 />
                               </div>
                               <div className="cart__footer__button">
-                                <Link to={checkoutUrl}>
+                                <Link to={contactUrl}>
                                   <Button>Checkout</Button>
                                 </Link>
                               </div>
