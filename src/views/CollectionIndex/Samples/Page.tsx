@@ -71,7 +71,7 @@ export const Page = ({ data, cart, collectionId, history }: IPage) => {
                     </div>
                     <div className="wrapper-img-main-inner--img">
                       <img
-                        src={thumbnail.url}
+                        src={thumbnail?.url}
                         onClick={() => selectSample(variants[0].id)}
                         id={id}
                         key={idx}
