@@ -8,17 +8,12 @@ import { useLocalStorage } from "@hooks";
 import { withRouter, generatePath } from "react-router";
 import { shippingAddressUrl } from "@temp/checkout/routes";
 
-interface IProps {
-  errors: any;
-  loading: boolean;
-  children: React.ReactChildren;
-}
-
-const ContactForm: React.FC<IProps> = ({ errors, loading, children }) => {
+const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
   const {
     storedValue: contactFields,
     setValue: setContactFields,
   } = useLocalStorage("contactFields");
+  console.log("contact fields >> ", contactFields);
 
   return (
     <div className="address-form">
@@ -29,7 +24,7 @@ const ContactForm: React.FC<IProps> = ({ errors, loading, children }) => {
           setContactFields(data);
           location.href = generatePath(shippingAddressUrl);
         }}
-        data={contactFields || null}
+        data={contactFields || {}}
       >
         {children}
         <fieldset className="form-fieldset">
