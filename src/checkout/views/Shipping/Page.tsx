@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as React from "react";
 import { generatePath } from "react-router";
 
@@ -9,6 +10,9 @@ import { CheckoutStep } from "../../context";
 import { shippingOptionsUrl } from "../../routes";
 import { ICheckoutData, ICheckoutUserArgs } from "../../types";
 import { IShippingPageProps } from "./types";
+import { createCheckoutMutation } from "@temp/@sdk/mutations/checkout";
+
+import { withApollo } from "react-apollo";
 
 import { CountryCode } from "types/globalTypes";
 import { useLocalStorage } from "@temp/@next/hooks";
@@ -40,12 +44,10 @@ const computeCheckoutData = (
 });
 
 const Page: React.FC<IShippingPageProps> = ({
+  client,
+  createCheckout,
   checkoutId,
   checkout,
-  createCheckout: [
-    create,
-    { loading: createCheckoutLoading, error: createCheckoutError },
-  ],
   proceedToNextStepData,
   shop,
   user,
@@ -55,14 +57,13 @@ const Page: React.FC<IShippingPageProps> = ({
     { loading: updateAddressLoading, error: updateAddressError },
   ],
 }) => {
-  const errors = maybe(
-    () => createCheckoutError.extraInfo.userInputErrors,
-    maybe(() => updateAddressError.extraInfo.userInputErrors, [])
-  );
-  const loading = createCheckoutLoading || updateAddressLoading;
+  const errors = maybe(() => updateAddressError.extraInfo.userInputErrors, []);
+  const loading = updateAddressLoading;
   const email = maybe(() => user.email, null);
 
   const { storedValue: contactFields } = useLocalStorage("contactFields");
+
+  console.log("checkout >> ", checkout);
 
   const onSaveShippingAddressHandler = async (formData: FormAddressType) => {
     formData = {
@@ -71,16 +72,21 @@ const Page: React.FC<IShippingPageProps> = ({
       lastName: "",
       phone: contactFields.phone,
     };
-
     if (!checkoutId) {
       const data = computeCheckoutData(formData, lines);
-      return create({
-        checkoutInput: {
-          email: contactFields.email,
-          lines: data.lines,
-          shippingAddress: data.shippingAddress,
+      const result = await client.mutate({
+        mutation: createCheckoutMutation,
+        variables: {
+          input: {
+            email: contactFields.email,
+            lines: data.lines,
+            shippingAddress: data.shippingAddress,
+          },
         },
       });
+
+      console.log("mutatation result >> ", result);
+      return result && result.data;
     }
     const data = computeCheckoutData(formData, null, email);
     return updateAddress({
@@ -93,19 +99,19 @@ const Page: React.FC<IShippingPageProps> = ({
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {
     const { update, history, token } = proceedToNextStepData;
 
-    const result = await onSaveShippingAddressHandler(formData);
-    const canProceed = !!result;
+    console.log("TOKEN >> ", token);
 
-    if (canProceed) {
-      update({
-        checkout: result.data.checkout || checkout,
+    const result = await onSaveShippingAddressHandler(formData);
+    if (result) {
+      await update({
+        checkout: result?.checkoutCreate?.checkout || checkout,
         shippingAsBilling: maybe(() => formData.asBilling, false),
       });
-      history.push(
-        generatePath(shippingOptionsUrl, {
-          token,
-        })
-      );
+      // history.push(
+      //   generatePath(shippingOptionsUrl, {
+      //     token,
+      //   })
+      // );
     }
   };
 
@@ -121,7 +127,6 @@ const Page: React.FC<IShippingPageProps> = ({
     checkout,
     user,
   });
-
   return (
     <CartSummary checkout={checkout}>
       <div className="checkout-shipping">
@@ -137,4 +142,4 @@ const Page: React.FC<IShippingPageProps> = ({
   );
 };
 
-export default Page;
+export default withApollo(Page);

@@ -1,9 +1,4 @@
 import { History } from "history";
-
-import {
-  CreateCheckout_checkoutCreate,
-  CreateCheckoutVariables,
-} from "@sdk/mutations/types/CreateCheckout";
 import {
   UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate,
   UpdateCheckoutShippingAddressVariables,
@@ -28,17 +23,6 @@ export interface IShippingPageProps {
   checkout?: Checkout;
   update: (checkoutData: CheckoutContextInterface) => void;
   lines?: CartLineInterface[];
-  createCheckout: [
-    MutationFn<
-      {
-        data: CreateCheckout_checkoutCreate;
-      },
-      CreateCheckoutVariables
-    >,
-    MutationResult<{
-      data: CreateCheckout_checkoutCreate;
-    }>
-  ];
   updateShippingAddress: [
     MutationFn<
       {

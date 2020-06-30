@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { styled } from "@styles";
 import * as React from "react";
 

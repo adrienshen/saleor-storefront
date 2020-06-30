@@ -7,8 +7,9 @@
   "main": "dist/index.js",
   "browserslist": "last 2 versions",
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
     "@babel/runtime": "^7.10.2",
-    "@lhci/cli": "^0.3.14",
+    "@lhci/cli": "^0.4.2",
     "@testing-library/cypress": "^5.3.1",
     "@types/yup": "^0.26.37",
     "animate-css-grid": "^1.4.3",
@@ -166,7 +167,7 @@
   },
   "scripts": {
     "test": "jest --runInBand --config .jest/config.json",
-    "dev": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development --hotOnly",
+    "dev": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development",
     "start": "node app.js",
     "start:worker": "npm run start -- --service-worker",
     "build": "webpack -p",
@@ -178,7 +179,6 @@
     "codegen-watch": "npm run codegen -- --watch",
     "tslint": "tslint 'src/**/*.ts?(x)'",
     "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@sdk & npx tsc --noEmit -p src/@next",
-    "heroku-postbuild": "npm run build",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
     "generate": "npx plop --plopfile ./.plop/index.js",
     "cy:run": "cypress run",

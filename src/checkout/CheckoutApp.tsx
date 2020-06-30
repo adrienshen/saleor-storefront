@@ -71,12 +71,12 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
               return <Redirect to={appBaseUrl} />;
             }
 
-            if (
-              ((!checkout && !variantsProducts) || step < stepFromPath) &&
-              checkoutBaseUrl !== pathname
-            ) {
-              return <Redirect to={checkoutBaseUrl} />;
-            }
+            // if (
+            //   ((!checkout && !variantsProducts) || step < stepFromPath) &&
+            //   checkoutBaseUrl !== pathname
+            // ) {
+            //   return <Redirect to={checkoutBaseUrl} />;
+            // }
 
             return <CheckoutRoutes />;
           })()}
