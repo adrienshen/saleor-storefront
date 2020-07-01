@@ -7,15 +7,13 @@ export const ColorItem: React.FC<IColorItem> = ({
   onChangeColor,
 }) => {
   return (
-    <div className="colors">
-      <div className="color-item">
-        <img
-          src={image.image?.url}
-          alt={image.image?.alt}
-          onClick={() => onChangeColor(image.position, image.id)}
-          className={selected ? "selected" : ""}
-        />
-      </div>
+    <div className="color-item">
+      <img
+        src={image.image?.url}
+        alt={image.image?.alt}
+        onClick={() => onChangeColor(image.position, image.id)}
+        className={selected ? "selected" : ""}
+      />
     </div>
   );
 };

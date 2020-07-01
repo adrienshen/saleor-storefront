@@ -98,10 +98,18 @@ export const Page = (props: any) => {
         <div className="wrapper-header">Available Colors</div>
         <div className="wrapper-sub-header">Available colors for this set:</div>
         <div className="top-color">
-          <ColorSelection colors={topColors} position={IPosition.Top} />
+          <ColorSelection
+            colors={topColors}
+            position={IPosition.Top}
+            collectionId={props.match.params.id}
+          />
         </div>
         <div>
-          <ColorSelection colors={bottomColor} position={IPosition.Bottom} />
+          <ColorSelection
+            colors={bottomColor}
+            position={IPosition.Bottom}
+            collectionId={props.match.params.id}
+          />
         </div>
       </div>
     </div>

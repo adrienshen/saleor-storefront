@@ -6,6 +6,7 @@ export enum IPosition {
 export interface IProps {
   colors: IColor[];
   position: IPosition;
+  collectionId: string;
 }
 
 export interface IColor {
