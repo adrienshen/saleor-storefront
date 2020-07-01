@@ -1,19 +1,19 @@
 import React from "react";
-import classNames from "classnames";
 import { IColorItem } from "./types";
 
-export const ColorItem: React.FC<IColorItem> = ({ selected, image }) => {
+export const ColorItem: React.FC<IColorItem> = ({
+  selected,
+  image,
+  onChangeColor,
+}) => {
   return (
     <div className="colors">
-      <div
-        className={classNames("color-item", {
-          selected: selected,
-        })}
-      >
+      <div className="color-item">
         <img
           src={image.image?.url}
           alt={image.image?.alt}
-          // onClick={() => props.setSelectedColor(item)}
+          onClick={() => onChangeColor(image.position, image.id)}
+          className={selected ? "selected" : ""}
         />
       </div>
     </div>

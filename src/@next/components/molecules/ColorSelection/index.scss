@@ -1,3 +1,8 @@
+.color-type {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
 .colors {
   display: flex;
   flex-wrap: wrap;
@@ -9,7 +14,8 @@
     }
   }
   .selected {
-    border: #2a3330;
-    border-radius: 15px;
+    border: 1px solid #2a3330;
+    border-radius: 60px;
+    padding: 2px;
   }
 }

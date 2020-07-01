@@ -18,4 +18,9 @@ export interface IColor {
 export interface IColorItem {
   selected: boolean;
   image: IColor;
+  onChangeColor: (type: IPosition, colorID: number) => void;
+}
+
+export enum LocalStorageKeys {
+  CabinetColor = "cabinetColor",
 }

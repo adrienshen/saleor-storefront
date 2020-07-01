@@ -96,8 +96,8 @@ export const Page = (props: any) => {
       />
       <div>
         <div className="wrapper-header">Available Colors</div>
-        <div className="wrapper-header">Available colors for this set</div>
-        <div>
+        <div className="wrapper-sub-header">Available colors for this set:</div>
+        <div className="top-color">
           <ColorSelection colors={topColors} position={IPosition.Top} />
         </div>
         <div>
