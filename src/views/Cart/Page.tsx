@@ -4,7 +4,6 @@ import * as React from "react";
 import { useAlert } from "react-alert";
 
 import { TaxedMoney } from "@components/containers";
-import { useUserDetails } from "@sdk/react";
 
 import { CheckoutContextInterface } from "../../checkout/context";
 import { CartTable, Loader } from "../../components";
@@ -48,7 +47,6 @@ const Page: React.FC<PageProps> = ({
   history,
 }) => {
   const alert = useAlert();
-  const { data: user } = useUserDetails();
   const hasErrors: boolean | null = maybe(() => !!errors.length);
   const isLoading =
     (!checkout && checkoutLoading) || syncWithCart || syncUserCheckout;

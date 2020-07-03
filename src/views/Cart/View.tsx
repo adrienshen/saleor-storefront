@@ -15,10 +15,6 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   },
   history,
 }) => {
-  const handleBack = () => {
-    window.history.back();
-  };
-
   return (
     <div className="cart-page">
       <CheckoutContext.Consumer>

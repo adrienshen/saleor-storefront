@@ -4,14 +4,11 @@ import styled from "styled-components";
 import { History } from "history";
 import * as React from "react";
 import { AlertManager, useAlert } from "react-alert";
-import { generatePath, RouteComponentProps } from "react-router";
-import { Link } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
 
 import { orderConfirmationUrl } from "../../../app/routes";
-import { Button } from "../../../components";
 import { CartContext } from "../../../components/CartProvider/context";
 import { CheckoutContext } from "../../context";
-import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
 import { completeCheckout } from "./types/completeCheckout";
 import { CheckoutNextButton } from "@temp/components/Button";

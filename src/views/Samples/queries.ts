@@ -9,7 +9,6 @@ import {
   Collection,
   CollectionVariables,
 } from "../Collection/types/Collection";
-import { productVariantFragment } from "@temp/@sdk/fragments/products";
 
 export const getAllSamples = gql`
   ${basicProductFragment}
