@@ -23,14 +23,12 @@ class View extends React.Component<
 
   proceedToBilling(
     data: updateCheckoutShippingOptions,
-    update: (checkoutData: CheckoutContextInterface) => void,
-    token?: string
+    update: (checkoutData: CheckoutContextInterface) => void
   ) {
     const canProceed = !data.checkoutShippingMethodUpdate.errors.length;
 
     if (canProceed) {
       update({ checkout: data.checkoutShippingMethodUpdate.checkout });
-      this.props.history.push(generatePath(billingUrl, { token }));
     }
   }
 
@@ -59,6 +57,9 @@ class View extends React.Component<
                   token={token}
                   checkout={checkout}
                   selectedShipping={selectedShipping}
+                  handleShippngChange={this.handleShippngChange}
+                  proceedToBilling={this.proceedToBilling}
+                  history={this.props.history}
                 />
               </Steps>
             </CartSummary>
@@ -74,11 +75,17 @@ function ChooseShippingMethodContent({
   token,
   checkout,
   selectedShipping,
+  handleShippngChange,
+  proceedToBilling,
+  history,
 }: any) {
   return (
     <>
       <TypedUpdateCheckoutShippingOptionsMutation
-        onCompleted={data => this.proceedToBilling(data, update, token)}
+        onCompleted={data => {
+          proceedToBilling(data, update, token);
+          history.push(generatePath(billingUrl, { token }));
+        }}
       >
         {(updateCheckoutShippingOptions, { loading }) => {
           const shippingMethods = checkout?.availableShippingMethods || [];
@@ -89,7 +96,7 @@ function ChooseShippingMethodContent({
                   <Option
                     key={method.id}
                     selected={selectedShipping === method.id}
-                    onSelect={() => this.handleShippngChange(method.id)}
+                    onSelect={() => handleShippngChange(method.id)}
                     value={method.id}
                     label={
                       <>
