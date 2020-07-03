@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as React from "react";
 import { generatePath } from "react-router";
 
@@ -128,7 +129,7 @@ const View: React.FC<IBillingPageProps> = ({
   };
 
   const billingProps = {
-    buttonText: "Proceed to Payment",
+    buttonText: "Next",
     checkout,
     errors,
     loading,
@@ -164,21 +165,12 @@ const View: React.FC<IBillingPageProps> = ({
               </label>
             </div>
           )}
-          {user ? (
-            <UserAddressSelector
-              update={update}
-              user={user}
-              onSubmit={onSubmitHandler}
-              {...billingProps}
-            />
-          ) : (
-            <GuestAddressForm
-              key={`${shippingAsBilling}`}
-              shop={shop}
-              noShipping={!isShippingRequired}
-              {...billingProps}
-            />
-          )}
+          <GuestAddressForm
+            key={`${shippingAsBilling}`}
+            shop={shop}
+            noShipping={!isShippingRequired}
+            {...billingProps}
+          />
         </>
       </Steps>
     </CartSummary>

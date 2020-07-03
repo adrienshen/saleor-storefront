@@ -13,6 +13,8 @@ import { withApollo } from "react-apollo";
 
 import { CountryCode } from "types/globalTypes";
 import { useLocalStorage } from "@temp/@next/hooks";
+import { generatePath } from "react-router";
+import { shippingOptionsUrl } from "@temp/checkout/routes";
 
 const computeCheckoutData = (
   data: FormAddressType,
@@ -90,7 +92,7 @@ const Page: React.FC<IShippingPageProps> = ({
   };
 
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {
-    const { update } = proceedToNextStepData;
+    const { update, history, token } = proceedToNextStepData;
 
     const result = await onSaveShippingAddressHandler(formData);
     if (result) {
@@ -98,6 +100,7 @@ const Page: React.FC<IShippingPageProps> = ({
         checkout: result?.checkoutCreate?.checkout || checkout,
         shippingAsBilling: maybe(() => formData.asBilling, false),
       });
+      history.push(generatePath(shippingOptionsUrl, { token }));
     }
   };
 
