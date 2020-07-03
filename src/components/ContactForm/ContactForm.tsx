@@ -5,7 +5,7 @@ import * as React from "react";
 import { Form, TextField } from "..";
 import { CheckoutNextButton } from "../Button";
 import { useLocalStorage } from "@hooks";
-import { withRouter, generatePath } from "react-router";
+import { generatePath } from "react-router";
 import { shippingAddressUrl } from "@temp/checkout/routes";
 
 const ContactForm: React.FC<any> = ({ errors, loading, children }) => {

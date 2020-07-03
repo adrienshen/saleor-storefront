@@ -90,7 +90,7 @@ const Page: React.FC<IShippingPageProps> = ({
   };
 
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {
-    const { update, history, token } = proceedToNextStepData;
+    const { update } = proceedToNextStepData;
 
     const result = await onSaveShippingAddressHandler(formData);
     if (result) {
