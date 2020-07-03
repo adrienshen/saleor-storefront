@@ -21,9 +21,9 @@ const Cart: React.FC<{
         >
           {({ data }) => (
             <>
-              {data.productVariants.edges.map(({ node }) => (
+              {data.productVariants?.edges?.map(({ node }, idx) => (
                 <Line
-                  key={node.id}
+                  key={idx}
                   {...node}
                   quantity={
                     lines.find(({ variantId }) => variantId === node.id)
@@ -37,8 +37,8 @@ const Cart: React.FC<{
         </TypedProductVariantsQuery>
       ) : (
         <>
-          {checkout.lines.map(({ variant, quantity, id }) => (
-            <Line key={id} {...variant} quantity={quantity} />
+          {checkout.lines?.map(({ variant, quantity, id }, idx) => (
+            <Line key={id + idx} {...variant} quantity={quantity} />
           ))}
           <Subtotal checkout={checkout} lines={lines} />
           {checkout.discount && !!checkout.discount.amount && (
@@ -52,13 +52,13 @@ const Cart: React.FC<{
           <div className="cart-summary__totals">
             <h5>Delivery</h5>
             <h5>
-              <Money defaultValue="-" money={checkout.shippingPrice.gross} />
+              <Money defaultValue="-" money={checkout.shippingPrice?.gross} />
             </h5>
           </div>
           <div className="cart-summary__totals last">
             <h4>Grand total</h4>
             <h4>
-              <Money defaultValue="-" money={checkout.totalPrice.gross} />
+              <Money defaultValue="-" money={checkout.totalPrice?.gross} />
             </h4>
           </div>
         </>

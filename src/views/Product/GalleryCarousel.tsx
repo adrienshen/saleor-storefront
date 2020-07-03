@@ -23,7 +23,7 @@ const GalleryCarousel: React.FC<{
 
         return (
           <ul className="product-page__product__gallery__nav">
-            {indexes.map(index => (
+            {indexes?.map(index => (
               <li
                 key={index}
                 onClick={props.goToSlide.bind(null, index)}
@@ -36,8 +36,8 @@ const GalleryCarousel: React.FC<{
         );
       }}
     >
-      {images.map(image => (
-        <CachedImage url={image.url || noPhotoImg} key={image.id}>
+      {images?.map((image, idx) => (
+        <CachedImage url={image.url || noPhotoImg} key={image.id + idx}>
           <img src={noPhotoImg} />
         </CachedImage>
       ))}

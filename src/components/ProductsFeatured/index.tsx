@@ -20,16 +20,16 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
           []
         );
 
-        if (products.length) {
+        if (products?.length) {
           return (
             <div className="products-featured">
               <div className="container">
                 <h3>{title}</h3>
                 <Carousel>
-                  {products.map(({ node: product }) => (
+                  {products?.map(({ node: product }, idx) => (
                     <Link
                       to={generateProductUrl(product.id, product.name)}
-                      key={product.id}
+                      key={product.id + idx}
                     >
                       <ProductListItem product={product} />
                     </Link>

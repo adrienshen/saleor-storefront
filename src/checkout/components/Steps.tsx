@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { styled } from "@styles";
 import * as React from "react";
 
@@ -48,20 +50,18 @@ const getAvailableSteps = (
   checkout: Checkout,
   variantsProducts: VariantsProducts_productVariants
 ) => {
-  if (checkout && checkout.isShippingRequired) {
+  if (checkout?.isShippingRequired) {
     return steps;
   } else if (checkout) {
-    return steps.filter(({ type }) => type !== "shipping");
+    return steps?.filter(({ type }) => type !== "shipping");
   } else if (variantsProducts) {
-    const isShippingRequired =
-      variantsProducts.edges &&
-      variantsProducts.edges.some(
-        ({ node }) => node.product.productType.isShippingRequired
-      );
+    const isShippingRequired = variantsProducts?.edges?.some(
+      ({ node }) => node?.product?.productType.isShippingRequired
+    );
     if (isShippingRequired) {
       return steps;
     }
-    return steps.filter(({ type }) => type !== "shipping");
+    return steps?.filter(({ type }) => type !== "shipping");
   }
   return steps;
 };
@@ -73,14 +73,14 @@ const Steps: React.FC<{
 }> = ({ checkout, step: currentStep, children }) => {
   const { lines: cardLines } = React.useContext(CartContext);
   const { data: variantsProducts } = useVariantsProducts({
-    ids: cardLines ? cardLines.map(line => line.variantId) : [],
+    ids: cardLines?.map(line => line.variantId) || [],
   });
 
   const availableSteps = getAvailableSteps(checkout, variantsProducts);
 
   return (
     <>
-      {availableSteps.map(({ header, step }) => (
+      {availableSteps?.map(({ header, step }) => (
         <React.Fragment key={step}>
           {currentStep === step && (
             <>

@@ -31,7 +31,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   return (
     <div className="login-form">
       <Form
-        errors={maybe(() => error.extraInfo.userInputErrors, [])}
+        errors={maybe(() => error.extraInfo?.userInputErrors, [])}
         onSubmit={handleOnSubmit}
       >
         <TextField

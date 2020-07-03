@@ -23,7 +23,7 @@ const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
           setContactFields(data);
           location.href = generatePath(shippingAddressUrl);
         }}
-        data={contactFields || null}
+        data={contactFields || {}}
       >
         {children}
         <fieldset className="form-fieldset">
@@ -61,4 +61,4 @@ const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
   );
 };
 
-export default withRouter(ContactForm);
+export default ContactForm;

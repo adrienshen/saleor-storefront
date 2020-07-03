@@ -57,7 +57,7 @@ const Page: React.FC<PageProps> = ({
     if (hasErrors) {
       alert.show(
         {
-          content: errors.map(err => err.message).join(", "),
+          content: errors?.map(err => err.message).join(", "),
           title: "Error",
         },
         { type: "error" }
@@ -81,7 +81,7 @@ const Page: React.FC<PageProps> = ({
     subtract,
   };
 
-  const variantIds = lines.map(line => line.variantId);
+  const variantIds = lines?.map(line => line.variantId);
   return (
     <>
       {checkout ? (
