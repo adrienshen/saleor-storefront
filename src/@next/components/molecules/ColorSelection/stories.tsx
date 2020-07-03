@@ -5,5 +5,11 @@ import { ColorSelection } from ".";
 
 storiesOf(`@components/molecules/CreditCardWithIcon`, module).add(
   "default",
-  () => <ColorSelection colors={[]} position={IPosition.Top} />
+  () => (
+    <ColorSelection
+      collectionId={"12345"}
+      colors={[]}
+      position={IPosition.Top}
+    />
+  )
 );
