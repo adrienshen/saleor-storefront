@@ -4,20 +4,11 @@ import { DetailRow } from "@temp/components/Collection/DetailRow";
 import { ICollection } from "../../Collection/types/Collection";
 
 export const Page = (props: ICollection) => {
-  const specsDetails =
-    (props.data &&
-      props.data.collection &&
-      JSON.parse(props.data.collection.extraFields)) ||
-    [];
+  const specsDetails = JSON.parse(props.data?.collection?.extraFields) || [];
 
   const getDetails = (data: any) => {
-    return (
-      data &&
-      data.specifications &&
-      data.specifications.length > 0 &&
-      data.specifications.map((item: any) =>
-        Object.keys(item).map(key => ({ key, value: item[key] }))
-      )
+    return data?.specifications?.map((item: any) =>
+      Object.keys(item).map(key => ({ key, value: item[key] }))
     );
   };
 
@@ -37,7 +28,7 @@ export const Page = (props: ICollection) => {
       />
       <div>
         <div className="wrapper-header">Set Details</div>
-        {details.map(
+        {details?.map(
           (detail: Array<{ key: string; value: string }>, idx: number) => {
             if (detail && detail[0]) {
               return (

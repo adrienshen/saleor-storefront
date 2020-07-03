@@ -23,14 +23,12 @@ class View extends React.Component<
 
   proceedToBilling(
     data: updateCheckoutShippingOptions,
-    update: (checkoutData: CheckoutContextInterface) => void,
-    token?: string
+    update: (checkoutData: CheckoutContextInterface) => void
   ) {
     const canProceed = !data.checkoutShippingMethodUpdate.errors.length;
 
     if (canProceed) {
       update({ checkout: data.checkoutShippingMethodUpdate.checkout });
-      this.props.history.push(generatePath(billingUrl, { token }));
     }
   }
 
@@ -54,60 +52,15 @@ class View extends React.Component<
                 token={token}
                 checkout={checkout}
               >
-                <TypedUpdateCheckoutShippingOptionsMutation
-                  onCompleted={data =>
-                    this.proceedToBilling(data, update, token)
-                  }
-                >
-                  {(updateCheckoutShippingOptions, { loading }) => {
-                    const shippingMethods =
-                      checkout.availableShippingMethods || [];
-                    return (
-                      <>
-                        <div className="checkout-shipping-options__form">
-                          {shippingMethods.map(method => (
-                            <Option
-                              key={method.id}
-                              selected={selectedShipping === method.id}
-                              onSelect={() =>
-                                this.handleShippngChange(method.id)
-                              }
-                              value={method.id}
-                              label={
-                                <>
-                                  {`${method.name} | +`}
-                                  <Money
-                                    defaultValue="0"
-                                    money={method.price}
-                                  />
-                                </>
-                              }
-                            />
-                          ))}
-                        </div>
-                        <Button
-                          type="submit"
-                          onClick={event => {
-                            updateCheckoutShippingOptions({
-                              variables: {
-                                checkoutId: checkout.id,
-                                shippingMethodId: selectedShipping,
-                              },
-                            });
-                            event.preventDefault();
-                          }}
-                          disabled={
-                            loading ||
-                            !checkout.availableShippingMethods.length ||
-                            !selectedShipping
-                          }
-                        >
-                          {loading ? "Loading" : "Continue to billing"}
-                        </Button>
-                      </>
-                    );
-                  }}
-                </TypedUpdateCheckoutShippingOptionsMutation>
+                <ChooseShippingMethodContent
+                  update={update}
+                  token={token}
+                  checkout={checkout}
+                  selectedShipping={selectedShipping}
+                  handleShippngChange={this.handleShippngChange}
+                  proceedToBilling={this.proceedToBilling}
+                  history={this.props.history}
+                />
               </Steps>
             </CartSummary>
           </div>
@@ -115,6 +68,70 @@ class View extends React.Component<
       </CheckoutContext.Consumer>
     );
   }
+}
+
+function ChooseShippingMethodContent({
+  update,
+  token,
+  checkout,
+  selectedShipping,
+  handleShippngChange,
+  proceedToBilling,
+  history,
+}: any) {
+  return (
+    <>
+      <TypedUpdateCheckoutShippingOptionsMutation
+        onCompleted={data => {
+          proceedToBilling(data, update, token);
+          history.push(generatePath(billingUrl, { token }));
+        }}
+      >
+        {(updateCheckoutShippingOptions, { loading }) => {
+          const shippingMethods = checkout?.availableShippingMethods || [];
+          return (
+            <>
+              <div className="checkout-shipping-options__form">
+                {shippingMethods.map((method: any) => (
+                  <Option
+                    key={method.id}
+                    selected={selectedShipping === method.id}
+                    onSelect={() => handleShippngChange(method.id)}
+                    value={method.id}
+                    label={
+                      <>
+                        {`${method.name} | +`}
+                        <Money defaultValue="0" money={method.price} />
+                      </>
+                    }
+                  />
+                ))}
+              </div>
+              <Button
+                type="submit"
+                onClick={event => {
+                  updateCheckoutShippingOptions({
+                    variables: {
+                      checkoutId: checkout.id,
+                      shippingMethodId: selectedShipping,
+                    },
+                  });
+                  event.preventDefault();
+                }}
+                disabled={
+                  loading ||
+                  !checkout.availableShippingMethods.length ||
+                  !selectedShipping
+                }
+              >
+                {loading ? "Loading" : "Continue to billing"}
+              </Button>
+            </>
+          );
+        }}
+      </TypedUpdateCheckoutShippingOptionsMutation>
+    </>
+  );
 }
 
 export default View;

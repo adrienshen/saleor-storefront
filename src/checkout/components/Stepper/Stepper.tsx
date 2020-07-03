@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-const Stepper = require("react-stepper-horizontal");
+// @ts-ignore
+import Stepper from "react-stepper-horizontal";
 
 interface ICheckoutStepper {
   activeStep: number;

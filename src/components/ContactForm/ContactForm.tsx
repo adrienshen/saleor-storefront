@@ -5,7 +5,7 @@ import * as React from "react";
 import { Form, TextField } from "..";
 import { CheckoutNextButton } from "../Button";
 import { useLocalStorage } from "@hooks";
-import { withRouter, generatePath } from "react-router";
+import { generatePath } from "react-router";
 import { shippingAddressUrl } from "@temp/checkout/routes";
 
 const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
@@ -23,7 +23,7 @@ const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
           setContactFields(data);
           location.href = generatePath(shippingAddressUrl);
         }}
-        data={contactFields || null}
+        data={contactFields || {}}
       >
         {children}
         <fieldset className="form-fieldset">
@@ -61,4 +61,4 @@ const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
   );
 };
 
-export default withRouter(ContactForm);
+export default ContactForm;

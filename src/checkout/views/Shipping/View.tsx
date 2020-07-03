@@ -1,11 +1,7 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import {
-  useCreateCheckout,
-  useUpdateCheckoutShippingAddress,
-  useUserDetails,
-} from "@sdk/react";
+import { useUpdateCheckoutShippingAddress, useUserDetails } from "@sdk/react";
 
 import { CartContext } from "../../../components/CartProvider/context";
 import { ShopContext } from "../../../components/ShopProvider/context";
@@ -20,7 +16,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
   const { data: user } = useUserDetails();
-  const createCheckout = useCreateCheckout();
   const updateShippingAddress = useUpdateCheckoutShippingAddress();
 
   return (
@@ -33,7 +28,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                 <Page
                   checkoutId={maybe(() => checkout.id, null)}
                   checkout={checkout}
-                  createCheckout={createCheckout}
                   shop={shop}
                   update={update}
                   updateShippingAddress={updateShippingAddress}

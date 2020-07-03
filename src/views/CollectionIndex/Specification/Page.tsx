@@ -5,7 +5,6 @@ import { ICollection } from "../../Collection/types/Collection";
 
 export const Page = (props: ICollection) => {
   const { data } = props;
-  const description = JSON.parse(data.collection.descriptionJson);
 
   const handleClick = () => {
     props.history.goBack();
@@ -26,7 +25,7 @@ export const Page = (props: ICollection) => {
         <div className="wrapper-description">
           <div>
             <RichTextContent
-              descriptionJson={data.collection.descriptionJson}
+              descriptionJson={data.collection?.descriptionJson}
             />
           </div>
         </div>

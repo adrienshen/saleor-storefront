@@ -46,8 +46,8 @@ export const braintreePayment = (paymentClientToken: string, creditCard: any) =>
           },
           (error: any, response: any) => {
             if (error) {
-              if (error.details.originalError.fieldErrors.length > 0) {
-                error.details.originalError.fieldErrors.map((error: any) => {
+              if (error.details?.originalError?.fieldErrors?.length > 0) {
+                error.details?.originalError?.fieldErrors?.map((error: any) => {
                   if (error.field === "creditCard") {
                     reject(error.fieldErrors);
                   }

@@ -5,7 +5,7 @@ import {
   NavLink,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "..";
 import NavItem from "./NavItem";
 import { MainMenu_shop_navigation_main_items } from "./types/MainMenu";
@@ -61,9 +61,9 @@ class NavDropdown extends React.PureComponent<
           })}
         >
           <ul>
-            {children.map((subItem, i) => (
+            {children?.map((subItem, idx) => (
               <NavItem
-                key={i}
+                key={idx}
                 hideOverlay={this.hideOverlayHandler}
                 {...subItem}
               />

@@ -6,7 +6,6 @@ import wishlist from "../../images/wishlist.svg";
 import orderImg from "../../images/my-orders.svg";
 import profile from "../../images/profile.svg";
 import creditCard from "../../images/credit_card.svg";
-import { History } from "history";
 import "./scss/index.scss";
 
 export const Paths = [
@@ -52,10 +51,10 @@ export const Page = (history: any) => {
       />
       <div>
         <div className="myAccount-wrapper">
-          {Paths.map((path, i) => (
+          {Paths.map((path, idx) => (
             <Link
               to={`${path.path}`}
-              key={i}
+              key={idx}
               className="myAccount-wrapper-link"
             >
               <img src={path.image} />

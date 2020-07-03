@@ -2,14 +2,9 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useAlert } from "react-alert";
-
-import { TaxedMoney } from "@components/containers";
-import { useUserDetails } from "@sdk/react";
-
 import { CheckoutContextInterface } from "../../checkout/context";
-import { CartTable, Loader } from "../../components";
+import { Loader } from "../../components";
 import { CartInterface } from "../../components/CartProvider/context";
-import { extractCheckoutLines } from "../../components/CartProvider/utils";
 import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { maybe } from "../../core/utils";
@@ -35,20 +30,10 @@ const Page: React.FC<PageProps> = ({
     syncWithCart,
     syncUserCheckout,
   },
-  cart: {
-    lines,
-    remove,
-    add,
-    errors,
-    clearErrors,
-    subtract,
-    loading: cartLoading,
-    changeQuantity,
-  },
+  cart: { lines, errors, clearErrors },
   history,
 }) => {
   const alert = useAlert();
-  const { data: user } = useUserDetails();
   const hasErrors: boolean | null = maybe(() => !!errors.length);
   const isLoading =
     (!checkout && checkoutLoading) || syncWithCart || syncUserCheckout;
@@ -57,7 +42,7 @@ const Page: React.FC<PageProps> = ({
     if (hasErrors) {
       alert.show(
         {
-          content: errors.map(err => err.message).join(", "),
+          content: errors?.map(err => err.message).join(", "),
           title: "Error",
         },
         { type: "error" }
@@ -72,38 +57,21 @@ const Page: React.FC<PageProps> = ({
   if (!lines.length) {
     return <UserActionFeedback page={pageType.CART_EMPTY} history={history} />;
   }
-  const productTableProps = {
-    add,
-    changeQuantity,
-    invalid: maybe(() => !!errors.length, false),
-    processing: cartLoading,
-    remove,
-    subtract,
-  };
-
-  const variantIds = lines.map(line => line.variantId);
+  const variantIds = lines?.map(line => line.variantId);
   return (
     <>
-      {checkout ? (
-        <CartTable
-          {...productTableProps}
-          lines={extractCheckoutLines(checkout.lines)}
-          subtotal={<TaxedMoney taxedMoney={checkout.subtotalPrice} />}
-        />
-      ) : (
-        <TypedProductVariantsQuery
-          variables={{
-            ids: variantIds,
-          }}
-        >
-          {({ error }) => {
-            if (error) {
-              return <span>There was an graphql error</span>;
-            }
-            return <CartBasic />;
-          }}
-        </TypedProductVariantsQuery>
-      )}
+      <TypedProductVariantsQuery
+        variables={{
+          ids: variantIds,
+        }}
+      >
+        {({ error }) => {
+          if (error) {
+            return <span>There was an graphql error</span>;
+          }
+          return <CartBasic />;
+        }}
+      </TypedProductVariantsQuery>
     </>
   );
 };

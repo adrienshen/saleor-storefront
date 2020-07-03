@@ -10,7 +10,7 @@ import {
   PaymentData,
 } from "@temp/core/payments/braintree";
 import { maybe, removeEmptySpaces } from "@temp/core/utils";
-import { ICardErrors, ICardInputs } from "src/core/payments/braintree";
+import { ICardInputs } from "src/core/payments/braintree";
 
 import { ProviderProps } from "../../View";
 

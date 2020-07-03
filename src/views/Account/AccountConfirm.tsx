@@ -27,15 +27,15 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   const displayConfirmationAlert = (
     anyErrors: AccountConfirm_accountConfirm_errors[]
   ) => {
+    const isError = anyErrors?.length > 0;
     alert.show(
       {
-        content:
-          anyErrors.length > 0
-            ? anyErrors.map(error => error.message).join(" ")
-            : "You can now log in",
-        title: anyErrors.length > 0 ? "Error" : "Account confirmed",
+        content: isError
+          ? anyErrors.map(error => error.message).join(" ")
+          : "You can now log in",
+        title: isError ? "Error" : "Account confirmed",
       },
-      { type: anyErrors.length > 0 ? "error" : "success", timeout: 5000 }
+      { type: isError ? "error" : "success", timeout: 5000 }
     );
   };
 

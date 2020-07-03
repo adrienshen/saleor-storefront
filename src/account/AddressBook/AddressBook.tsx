@@ -17,7 +17,7 @@ const AddressBook: React.FC<{
   const [setDefaultUserAddress] = useDefaultUserAddress();
   const [setDeleteUserAddress] = useDeleteUserAddresss();
 
-  const userAddresses = user.addresses.map((address: IAddress) => {
+  const userAddresses = user.addresses?.map((address: IAddress) => {
     const addressToDisplay: any = { address: { ...address } };
 
     addressToDisplay.onEdit = () => {

@@ -13,7 +13,7 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { baseUrl as checkoutUrl } from "../../../checkout/routes";
+import { contactUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { CartContext } from "../../CartProvider/context";
@@ -45,7 +45,7 @@ export function CartBasic() {
               {({ defaultCountry, geolocalization }) => (
                 <TypedProductVariantsQuery
                   displayLoader={false}
-                  variables={{ ids: cart.lines.map(line => line.variantId) }}
+                  variables={{ ids: cart.lines?.map(line => line.variantId) }}
                   skip={!cart.lines.length}
                   alwaysRender
                 >
@@ -63,7 +63,7 @@ export function CartBasic() {
                     }
 
                     const locale = maybe(
-                      () => geolocalization.country.code,
+                      () => geolocalization.country?.code,
                       defaultCountry.code
                     );
                     return (
@@ -75,7 +75,7 @@ export function CartBasic() {
                             className="overlay__header__close-icon"
                           />
                         </div>
-                        {cart.lines.length && data ? (
+                        {cart.lines?.length && data ? (
                           <>
                             <ProductList
                               lines={extractCartLines(data, cart.lines, locale)}
@@ -107,7 +107,7 @@ export function CartBasic() {
                                 />
                               </div>
                               <div className="cart__footer__button">
-                                <Link to={checkoutUrl}>
+                                <Link to={contactUrl}>
                                   <Button>Checkout</Button>
                                 </Link>
                               </div>
