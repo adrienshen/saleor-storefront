@@ -19,7 +19,7 @@ const Page = ({ data, history }: ICollectionProducts) => {
         handleClick={handleBack}
       />
 
-      <SubHeader handleViewChange={() => {}} title="Samples" />
+      <SubHeader handleViewChange={() => null} title="Samples" />
 
       <div className="wrapper-img">
         {data.products.edges.map(
