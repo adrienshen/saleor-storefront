@@ -32,7 +32,7 @@ const completeCheckout = (
     clearCheckout();
     clearCart();
   } else {
-    data.checkoutComplete.errors.map(error => {
+    data.checkoutComplete?.errors?.map(error => {
       alert.show(
         { title: error.message },
         {

@@ -22,7 +22,7 @@ type ViewProps = RouteComponentProps<{
 export const FilterQuerySet = {
   encode(valueObj: any) {
     const str: string[] = [];
-    Object.keys(valueObj).forEach((value: string) => {
+    Object.keys(valueObj)?.forEach((value: string) => {
       str.push(value + "_" + valueObj[value].join("_"));
     });
     return str.join(".");
@@ -30,10 +30,10 @@ export const FilterQuerySet = {
 
   decode(strValue: string) {
     const obj: any = {};
-    const propsWithValues = strValue.split(".").filter(n => n);
-    propsWithValues.map(value => {
-      const propWithValues: string[] = value.split("_").filter(n => n);
-      obj[propWithValues[0]] = propWithValues.slice(1);
+    const propsWithValues = strValue?.split(".")?.filter(n => n);
+    propsWithValues?.map(value => {
+      const propWithValues: string[] = value?.split("_")?.filter(n => n);
+      obj[propWithValues[0]] = propWithValues?.slice(1);
     });
     return obj;
   },
@@ -53,8 +53,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const onFiltersChange = (name: string, value: string) => {
     if (attributeFilters?.hasOwnProperty(name)) {
-      if (attributeFilters[name].includes(value)) {
-        if (filters.attributes[`${name}`].length === 1) {
+      if (attributeFilters[name]?.includes(value)) {
+        if (filters.attributes[`${name}`]?.length === 1) {
           const att = { ...attributeFilters };
           delete att[`${name}`];
           setAttributeFilters({
@@ -63,7 +63,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
         } else {
           setAttributeFilters({
             ...attributeFilters,
-            [`${name}`]: attributeFilters[`${name}`].filter(
+            [`${name}`]: attributeFilters[`${name}`]?.filter(
               (item: string) => item !== value
             ),
           });
@@ -148,20 +148,20 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     ...prev,
                     products: {
                       ...prev.products,
-                      edges: [...prev.products.edges, ...next.products.edges],
-                      pageInfo: next.products.pageInfo,
+                      edges: [...prev.products?.edges, ...next.products?.edges],
+                      pageInfo: next.products?.pageInfo,
                     },
                   }),
-                  { after: data.products.pageInfo.endCursor }
+                  { after: data.products?.pageInfo?.endCursor }
                 );
 
               return (
                 <Page
                   clearFilters={clearFilters}
-                  attributes={data.attributes.edges.map(edge => edge.node)}
+                  attributes={data.attributes?.edges?.map(edge => edge.node)}
                   displayLoader={loading}
                   hasNextPage={maybe(
-                    () => data.products.pageInfo.hasNextPage,
+                    () => data.products?.pageInfo?.hasNextPage,
                     false
                   )}
                   sortOptions={sortOptions}
@@ -174,7 +174,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   onLoadMore={handleLoadMore}
                   activeFilters={
                     filters!.attributes
-                      ? Object.keys(filters!.attributes).length
+                      ? Object.keys(filters!.attributes)?.length
                       : 0
                   }
                   onOrder={value => {
@@ -184,7 +184,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               );
             }
 
-            if (data && data.products === null) {
+            if (data?.products === null) {
               return <NotFound />;
             }
 

@@ -34,8 +34,8 @@ export const updateCheckoutLineQuery = gql`
 
 export const createCheckoutMutation = gql`
   ${checkoutFragment}
-  mutation CreateCheckout($checkoutInput: CheckoutCreateInput!) {
-    checkoutCreate(input: $checkoutInput) {
+  mutation CreateCheckout($input: CheckoutCreateInput!) {
+    checkoutCreate(input: $input) {
       errors {
         field
         message

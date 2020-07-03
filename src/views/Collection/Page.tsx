@@ -70,19 +70,20 @@ const Page: React.FC<PageProps> = ({
     return {
       attributeSlug,
       valueName: attributes
-        .find(({ slug }) => attributeSlug === slug)
-        .values.find(({ slug }) => valueSlug === slug).name,
+        ?.find(({ slug }) => attributeSlug === slug)
+        ?.values?.find(({ slug }) => valueSlug === slug).name,
       valueSlug,
     };
   };
 
   const activeFiltersAttributes =
-    filters &&
-    filters.attributes &&
-    Object.keys(filters.attributes).reduce(
+    filters?.attributes &&
+    Object.keys(filters.attributes)?.reduce(
       (acc, key) =>
         acc.concat(
-          filters.attributes[key].map(valueSlug => getAttribute(key, valueSlug))
+          filters.attributes[key]?.map(valueSlug =>
+            getAttribute(key, valueSlug)
+          )
         ),
       []
     );
@@ -101,7 +102,7 @@ const Page: React.FC<PageProps> = ({
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={products ? products.totalCount : 0}
+          numberOfProducts={products ? products?.totalCount : 0}
           activeFilters={activeFilters}
           activeFiltersAttributes={activeFiltersAttributes}
           clearFilters={clearFilters}
@@ -111,7 +112,7 @@ const Page: React.FC<PageProps> = ({
         />
         {canDisplayProducts && (
           <ProductList
-            products={products.edges.map(edge => edge.node)}
+            products={products.edges?.map(edge => edge.node)}
             canLoadMore={hasNextPage}
             loading={displayLoader}
             onLoadMore={onLoadMore}
