@@ -11,6 +11,7 @@ import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { User } from "../../../components/User/types/User";
 import { CheckoutContextInterface } from "../../context";
 import { Checkout } from "../../types/Checkout";
+import ApolloClient from "apollo-client";
 
 export interface ICheckoutData {
   shippingAddress: AddressInput;
@@ -19,6 +20,7 @@ export interface ICheckoutData {
 }
 
 export interface IShippingPageProps {
+  client?: any;
   checkoutId?: string;
   checkout?: Checkout;
   update: (checkoutData: CheckoutContextInterface) => void;

@@ -1,13 +1,10 @@
-// @ts-nocheck
 import * as React from "react";
-import { generatePath } from "react-router";
 
 import { FormAddressType } from "../../../components";
 import { CartLineInterface } from "../../../components/CartProvider/context";
 import { maybe } from "../../../core/utils";
 import { CartSummary, GuestAddressForm, Steps } from "../../components";
 import { CheckoutStep } from "../../context";
-import { shippingOptionsUrl } from "../../routes";
 import { ICheckoutData, ICheckoutUserArgs } from "../../types";
 import { IShippingPageProps } from "./types";
 import { createCheckoutMutation } from "@temp/@sdk/mutations/checkout";
@@ -45,7 +42,6 @@ const computeCheckoutData = (
 
 const Page: React.FC<IShippingPageProps> = ({
   client,
-  createCheckout,
   checkoutId,
   checkout,
   proceedToNextStepData,
@@ -62,8 +58,6 @@ const Page: React.FC<IShippingPageProps> = ({
   const email = maybe(() => user.email, null);
 
   const { storedValue: contactFields } = useLocalStorage("contactFields");
-
-  console.log("checkout >> ", checkout);
 
   const onSaveShippingAddressHandler = async (formData: FormAddressType) => {
     formData = {
@@ -85,7 +79,6 @@ const Page: React.FC<IShippingPageProps> = ({
         },
       });
 
-      console.log("mutatation result >> ", result);
       return result && result.data;
     }
     const data = computeCheckoutData(formData, null, email);
@@ -99,19 +92,12 @@ const Page: React.FC<IShippingPageProps> = ({
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {
     const { update, history, token } = proceedToNextStepData;
 
-    console.log("TOKEN >> ", token);
-
     const result = await onSaveShippingAddressHandler(formData);
     if (result) {
       await update({
         checkout: result?.checkoutCreate?.checkout || checkout,
         shippingAsBilling: maybe(() => formData.asBilling, false),
       });
-      // history.push(
-      //   generatePath(shippingOptionsUrl, {
-      //     token,
-      //   })
-      // );
     }
   };
 

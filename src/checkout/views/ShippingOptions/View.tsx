@@ -75,9 +75,6 @@ function ChooseShippingMethodContent({
   checkout,
   selectedShipping,
 }: any) {
-  console.log("checkout >> ", checkout);
-
-  return <div>content</div>;
   return (
     <>
       <TypedUpdateCheckoutShippingOptionsMutation

@@ -13,7 +13,6 @@ const ContactForm: React.FC<any> = ({ errors, loading, children }) => {
     storedValue: contactFields,
     setValue: setContactFields,
   } = useLocalStorage("contactFields");
-  console.log("contact fields >> ", contactFields);
 
   return (
     <div className="address-form">
