@@ -13,14 +13,13 @@ const NavItem: React.FC<NavNestedItemProps> = ({
   children,
   ...item
 }) => {
-  const content =
-    children && children.length ? (
-      <ul>
-        {children.map((subItem, i) => (
-          <NavItem key={i} {...subItem} />
-        ))}
-      </ul>
-    ) : null;
+  const content = children?.length ? (
+    <ul>
+      {children.map((subItem, idx) => (
+        <NavItem key={idx} {...subItem} />
+      ))}
+    </ul>
+  ) : null;
 
   return (
     <li>

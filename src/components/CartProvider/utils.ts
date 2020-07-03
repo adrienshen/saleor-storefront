@@ -9,15 +9,15 @@ export const getTotal = (
   lines: CartLineInterface[],
   locale?: string
 ): string => {
-  const amount = lines.reduce((sum, { variantId, quantity }) => {
-    const { node } = variantList.productVariants.edges.find(
+  const amount = lines?.reduce((sum, { variantId, quantity }) => {
+    const { node } = variantList.productVariants?.edges?.find(
       ({ node: { id } }) => id === variantId
     );
-    return sum + node.pricing.price.gross.amount * quantity;
+    return sum + node.pricing?.price?.gross?.amount * quantity;
   }, 0);
   const {
     currency,
-  } = variantList.productVariants.edges[0].node.pricing.price.gross;
+  } = variantList.productVariants?.edges[0]?.node?.pricing?.price?.gross;
 
   return priceToString({ amount, currency }, locale);
 };
@@ -27,9 +27,9 @@ export const extractCartLines = (
   lines: CartLineInterface[],
   locale?: string
 ): LineI[] =>
-  data.productVariants.edges
-    .map(({ node }) => {
-      const line = lines.find(({ variantId }) => variantId === node.id);
+  data.productVariants?.edges
+    ?.map(({ node }) => {
+      const line = lines?.find(({ variantId }) => variantId === node.id);
       if (!line) {
         return;
       }
@@ -38,16 +38,16 @@ export const extractCartLines = (
         ...node,
         quantity,
         totalPrice: {
-          ...node.pricing.price,
-          currency: node.pricing.price.gross.currency,
+          ...node.pricing?.price,
+          currency: node.pricing?.price?.gross?.currency,
           gross: {
-            amount: quantity * node.pricing.price.gross.amount,
-            ...node.pricing.price.gross,
+            amount: quantity * node.pricing?.price?.gross?.amount,
+            ...node.pricing?.price?.gross,
           },
           locale,
           net: {
-            amount: quantity * node.pricing.price.net.amount,
-            ...node.pricing.price.net,
+            amount: quantity * node.pricing?.price?.net?.amount,
+            ...node.pricing?.price?.net,
           },
         },
       };
@@ -57,18 +57,18 @@ export const extractCartLines = (
 
 export const extractCheckoutLines = (lines: Checkout_lines[]): LineI[] => {
   return lines
-    .map(line => ({
+    ?.map(line => ({
       quantity: line.quantity,
       totalPrice: {
         ...line.totalPrice,
-        currency: line.totalPrice.gross.currency,
+        currency: line.totalPrice?.gross?.currency,
         gross: {
-          amount: line.quantity * line.totalPrice.gross.amount,
-          ...line.totalPrice.gross,
+          amount: line.quantity * line.totalPrice?.gross?.amount,
+          ...line.totalPrice?.gross,
         },
         net: {
-          amount: line.quantity * line.totalPrice.net.amount,
-          ...line.totalPrice.net,
+          amount: line.quantity * line.totalPrice?.net?.amount,
+          ...line.totalPrice?.net,
         },
       },
       ...line.variant,

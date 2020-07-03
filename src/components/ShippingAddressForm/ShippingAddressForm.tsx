@@ -1,8 +1,5 @@
 import "./scss/index.scss";
-
-// import classNames from "classnames";
 import * as React from "react";
-
 import { Form, Select, TextField } from "..";
 import { ShopContext } from "../ShopProvider/context";
 import { FormAddressType, IShippingAddressFormProps } from "./types";

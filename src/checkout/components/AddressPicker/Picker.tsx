@@ -18,11 +18,11 @@ const renderAddressesList = ({
   onAddressSelect,
   selectedAddress,
 }: IAddressPickerProps) =>
-  addresses.map((address, id) => {
+  addresses?.map((address, idx) => {
     const isSelected = selectedAddress === address;
     return (
       <div
-        key={id}
+        key={idx}
         onClick={() => {
           onAddressSelect(address);
         }}
@@ -33,7 +33,7 @@ const renderAddressesList = ({
         <AddressSummary address={address} email={address.email} />
         <Option
           selected={isSelected}
-          value={`${id}`}
+          value={`${idx}`}
           label="Deliver to this address"
         />
       </div>

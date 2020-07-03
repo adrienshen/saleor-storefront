@@ -37,12 +37,12 @@ const Page = (props: ICollections) => {
               : "collection-block__wrapper collection-wrapper__list"
           }
         >
-          {data.collections.edges.map((collection, i) => {
+          {data.collections?.edges?.map((collection, idx) => {
             return (
               <CollectionBlock
                 currentView={view}
-                key={i}
-                collect={collection.node}
+                key={idx}
+                collection={collection.node}
               />
             );
           })}

@@ -47,7 +47,9 @@ const Page = (props: ICollection) => {
 
   return (
     <div
-      style={{ backgroundImage: `url(${data.collection.backgroundImage.url})` }}
+      style={{
+        backgroundImage: `url(${data.collection?.backgroundImage?.url})`,
+      }}
       className="divImg"
     >
       <PageHeader
@@ -77,14 +79,14 @@ const Page = (props: ICollection) => {
             }
           >
             <div className="overlay-heading">
-              <span>{data.collection.name}</span>
+              <span>{data.collection?.name}</span>
               <span>$81,318</span>
             </div>
             <div className="overlay-button-list">
-              {Paths.map((path, i) => (
+              {Paths.map((path, idx) => (
                 <Link
-                  to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}${path.path}`}
-                  key={i}
+                  to={`/collections/cabinets/${data.collection?.id}/${data.collection?.slug}${path.path}`}
+                  key={idx}
                 >
                   <button type="button" className="home-page__btn">
                     {path.text}

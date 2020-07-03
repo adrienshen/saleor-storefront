@@ -25,7 +25,7 @@ export const Page = (props: ICollection) => {
         <div className="wrapper-description">
           <div>
             <RichTextContent
-              descriptionJson={data.collection.descriptionJson}
+              descriptionJson={data.collection?.descriptionJson}
             />
           </div>
         </div>

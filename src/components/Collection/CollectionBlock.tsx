@@ -8,11 +8,11 @@ import { GridViewTypes } from "@temp/constants";
 interface IProps {
   currentView: GridViewTypes;
   key: number;
-  collect: any;
+  collection: any;
 }
 
 export const CollectionBlock = (props: IProps) => {
-  const { collect } = props;
+  const { collection } = props;
   const [heart, setWishlist] = useState(heartIcon);
 
   const handleWishlist = (e: any) => {
@@ -33,8 +33,8 @@ export const CollectionBlock = (props: IProps) => {
           className="block-img__heartIcon"
           onClick={handleWishlist}
         />
-        <Link to={`/collections/cabinets/${collect.id}/${collect.slug}`}>
-          <img src={collect.backgroundImage.url} />
+        <Link to={`/collections/cabinets/${collection.id}/${collection.slug}`}>
+          <img src={collection.backgroundImage?.url} />
         </Link>
       </div>
     </div>
