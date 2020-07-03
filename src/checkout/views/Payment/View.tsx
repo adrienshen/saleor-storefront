@@ -103,7 +103,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                 checkout
               );
               const loading = loadingPayment || paymentCreateLoading;
-              const optionProps = providerName => ({
+              const optionProps = (providerName: string) => ({
                 key: providerName,
                 onSelect: () => setSelectedGeteway(providerName),
                 selected: selectedGeteway === providerName,
@@ -119,7 +119,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
 
               return (
                 <div className="checkout-payment__form">
-                  {availablePaymentGateways.map(provider => {
+                  {availablePaymentGateways?.map((provider, idx) => {
                     const providerName = provider.name;
                     const paymentGatewayProps = {
                       ...providerProps,
@@ -128,14 +128,22 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                     switch (providerName) {
                       case PROVIDERS.DUMMY.label:
                         return (
-                          <Option label="Dummy" {...optionProps(providerName)}>
+                          <Option
+                            label="Dummy"
+                            {...optionProps(providerName)}
+                            key={idx}
+                          >
                             <Dummy {...paymentGatewayProps} />
                           </Option>
                         );
 
                       case PROVIDERS.STRIPE.label:
                         return (
-                          <Option label="Stripe" {...optionProps(providerName)}>
+                          <Option
+                            label="Stripe"
+                            {...optionProps(providerName)}
+                            key={idx}
+                          >
                             <Stripe
                               {...paymentGatewayProps}
                               paymentGatewayHref={PROVIDERS.STRIPE.href}

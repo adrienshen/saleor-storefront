@@ -1,5 +1,4 @@
 import "./scss/index.scss";
-import PageHeader from "../../components/Header/PageHeader";
 
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
@@ -12,8 +11,9 @@ import Page from "./Page";
 
 const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   match: {
-    params: { token },
+    params: {},
   },
+  history,
 }) => {
   const handleBack = () => {
     window.history.back();
@@ -34,6 +34,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                         checkout={checkout}
                         cart={cart}
                         shop={shop}
+                        history={history}
                       />
                     )}
                   </ShopContext.Consumer>

@@ -9,7 +9,7 @@ import { IProps } from "./types";
 
 describe("<TextField />", () => {
   const DEFAULT_PROPS = {
-    errors: [],
+    errors: [] as any[],
     label: "Label",
     value: "Value",
   };

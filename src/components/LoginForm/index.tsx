@@ -16,7 +16,10 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   const [signIn, { loading, error }] = useSignIn();
   const { update } = React.useContext(CheckoutContext);
 
-  const handleOnSubmit = async (evt, { email, password }) => {
+  const handleOnSubmit = async (
+    evt: React.FormEvent<any>,
+    { email, password }: any
+  ) => {
     evt.preventDefault();
     const authenticated = await signIn({ email, password });
     if (authenticated && hide) {
@@ -28,7 +31,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   return (
     <div className="login-form">
       <Form
-        errors={maybe(() => error.extraInfo.userInputErrors, [])}
+        errors={maybe(() => error.extraInfo?.userInputErrors, [])}
         onSubmit={handleOnSubmit}
       >
         <TextField

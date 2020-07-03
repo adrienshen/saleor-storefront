@@ -6,13 +6,14 @@ import ReactSVG from "react-svg";
 
 import {
   Button,
+  Footer,
   Offline,
   OfflinePlaceholder,
   Online,
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { baseUrl as checkoutUrl } from "../../../checkout/routes";
+import { contactUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { CartContext } from "../../CartProvider/context";
@@ -29,12 +30,12 @@ import chevronLeft from "../../../images/chevron-left.svg";
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   return (
     <Overlay context={overlay}>
-      <CartBasic overlay={overlay} cartData={null} />
+      <CartBasic />
     </Overlay>
   );
 };
 
-export function CartBasic({ overlay, cartData }) {
+export function CartBasic() {
   return (
     <>
       <Online>
@@ -44,7 +45,7 @@ export function CartBasic({ overlay, cartData }) {
               {({ defaultCountry, geolocalization }) => (
                 <TypedProductVariantsQuery
                   displayLoader={false}
-                  variables={{ ids: cart.lines.map(line => line.variantId) }}
+                  variables={{ ids: cart.lines?.map(line => line.variantId) }}
                   skip={!cart.lines.length}
                   alwaysRender
                 >
@@ -62,7 +63,7 @@ export function CartBasic({ overlay, cartData }) {
                     }
 
                     const locale = maybe(
-                      () => geolocalization.country.code,
+                      () => geolocalization.country?.code,
                       defaultCountry.code
                     );
                     return (
@@ -70,11 +71,11 @@ export function CartBasic({ overlay, cartData }) {
                         <div className="overlay__header">
                           <ReactSVG
                             path={chevronLeft}
-                            onClick={() => null}
+                            onClick={() => history.back()}
                             className="overlay__header__close-icon"
                           />
                         </div>
-                        {cart.lines.length && data ? (
+                        {cart.lines?.length && data ? (
                           <>
                             <ProductList
                               lines={extractCartLines(data, cart.lines, locale)}
@@ -84,8 +85,8 @@ export function CartBasic({ overlay, cartData }) {
                             />
                             <div className="cart__footer">
                               <div className="cart__footer__subtotoal">
-                                <span className="cart__footer__price-label">
-                                  <div>Total</div>
+                                <div className="cart__footer__price-label">
+                                  <span>Total</span>
                                   <small>
                                     (
                                     {cart.lines
@@ -96,7 +97,7 @@ export function CartBasic({ overlay, cartData }) {
                                       )}{" "}
                                     items)
                                   </small>
-                                </span>
+                                </div>
                                 <span className="cart__footer__price">
                                   {getTotal(data, cart.lines, locale)}
                                 </span>
@@ -106,7 +107,7 @@ export function CartBasic({ overlay, cartData }) {
                                 />
                               </div>
                               <div className="cart__footer__button">
-                                <Link to={checkoutUrl}>
+                                <Link to={contactUrl}>
                                   <Button>Checkout</Button>
                                 </Link>
                               </div>
@@ -115,6 +116,7 @@ export function CartBasic({ overlay, cartData }) {
                         ) : (
                           <Empty overlayHide={null} />
                         )}
+                        <Footer />
                       </div>
                     );
                   }}

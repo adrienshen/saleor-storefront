@@ -3,7 +3,11 @@ import ReactSVG from "react-svg";
 import listIcon from "../../images/baseline-list.svg";
 import { GridViewTypes } from "../../constants";
 
-export const ListCollection = ({ handleViewChange }) => {
+interface IProps {
+  handleViewChange: (type: GridViewTypes) => void;
+}
+
+export const ListCollection = ({ handleViewChange }: IProps) => {
   return (
     <div
       className="collection-wrapper__main"

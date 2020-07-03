@@ -1,4 +1,6 @@
-import { styled } from '@styles';
+// @ts-nocheck
+
+import { styled } from "@styles";
 import * as React from "react";
 
 import { useVariantsProducts } from "@sdk/react";
@@ -6,7 +8,12 @@ import { useVariantsProducts } from "@sdk/react";
 import { VariantsProducts_productVariants } from "@sdk/queries/types/VariantsProducts";
 import { CartContext } from "../../components/CartProvider/context";
 import { CheckoutStep } from "../context";
-import { billingUrl, shippingAddressUrl, shippingOptionsUrl, contactUrl } from "../routes";
+import {
+  billingUrl,
+  shippingAddressUrl,
+  shippingOptionsUrl,
+  contactUrl,
+} from "../routes";
 import { Checkout } from "../types/Checkout";
 
 const steps = [
@@ -14,7 +21,7 @@ const steps = [
     header: "Contact Details",
     path: contactUrl,
     step: CheckoutStep.Contact,
-    type: 'contact',
+    type: "contact",
   },
   {
     header: "Shipping Address",
@@ -43,20 +50,18 @@ const getAvailableSteps = (
   checkout: Checkout,
   variantsProducts: VariantsProducts_productVariants
 ) => {
-  if (checkout && checkout.isShippingRequired) {
+  if (checkout?.isShippingRequired) {
     return steps;
   } else if (checkout) {
-    return steps.filter(({ type }) => type !== "shipping");
+    return steps?.filter(({ type }) => type !== "shipping");
   } else if (variantsProducts) {
-    const isShippingRequired =
-      variantsProducts.edges &&
-      variantsProducts.edges.some(
-        ({ node }) => node.product.productType.isShippingRequired
-      );
+    const isShippingRequired = variantsProducts?.edges?.some(
+      ({ node }) => node?.product?.productType.isShippingRequired
+    );
     if (isShippingRequired) {
       return steps;
     }
-    return steps.filter(({ type }) => type !== "shipping");
+    return steps?.filter(({ type }) => type !== "shipping");
   }
   return steps;
 };
@@ -65,17 +70,17 @@ const Steps: React.FC<{
   step: CheckoutStep;
   token?: string;
   checkout?: Checkout;
-}> = ({ checkout, step: currentStep, token, children }) => {
+}> = ({ checkout, step: currentStep, children }) => {
   const { lines: cardLines } = React.useContext(CartContext);
   const { data: variantsProducts } = useVariantsProducts({
-    ids: cardLines ? cardLines.map(line => line.variantId) : [],
+    ids: cardLines?.map(line => line.variantId) || [],
   });
 
   const availableSteps = getAvailableSteps(checkout, variantsProducts);
 
   return (
     <>
-      {availableSteps.map(({ header, step, path }, index) => (
+      {availableSteps?.map(({ header, step }) => (
         <React.Fragment key={step}>
           {currentStep === step && (
             <>

@@ -1,29 +1,40 @@
 import doubleDoorImg from "images/P_double_door.png";
 import * as React from "react";
+import {
+  Collection_products_edges_node,
+  IAttributes,
+} from "@temp/views/Collection/types/Collection";
+
+interface IProps {
+  node: Collection_products_edges_node;
+  add: (variantId: string, quantity?: number) => void;
+}
 
 enum AttributeNames {
   Dimemsions = "Dimensions",
 }
 
-function getAttributes(attributes: any) {
-  return attributes.map(att => {
+function getAttributes(attributes: IAttributes[]) {
+  return attributes?.map((att: IAttributes) => {
     return {
-      attribute: att.attribute.name,
-      value: att.values[0] ? att.values[0].name : null,
+      attribute: att.attribute?.name,
+      value: att.values[0]?.name || null,
     };
   });
 }
 
-function findField(fields: any, name: string) {
-  const founded = fields.find(f => f.attribute === name);
-  return founded ? founded.value : null;
+function findField(fields: any[], name: string) {
+  const founded = fields?.find(f => f.attribute === name);
+  return founded?.value || null;
 }
 
-export const CardBlock = ({ node, add }) => {
+export const CardBlock = ({ node, add }: IProps) => {
   const [count, setCount] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
-  const attributes = getAttributes(node.attributes);
-  const firstVariantId = node.variants[0].id;
+  const attributes: Array<{ attribute: string; value: string }> = getAttributes(
+    node.attributes
+  );
+  const firstVariantId = node.variants[0]?.id;
   function addItems() {
     if (!count || !node.id) {
       return;
@@ -34,13 +45,13 @@ export const CardBlock = ({ node, add }) => {
     setTimeout(() => setLoading(false), 1000);
   }
   const dimensions = findField(attributes, AttributeNames.Dimemsions);
-  const sku = node.variants[0].sku;
+  const sku = node.variants[0]?.sku;
   return (
     <div className="addcart-card">
       <div className="addcart-card--img">
         <div className="img-wrapper">
           <img src={doubleDoorImg} alt="Avatar" />
-          <div className="small-img"></div>
+          <div className="small-img" />
         </div>
       </div>
       <div className="addcart-card-container">
@@ -54,7 +65,7 @@ export const CardBlock = ({ node, add }) => {
         <div className="addcart-card-container--detail">
           <span className="detail-price">
             <strong>
-              ${node.pricing.priceRange.start.gross.amount.toFixed(2)}
+              ${node.pricing?.priceRange?.start?.gross?.amount?.toFixed(2)}
             </strong>
           </span>
           <div className="detail-counter">

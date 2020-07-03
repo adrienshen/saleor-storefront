@@ -1,7 +1,7 @@
 import * as React from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 
-export const Page = props => {
+export const Page = (props: any) => {
   const handleClick = () => {
     props.history.goBack();
   };

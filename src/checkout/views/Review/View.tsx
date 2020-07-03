@@ -1,5 +1,5 @@
 import "./scss/index.scss";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import { History } from "history";
 import * as React from "react";
@@ -35,7 +35,7 @@ const completeCheckout = (
     clearCheckout();
     clearCart();
   } else {
-    data.checkoutComplete.errors.map(error => {
+    data.checkoutComplete?.errors?.map(error => {
       alert.show(
         { title: error.message },
         {
@@ -49,20 +49,16 @@ const completeCheckout = (
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
-    params: { token },
+    params: {},
   },
 }) => {
   const alert = useAlert();
-  const {
-    checkout,
-    clear: clearCheckout,
-  } = React.useContext(CheckoutContext);
+  const { checkout, clear: clearCheckout } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
 
   return (
     <>
       <div className="checkout-review">
-
         <div className="checkout__step checkout__step--inactive">
           <CheckoutTitle>Confirm Order</CheckoutTitle>
         </div>

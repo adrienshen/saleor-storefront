@@ -46,9 +46,15 @@ const Footer: React.FC = () => {
           </Link>
         </div>
 
-        <div className="footer-small__icon">
-          <ReactSVG className="footer-icon" path={MoreIcon} />
-          <span className="footer-small__icon-name">More</span>
+        <div
+          className={`footer-small__icon ${
+            path === "/more" ? "footer-small__icon-selected" : ""
+          }`}
+        >
+          <Link to="/more">
+            <ReactSVG className="footer-icon" path={MoreIcon} />
+            <span className="footer-small__icon-name">More</span>
+          </Link>
         </div>
       </div>
     </div>

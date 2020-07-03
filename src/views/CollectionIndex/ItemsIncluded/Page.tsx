@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
-import { Select } from "../../../@next/components/atoms/Select";
+import { Select } from "@components/atoms";
 import { CardBlock } from "./CardBlock";
 import { CartInterface } from "@temp/components/CartProvider/context";
+import { Collection_products_edges } from "@temp/views/Collection/types/Collection";
+import { History } from "history";
 
 interface IPageProps {
-  history: any;
-  products: any;
+  history: History;
+  products: Collection_products_edges[];
   cart: CartInterface;
 }
 
@@ -36,28 +38,28 @@ export const Page = ({ products, history, cart }: IPageProps) => {
           <div className="select-value--item">
             <Select
               value={10}
-              onChange={value => onChange()}
+              onChange={() => onChange()}
               placeholder="Width"
             />
           </div>
           <div className="select-value--item">
             <Select
               value={10}
-              onChange={value => onChange()}
+              onChange={() => onChange()}
               placeholder="Height"
             />
           </div>
           <div className="select-value--item">
             <Select
               value={10}
-              onChange={value => onChange()}
+              onChange={() => onChange()}
               placeholder="Depth"
             />
           </div>
         </div>
         <div className="addcart-card-wrapper">
-          {products.map(({ node }) => {
-            return <CardBlock add={cart.add} node={node} />;
+          {products?.map(({ node }, idx) => {
+            return <CardBlock add={cart.add} node={node} key={idx} />;
           })}
         </div>
       </div>

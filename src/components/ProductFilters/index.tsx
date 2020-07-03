@@ -39,14 +39,17 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
   <div className="product-filters">
     <div className="container">
       <div className="product-filters__grid">
-        {attributes.map(attribute => (
-          <div key={attribute.id} className="product-filters__grid__filter">
+        {attributes?.map((attribute, idx) => (
+          <div
+            key={attribute.id + idx}
+            className="product-filters__grid__filter"
+          >
             <SelectField
               value={
                 filters.attributes[attribute.slug]
                   ? filters.attributes[attribute.slug].map(
                       attributeValueSlug => {
-                        const attributeValue = attribute.values.find(
+                        const attributeValue = attribute.values?.find(
                           attributeValue =>
                             attributeValue.slug === attributeValueSlug
                         );
@@ -59,7 +62,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
                   : []
               }
               placeholder={attribute.name}
-              options={attribute.values.map(attributeValue => ({
+              options={attribute.values?.map(attributeValue => ({
                 label: attributeValue.name,
                 value: attributeValue.slug,
               }))}

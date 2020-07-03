@@ -38,7 +38,7 @@ export const getGraphqlIdFromDBId = (id: string, schema: string): string =>
   Base64.encode(`${schema}:${id}`);
 
 export const getCollectionFromSlug = (slug: string, schema: string): string =>
-   `${schema}:${slug}`;
+  `${schema}:${slug}`;
 
 export const priceToString = (
   price: { amount: number; currency: string },
@@ -73,8 +73,8 @@ export const convertToAttributeScalar = (
   attributes: AttributeDict | IFilterAttributes
 ) =>
   Object.entries(attributes)
-    .map(([key, value]) =>
-      value.map((attribute: any) => ({ slug: key, value: attribute }))
+    ?.map(([key, value]) =>
+      value?.map((attribute: any) => ({ slug: key, value: attribute }))
     )
     .reduce((prev, curr) => [...prev, ...curr], []);
 

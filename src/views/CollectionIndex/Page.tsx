@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
 import { useLocalStorage } from "../../@next/hooks/useLocalStorage";
+import { ICollection } from "../Collection/types/Collection";
 
 export const Paths = [
   {
@@ -28,7 +29,7 @@ export const Paths = [
   },
 ];
 
-const Page = props => {
+const Page = (props: ICollection) => {
   const { storedValue: show, setValue: showOverlay } = useLocalStorage(
     "show",
     "false"
@@ -46,7 +47,9 @@ const Page = props => {
 
   return (
     <div
-      style={{ backgroundImage: `url(${data.collection.backgroundImage.url})` }}
+      style={{
+        backgroundImage: `url(${data.collection?.backgroundImage?.url})`,
+      }}
       className="divImg"
     >
       <PageHeader
@@ -76,14 +79,14 @@ const Page = props => {
             }
           >
             <div className="overlay-heading">
-              <span>{data.collection.name}</span>
+              <span>{data.collection?.name}</span>
               <span>$81,318</span>
             </div>
             <div className="overlay-button-list">
-              {Paths.map((path, i) => (
+              {Paths.map((path, idx) => (
                 <Link
-                  to={`/collections/cabinets/${data.collection.id}/${data.collection.slug}${path.path}`}
-                  key={i}
+                  to={`/collections/cabinets/${data.collection?.id}/${data.collection?.slug}${path.path}`}
+                  key={idx}
                 >
                   <button type="button" className="home-page__btn">
                     {path.text}

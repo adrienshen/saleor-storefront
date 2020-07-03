@@ -3,6 +3,19 @@
 .sample-page {
   padding: 1.0625rem;
   background-color: $alabaster;
+
+  .browse-cabinet__header {
+    padding: 0;
+    .browse-cabinet__header-left {
+      .injected-svg {
+        g {
+          path {
+            fill: $dark-gray;
+          }
+        }
+      }
+    }
+  }
 }
 
 .collection {
@@ -75,11 +88,14 @@
         justify-content: center;
         font-size: $small-font-size;
         color: $dark-gray;
+
         span {
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           overflow: hidden;
+          font-weight: bold;
+          text-align: center;
         }
       }
 

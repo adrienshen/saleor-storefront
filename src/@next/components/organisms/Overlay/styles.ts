@@ -8,6 +8,14 @@ interface IStyleProps {
   state: TransitionState;
   transparent?: boolean;
 }
+interface IModal {
+  position: Position;
+  theme: {
+    modal: {
+      modalWidth: number;
+    };
+  };
+}
 
 const getTranslate = (side: "left" | "right") =>
   side === "left" ? "-100%" : "100%";
@@ -53,10 +61,10 @@ const lightboxHeight = (width: number) => ({
 export const Lightbox = styled.div<IStyleProps>`
   display: flex;
   position: relative;
-  width: ${({ position, theme: { modal } }) =>
+  width: ${({ position, theme: { modal } }: IModal) =>
     lightboxHeight(modal.modalWidth)[position]};
   min-height: ${props => props.theme.modal.modalMinHeight}px;
-  height: ${({ position }) => lightboxWidth[position]};
+  height: ${({ position }: IStyleProps) => lightboxWidth[position]};
   background-color: ${props => props.theme.colors.white};
   ${({ open, position }) => {
     if (position === "left" || position === "right") {
@@ -85,7 +93,7 @@ export const Overlay = styled.div<IStyleProps>`
   background-color: ${({ transparent, theme }) =>
     transparent ? "" : theme.colors.overlay};
   align-items: center;
-  justify-content: ${({ position }) => justify[position]};
-  opacity: ${({ state }) => opacity[state]};
+  justify-content: ${({ position }: IStyleProps) => justify[position]};
+  opacity: ${({ state }: IStyleProps) => opacity[state]};
 `;
 Overlay.displayName = "S.Overlay";

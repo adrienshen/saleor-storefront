@@ -28,7 +28,7 @@ export interface CheckoutContextInterface {
   clear?(): void;
 }
 
-export const defaultContext = {
+export const defaultContext: CheckoutContextInterface = {
   cardData: null,
   checkout: null,
   clear: () => null,
@@ -38,7 +38,7 @@ export const defaultContext = {
   step: CheckoutStep.ShippingAddress,
   syncUserCheckout: false,
   syncWithCart: false,
-  update: (checkoutData: {}) => null,
+  update: () => null,
 };
 
 export const CheckoutContext = createContext<CheckoutContextInterface>(

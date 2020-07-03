@@ -1,9 +1,4 @@
 import { History } from "history";
-
-import {
-  CreateCheckout_checkoutCreate,
-  CreateCheckoutVariables,
-} from "@sdk/mutations/types/CreateCheckout";
 import {
   UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate,
   UpdateCheckoutShippingAddressVariables,
@@ -16,6 +11,7 @@ import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { User } from "../../../components/User/types/User";
 import { CheckoutContextInterface } from "../../context";
 import { Checkout } from "../../types/Checkout";
+import ApolloClient from "apollo-client";
 
 export interface ICheckoutData {
   shippingAddress: AddressInput;
@@ -24,21 +20,11 @@ export interface ICheckoutData {
 }
 
 export interface IShippingPageProps {
+  client?: any;
   checkoutId?: string;
   checkout?: Checkout;
   update: (checkoutData: CheckoutContextInterface) => void;
   lines?: CartLineInterface[];
-  createCheckout: [
-    MutationFn<
-      {
-        data: CreateCheckout_checkoutCreate;
-      },
-      CreateCheckoutVariables
-    >,
-    MutationResult<{
-      data: CreateCheckout_checkoutCreate;
-    }>
-  ];
   updateShippingAddress: [
     MutationFn<
       {

@@ -16,7 +16,7 @@ class AddToCartButton extends React.PureComponent<
 > {
   state = { animate: false, disabled: false };
   animationTimeout = 800;
-  timeout;
+  timeout: number;
 
   handleAnimation = (evt: React.MouseEvent<HTMLButtonElement>) => {
     if (!this.state.disabled) {

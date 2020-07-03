@@ -21,8 +21,7 @@ const DEFAULT_PROPS = {
       value: { field: "PRICE", direction: "ASC" },
     },
   ],
-  value: null,
-
+  value: "",
   onChange: jest.fn(),
 };
 

@@ -1,7 +1,7 @@
-import { History } from "history";
 import * as React from "react";
 import { generatePath } from "react-router";
 import ReactSVG from "react-svg";
+import { History } from "history";
 
 import { AddressSummary } from "../../../components";
 import { CardData } from "../../types/CardData";

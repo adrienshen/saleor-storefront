@@ -6,7 +6,7 @@ export interface HelloPromptProps {
   name: string;
 }
 
-const HelloPrompt = ({ name }) => {
+const HelloPrompt = ({ name }: HelloPromptProps) => {
   return (
     <div className="hello-prompt">
       <h3>Hello{name !== "" ? `, ${name}!` : "!"}</h3>

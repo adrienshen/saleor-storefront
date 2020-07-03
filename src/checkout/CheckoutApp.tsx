@@ -38,7 +38,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
     data: variantsProducts,
     loading: variantsProductsLoading,
   } = useVariantsProducts({
-    ids: cartLines ? cartLines.map(line => line.variantId) : [],
+    ids: cartLines?.map(line => line.variantId) || [],
   });
 
   const step = useCheckoutStepState(
@@ -71,12 +71,12 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
               return <Redirect to={appBaseUrl} />;
             }
 
-            if (
-              ((!checkout && !variantsProducts) || step < stepFromPath) &&
-              checkoutBaseUrl !== pathname
-            ) {
-              return <Redirect to={checkoutBaseUrl} />;
-            }
+            // if (
+            //   ((!checkout && !variantsProducts) || step < stepFromPath) &&
+            //   checkoutBaseUrl !== pathname
+            // ) {
+            //   return <Redirect to={checkoutBaseUrl} />;
+            // }
 
             return <CheckoutRoutes />;
           })()}

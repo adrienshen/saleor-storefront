@@ -56,7 +56,7 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
       ...checkoutData,
     }));
     if ("checkout" in checkoutData) {
-      setCheckoutToken(checkoutData.checkout.token);
+      setCheckoutToken(checkoutData.checkout?.token);
     }
   };
 

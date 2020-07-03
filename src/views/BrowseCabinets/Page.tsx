@@ -5,8 +5,9 @@ import { SubHeader } from "../../components/Collection/SubHeader";
 import "./scss/index.scss";
 import { SubHeader } from "../../components/Collection/SubHeader";
 import { GridViewTypes } from "../../constants";
+import { ICollections } from "../Collection/types/Collection";
 
-const Page = props => {
+const Page = (props: ICollections) => {
   const { data, history } = props;
   const [view, changeView] = useState(GridViewTypes.Grid);
 
@@ -14,7 +15,7 @@ const Page = props => {
     history.push("/");
   };
 
-  const handleViewChange = type => {
+  const handleViewChange = (type: GridViewTypes) => {
     changeView(type);
   };
 
@@ -38,12 +39,12 @@ const Page = props => {
               : "collection-block__wrapper collection-wrapper__list"
           }
         >
-          {data.collections.edges.map((collection, i) => {
+          {data.collections?.edges?.map((collection, idx) => {
             return (
               <CollectionBlock
                 currentView={view}
-                key={i}
-                collect={collection.node}
+                key={idx}
+                collection={collection.node}
               />
             );
           })}

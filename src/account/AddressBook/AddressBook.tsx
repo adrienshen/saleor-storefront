@@ -1,4 +1,5 @@
 import React from "react";
+import { IAddress } from "@types";
 import "./scss/index.scss";
 
 import { AddressFormModal, AddressGrid } from "@components/organisms";
@@ -16,7 +17,7 @@ const AddressBook: React.FC<{
   const [setDefaultUserAddress] = useDefaultUserAddress();
   const [setDeleteUserAddress] = useDeleteUserAddresss();
 
-  const userAddresses = user.addresses.map(address => {
+  const userAddresses = user.addresses?.map((address: IAddress) => {
     const addressToDisplay: any = { address: { ...address } };
 
     addressToDisplay.onEdit = () => {

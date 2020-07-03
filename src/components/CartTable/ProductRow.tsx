@@ -37,7 +37,6 @@ export interface EditableProductRowProps {
 }
 
 const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
-  invalid,
   add,
   changeQuantity,
   mediumScreen,

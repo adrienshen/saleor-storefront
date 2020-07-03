@@ -20,20 +20,19 @@ type ViewProps = RouteComponentProps<{
 }>;
 
 export const FilterQuerySet = {
-  encode(valueObj) {
-    const str = [];
-    Object.keys(valueObj).forEach(value => {
+  encode(valueObj: any) {
+    const str: string[] = [];
+    Object.keys(valueObj)?.forEach(value => {
       str.push(value + "_" + valueObj[value].join("_"));
     });
     return str.join(".");
   },
-
-  decode(strValue) {
-    const obj = {};
-    const propsWithValues = strValue.split(".").filter(n => n);
-    propsWithValues.map(value => {
-      const propWithValues = value.split("_").filter(n => n);
-      obj[propWithValues[0]] = propWithValues.slice(1);
+  decode(strValue: string) {
+    const obj: any = {};
+    const propsWithValues = strValue?.split(".")?.filter(n => n);
+    propsWithValues?.map(value => {
+      const propWithValues = value?.split("_")?.filter(n => n);
+      obj[propWithValues[0]] = propWithValues?.slice(1);
     });
     return obj;
   },
@@ -50,10 +49,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     setAttributeFilters({});
   };
 
-  const onFiltersChange = (name, value) => {
-    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-      if (attributeFilters[name].includes(value)) {
-        if (filters.attributes[`${name}`].length === 1) {
+  const onFiltersChange = (name: string, value: string) => {
+    if (attributeFilters?.hasOwnProperty(name)) {
+      if (attributeFilters[name]?.includes(value)) {
+        if (filters.attributes[`${name}`]?.length === 1) {
           const att = { ...attributeFilters };
           delete att[`${name}`];
           setAttributeFilters({
@@ -63,7 +62,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           setAttributeFilters({
             ...attributeFilters,
             [`${name}`]: attributeFilters[`${name}`].filter(
-              item => item !== value
+              (item: string) => item !== value
             ),
           });
         }
@@ -146,28 +145,28 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     ...prev,
                     products: {
                       ...prev.products,
-                      edges: [...prev.products.edges, ...next.products.edges],
-                      pageInfo: next.products.pageInfo,
+                      edges: [...prev.products?.edges, ...next.products?.edges],
+                      pageInfo: next.products?.pageInfo,
                     },
                   }),
-                  { after: data.products.pageInfo.endCursor }
+                  { after: data.products?.pageInfo?.endCursor }
                 );
 
               return (
                 <MetaWrapper
                   meta={{
-                    description: data.collection.seoDescription,
-                    title: data.collection.seoTitle,
+                    description: data.collection?.seoDescription,
+                    title: data.collection?.seoTitle,
                     type: "product.collection",
                   }}
                 >
                   <Page
                     clearFilters={clearFilters}
-                    attributes={data.attributes.edges.map(edge => edge.node)}
+                    attributes={data.attributes?.edges?.map(edge => edge.node)}
                     collection={data.collection}
                     displayLoader={loading}
                     hasNextPage={maybe(
-                      () => data.products.pageInfo.hasNextPage,
+                      () => data.products?.pageInfo?.hasNextPage,
                       false
                     )}
                     sortOptions={sortOptions}
@@ -178,7 +177,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     onLoadMore={handleLoadMore}
                     activeFilters={
                       filters!.attributes
-                        ? Object.keys(filters!.attributes).length
+                        ? Object.keys(filters!.attributes)?.length
                         : 0
                     }
                     onOrder={value => {
@@ -189,7 +188,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               );
             }
 
-            if (data && data.collection === null) {
+            if (data?.collection === null) {
               return <NotFound />;
             }
 

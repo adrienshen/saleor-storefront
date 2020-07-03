@@ -17,18 +17,18 @@ const extractOrderLines = (
   lines: Array<OrderById_order_lines | OrderByToken_orderByToken_lines>
 ): LineI[] => {
   return lines
-    .map(line => ({
+    ?.map(line => ({
       quantity: line.quantity,
       totalPrice: {
         ...line.unitPrice,
-        currency: line.unitPrice.currency,
+        currency: line.unitPrice?.currency,
         gross: {
-          amount: line.quantity * line.unitPrice.gross.amount,
-          ...line.unitPrice.gross,
+          amount: line.quantity * line.unitPrice.gross?.amount,
+          ...line.unitPrice?.gross,
         },
         net: {
-          amount: line.quantity * line.unitPrice.net.amount,
-          ...line.unitPrice.net,
+          amount: line.quantity * line.unitPrice?.net?.amount,
+          ...line.unitPrice?.net,
         },
       },
       ...line.variant,
@@ -64,7 +64,6 @@ const Page: React.FC<{
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}
-            paragraphRef={this.shippingAddressRef}
           />
         </div>
       </div>

@@ -20,20 +20,20 @@ type ViewProps = RouteComponentProps<{
 }>;
 
 export const FilterQuerySet = {
-  encode(valueObj) {
-    const str = [];
-    Object.keys(valueObj).forEach(value => {
+  encode(valueObj: any) {
+    const str: string[] = [];
+    Object.keys(valueObj)?.forEach(value => {
       str.push(value + "_" + valueObj[value].join("_"));
     });
     return str.join(".");
   },
 
-  decode(strValue) {
-    const obj = {};
-    const propsWithValues = strValue.split(".").filter(n => n);
-    propsWithValues.map(value => {
-      const propWithValues = value.split("_").filter(n => n);
-      obj[propWithValues[0]] = propWithValues.slice(1);
+  decode(strValue: string) {
+    const obj: any = {};
+    const propsWithValues = strValue?.split(".").filter(n => n);
+    propsWithValues?.map(value => {
+      const propWithValues = value?.split("_")?.filter(n => n);
+      obj[propWithValues[0]] = propWithValues?.slice(1);
     });
     return obj;
   },
@@ -50,10 +50,10 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     setAttributeFilters({});
   };
 
-  const onFiltersChange = (name, value) => {
-    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-      if (attributeFilters[name].includes(value)) {
-        if (filters.attributes[`${name}`].length === 1) {
+  const onFiltersChange = (name: string, value: string) => {
+    if (attributeFilters?.hasOwnProperty(name)) {
+      if (attributeFilters[name]?.includes(value)) {
+        if (filters?.attributes[`${name}`]?.length === 1) {
           const att = { ...attributeFilters };
           delete att[`${name}`];
           setAttributeFilters({
@@ -63,7 +63,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           setAttributeFilters({
             ...attributeFilters,
             [`${name}`]: attributeFilters[`${name}`].filter(
-              item => item !== value
+              (item: string) => item !== value
             ),
           });
         }
@@ -189,7 +189,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               );
             }
 
-            if (data && data.category === null) {
+            if (data?.category === null) {
               return <NotFound />;
             }
 

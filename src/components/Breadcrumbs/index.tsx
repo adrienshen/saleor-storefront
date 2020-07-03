@@ -8,7 +8,10 @@ import { Link } from "react-router-dom";
 
 import { baseUrl } from "../../app/routes";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
-import { Category_category } from "../../views/Category/types/Category";
+import {
+  Category_category,
+  Category_category_ancestors_edges_node,
+} from "../../views/Category/types/Category";
 
 export interface Breadcrumb {
   value: string;
@@ -16,7 +19,9 @@ export interface Breadcrumb {
 }
 
 export const extractBreadcrumbs = (category: Category_category) => {
-  const constructLink = item => ({
+  const constructLink = (
+    item: Category_category | Category_category_ancestors_edges_node
+  ) => ({
     link: [
       `/category`,
       `/${slugify(item.name)}`,
@@ -27,7 +32,7 @@ export const extractBreadcrumbs = (category: Category_category) => {
 
   let breadcrumbs = [constructLink(category)];
 
-  if (category.ancestors.edges.length) {
+  if (category.ancestors?.edges?.length) {
     const ancestorsList = category.ancestors.edges.map(edge =>
       constructLink(edge.node)
     );
@@ -37,7 +42,7 @@ export const extractBreadcrumbs = (category: Category_category) => {
 };
 
 const getBackLink = (breadcrumbs: Breadcrumb[]) =>
-  breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/";
+  breadcrumbs?.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/";
 
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
@@ -47,13 +52,13 @@ const Breadcrumbs: React.FC<{
       minWidth: smallScreen,
     }}
   >
-    {matches =>
+    {(matches: boolean) =>
       matches ? (
         <ul className="breadcrumbs">
           <li>
             <Link to={baseUrl}>Home</Link>
           </li>
-          {breadcrumbs.map((breadcrumb, index) => (
+          {breadcrumbs?.map((breadcrumb, index) => (
             <li
               key={breadcrumb.value}
               className={classNames({

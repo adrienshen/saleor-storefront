@@ -32,17 +32,17 @@ export const invalidTokenLinkWithTokenHandlerComponent = (
   // tslint:disable-next-line:no-empty
   let tokenExpirationCallback = () => {};
 
-  const tokenExpirationHandler = callback => {
+  const tokenExpirationHandler = (callback: () => {}) => {
     tokenExpirationCallback = callback;
   };
-  const extendedComponent = props => {
+  const extendedComponent = (props: any) => {
     return React.createElement(component, {
       ...props,
       tokenExpirationHandler,
     });
   };
   const link = onError((error: ResponseError) => {
-    if (error.networkError && error.networkError.statusCode === 401) {
+    if (error.networkError?.statusCode === 401) {
       tokenExpirationCallback();
     }
   });
