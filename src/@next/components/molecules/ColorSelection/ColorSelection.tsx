@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { IProps, IColor, LocalStorageKeys, IPosition } from "./types";
 import { ColorItem } from "./ColorItem";
 import "./index.scss";
-
-const getDataFromStorage = () =>
-  JSON.parse(localStorage.getItem(LocalStorageKeys.CabinetColor)) || {};
+import { useLocalStorage } from "@hooks";
 
 export const ColorSelection: React.FC<IProps> = ({
   colors,
   position,
   collectionId,
 }) => {
-  const [selectedColor, setSelectedColor] = useState(getDataFromStorage());
+  const {
+    storedValue: selectedColor,
+    setValue: setSelectedColor,
+  } = useLocalStorage(LocalStorageKeys.CabinetColor);
 
   const onChangeColor = (type: IPosition, colorID: number) => {
+    const currentData = JSON.parse(
+      localStorage.getItem(LocalStorageKeys.CabinetColor)
+    );
     const color = {
-      ...selectedColor,
-      [type]: colorID,
-      collectionId: collectionId,
+      ...currentData,
+      [collectionId]: { ...currentData[collectionId], [type]: colorID },
     };
-    localStorage.setItem(LocalStorageKeys.CabinetColor, JSON.stringify(color));
     setSelectedColor(color);
   };
 
@@ -30,8 +32,9 @@ export const ColorSelection: React.FC<IProps> = ({
         {colors.map((item: IColor, idx) => (
           <ColorItem
             selected={
-              selectedColor[item.position] === item.id &&
-              selectedColor?.collectionId === collectionId
+              selectedColor[collectionId] &&
+              selectedColor[collectionId][item.position] &&
+              selectedColor[collectionId][item.position] === item.id
             }
             image={item}
             onChangeColor={onChangeColor}
