@@ -4,14 +4,20 @@ import arrowDown from "images/arrow-down-black.svg";
 import arrowUp from "images/arrow-up-black.svg";
 import "./style.scss";
 
-export const Expander: React.FC<IProps> = ({ title, content, expanded }) => {
+export const Expander: React.FC<IProps> = ({
+  title,
+  content,
+  expanded,
+  id,
+  handleToggle,
+}) => {
   return (
     <div className="expanded">
-      <div className="title">
+      <div className="title" onClick={() => handleToggle(id, expanded)}>
         <div>{title}</div>
         <img src={expanded ? arrowUp : arrowDown} />
       </div>
-      {expanded && <div>{content}</div>}
+      {expanded && <div className="content">{content}</div>}
     </div>
   );
 };
