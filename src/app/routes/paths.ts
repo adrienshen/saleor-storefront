@@ -25,3 +25,4 @@ export const collectionSamples = `${baseUrl}collections/cabinets/:id/:slug/sampl
 export const orderSamples = `${baseUrl}collections/samples`;
 export const myAccount = `${baseUrl}my-account`;
 export const moreUrl = `${baseUrl}more`;
+export const shippingReturnPolicy = `${baseUrl}return-policy`;
