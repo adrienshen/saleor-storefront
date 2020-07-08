@@ -17,7 +17,7 @@ export const Page = (props: any) => {
       expanded: true,
     });
     const toggleItem = listOfItems.value[index];
-    if (alreadyOpenItemIndex !== -1 && !expanded) {
+    if (alreadyOpenItemIndex > -1 && !expanded) {
       listOfItems.value.splice(alreadyOpenItemIndex, 1, {
         ...listOfItems.value[alreadyOpenItemIndex],
         expanded: false,
