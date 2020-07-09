@@ -3,28 +3,19 @@ import PageHeader from "../../../components/Header/PageHeader";
 import { Expander } from "@components/molecules/Expander";
 import { list } from "./mock";
 import { useState } from "react";
-import { findIndex } from "lodash";
 
 export const Page = (props: any) => {
-  const [listOfItems, showContent] = useState({ value: list });
+  const [selectedItem, showContent] = useState({
+    index: null,
+    expanded: false,
+  });
 
   const handleClick = () => {
     props.history.goBack();
   };
 
   const handleToggle = (index: number, expanded: boolean) => {
-    const alreadyOpenItemIndex = findIndex(listOfItems.value, {
-      expanded: true,
-    });
-    const toggleItem = listOfItems.value[index];
-    if (alreadyOpenItemIndex > -1 && !expanded) {
-      listOfItems.value.splice(alreadyOpenItemIndex, 1, {
-        ...listOfItems.value[alreadyOpenItemIndex],
-        expanded: false,
-      });
-    }
-    listOfItems.value.splice(index, 1, { ...toggleItem, expanded: !expanded });
-    showContent({ value: listOfItems.value });
+    showContent({ index: index, expanded: !expanded });
   };
 
   return (
@@ -38,11 +29,11 @@ export const Page = (props: any) => {
       <div>
         <div className="wrapper-header">Shipping & Return Policy</div>
         <div className="shipping-return-wrapper">
-          {listOfItems.value.map((item, index) => (
+          {list.map((item, index) => (
             <Expander
               title={item.title}
               content={item.content}
-              expanded={item.expanded}
+              expanded={index === selectedItem.index && selectedItem.expanded}
               id={index}
               key={index}
               handleToggle={handleToggle}
