@@ -4,7 +4,7 @@ import { Expander } from "@components/molecules";
 import "../scss/index.scss";
 
 interface IProps {
-  list: { title: string; content: string }[];
+  list: [{ title: string; content: string }];
   history: any;
   header: string;
 }
