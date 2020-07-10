@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
-import { Expander } from "@components/molecules/Expander";
-import { list } from "./mock";
+import { Expander } from "@components/molecules";
+import "../scss/index.scss";
 
-export const Page = (props: any) => {
+interface IProps {
+  list: { title: string; content: string }[];
+  history: any;
+  header: string;
+}
+
+export const ReusableComponent = (props: IProps) => {
+  const { header, list } = props;
   const [selectedItem, showContent] = useState({
     index: null,
     expanded: false,
@@ -18,7 +25,7 @@ export const Page = (props: any) => {
   };
 
   return (
-    <div className="inner-page-wrapper faq-wrapper">
+    <div className="inner-page-wrapper">
       <PageHeader
         back={true}
         cart={true}
@@ -26,7 +33,7 @@ export const Page = (props: any) => {
         handleClick={handleClick}
       />
       <div>
-        <div className="wrapper-header">Frequently Asked Questions</div>
+        <div className="wrapper-header">{header}</div>
         <div className="shipping-return-wrapper">
           {list.map((item, index) => (
             <Expander
@@ -44,4 +51,4 @@ export const Page = (props: any) => {
   );
 };
 
-export default Page;
+export default ReusableComponent;
