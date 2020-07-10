@@ -32,6 +32,7 @@ export const ColorSelection: React.FC<IProps> = ({
         {colors.map((item: IColor, idx) => (
           <ColorItem
             selected={
+              selectedColor &&
               selectedColor[collectionId] &&
               selectedColor[collectionId][item.position] &&
               selectedColor[collectionId][item.position] === item.id
