@@ -18,10 +18,15 @@ export const ColorSelection: React.FC<IProps> = ({
     const currentData = JSON.parse(
       localStorage.getItem(LocalStorageKeys.CabinetColor)
     );
-    const color = {
-      ...currentData,
-      [collectionId]: { ...currentData[collectionId], [type]: colorID },
+    let color = {
+      [collectionId]: { [type]: colorID },
     };
+    if (currentData) {
+      color = {
+        ...currentData,
+        [collectionId]: { ...currentData[collectionId], [type]: colorID },
+      };
+    }
     setSelectedColor(color);
   };
 
