@@ -421,6 +421,11 @@
   }
 }
 
+.shipping-return-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .top-color {
   margin-bottom: 30px;
 }

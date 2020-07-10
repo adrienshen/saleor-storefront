@@ -1,0 +1,20 @@
+.expanded {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    p {
+      color: black;
+    }
+    font-size: 18px;
+  }
+  .content {
+    padding: 30px 5px 10px 5px;
+    p {
+      b {
+        font-weight: bold !important;
+      }
+    }
+  }
+}
