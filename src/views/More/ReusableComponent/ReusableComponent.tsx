@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 import { Expander } from "@components/molecules";
+import { IProps } from "./types";
 import "../scss/index.scss";
-
-interface IProps {
-  list: [{ title: string; content: string }];
-  history: any;
-  header: string;
-}
 
 export const ReusableComponent = (props: IProps) => {
   const { header, list } = props;
