@@ -40,3 +40,10 @@
     }
   }
 }
+.faq-wrapper {
+  .wrapper-header {
+    @media (max-width: $small-screen) {
+      font-size: 1.3rem;
+    }
+  }
+}

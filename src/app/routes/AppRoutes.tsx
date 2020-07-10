@@ -25,6 +25,7 @@ import { OrderSamples } from "../../views/Samples";
 import { MyAccount } from "../../views/MyAccount";
 import { MorePage } from "../../views/More";
 import { ShippingReturnPolicy } from "../../views/More/ShippingReturnPolicy";
+import { FAQ } from "../../views/More/FAQ";
 
 import * as paths from "./paths";
 
@@ -66,6 +67,7 @@ export const Routes: React.FC = () => (
     <Route path={paths.orderSamples} component={OrderSamples} />
     <Route path={paths.moreUrl} component={MorePage} />
     <Route path={paths.shippingReturnPolicy} component={ShippingReturnPolicy} />
+    <Route path={paths.faq} component={FAQ} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -39,7 +39,7 @@ export const Lists = [
     image: TermsConditionIcon,
   },
   {
-    path: "/more/return-policy",
+    path: "/faq",
     text: "FAQ",
     image: FAQIcon,
   },

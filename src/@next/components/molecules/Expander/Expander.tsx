@@ -14,10 +14,17 @@ export const Expander: React.FC<IProps> = ({
   return (
     <div className="expanded">
       <div className="title" onClick={() => handleToggle(id, expanded)}>
-        <div>{title}</div>
+        <p>{title}</p>
         <img src={expanded ? arrowUp : arrowDown} />
       </div>
-      {expanded && <div className="content">{content}</div>}
+      {expanded && (
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{
+            __html: content,
+          }}
+        />
+      )}
     </div>
   );
 };
