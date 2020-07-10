@@ -7,7 +7,7 @@ storiesOf(`@components/atoms/Expander`, module).add("default", () => (
     title="title"
     content="content"
     expanded={false}
-    handleToggle={() => {}}
+    handleToggle={() => true}
     id={1}
   />
 ));

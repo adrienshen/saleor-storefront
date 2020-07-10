@@ -1,8 +1,7 @@
-import * as React from "react";
+import React, { useState } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 import { Expander } from "@components/molecules/Expander";
 import { list } from "./mock";
-import { useState } from "react";
 
 export const Page = (props: any) => {
   const [selectedItem, showContent] = useState({
@@ -15,7 +14,7 @@ export const Page = (props: any) => {
   };
 
   const handleToggle = (index: number, expanded: boolean) => {
-    showContent({ index: index, expanded: !expanded });
+    showContent({ index, expanded: !expanded });
   };
 
   return (
