@@ -52,15 +52,13 @@ export const Page = (history: any) => {
       <div>
         <div className="myAccount-wrapper">
           {Paths.map((path, idx) => (
-            <Link
-              to={`${path.path}`}
-              key={idx}
-              className="myAccount-wrapper-link"
-            >
-              <img src={path.image} />
-              <button type="button" className="myAccount-wrapper-link--btn">
-                {path.text}
-              </button>
+            <Link to={`${path.path}`} key={idx}>
+              <div className="myAccount-wrapper-link">
+                <img src={path.image} />
+                <button type="button" className="myAccount-wrapper-link--btn">
+                  {path.text}
+                </button>
+              </div>
             </Link>
           ))}
         </div>
