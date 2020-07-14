@@ -13,7 +13,9 @@ export const getCollectionBySlug = gql`
       name
       description
       descriptionJson
-      extraFields
+      setDetails {
+        fields
+      }
       slug
       backgroundImage {
         alt

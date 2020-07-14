@@ -4,16 +4,11 @@ import { DetailRow } from "@temp/components/Collection/DetailRow";
 import { ICollection } from "../../Collection/types/Collection";
 
 export const Page = (props: ICollection) => {
-  const specsDetails = JSON.parse(props.data?.collection?.extraFields) || [];
+  if (!props.data?.collection?.setDetails?.fields) {
+    return null;
+  }
 
-  const getDetails = (data: any) => {
-    return data?.specifications?.map((item: any) =>
-      Object.keys(item).map(key => ({ key, value: item[key] }))
-    );
-  };
-
-  const details = getDetails(specsDetails);
-
+  const fields = JSON.parse(props.data?.collection?.setDetails.fields);
   const handleClick = () => {
     props.history.goBack();
   };
@@ -28,19 +23,9 @@ export const Page = (props: ICollection) => {
       />
       <div>
         <div className="wrapper-header">Set Details</div>
-        {details?.map(
-          (detail: Array<{ key: string; value: string }>, idx: number) => {
-            if (detail && detail[0]) {
-              return (
-                <DetailRow
-                  key={idx}
-                  name={detail[0].key}
-                  value={detail[0].value}
-                />
-              );
-            }
-          }
-        )}
+        {Object.keys(fields).map((key: string, idx: number) => {
+          return <DetailRow key={idx} name={key} value={fields[key]} />;
+        })}
       </div>
     </div>
   );
