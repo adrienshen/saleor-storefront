@@ -4,7 +4,7 @@ import { VariantList } from "../../views/Product/types/VariantList";
 import { LineI } from "../CartTable/ProductRow";
 import { CartLineInterface } from "./context";
 
-export const getTotal = (
+export const getLineItemsTotal = (
   variantList: VariantList,
   lines: CartLineInterface[],
   locale?: string
