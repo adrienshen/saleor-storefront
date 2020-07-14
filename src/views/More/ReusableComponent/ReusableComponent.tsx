@@ -23,11 +23,11 @@ export const ReusableComponent = (props: IProps) => {
     <div className="inner-page-wrapper">
       <PageHeader
         back={true}
-        cart={true}
+        cart={false}
         search={true}
         handleClick={handleClick}
       />
-      <div>
+      <div className="more-page-wrapper">
         <div className="wrapper-header">{header}</div>
         <div className="shipping-return-wrapper">
           {list.map((item, index) => (
