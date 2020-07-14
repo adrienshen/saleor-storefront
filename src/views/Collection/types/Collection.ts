@@ -28,7 +28,9 @@ export interface Collection_collection {
   seoDescription: string | null;
   seoTitle: string | null;
   backgroundImage: Collection_collection_backgroundImage | null;
-  extraFields: string;
+  setDetails: {
+    fields: string;
+  };
   descriptionJson: string;
 }
 
