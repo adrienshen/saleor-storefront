@@ -60,6 +60,7 @@ const Page: React.FC<IShippingPageProps> = ({
   const email = maybe(() => user.email, null);
 
   const { storedValue: contactFields } = useLocalStorage("contactFields");
+  const { storedValue: cabinetColor } = useLocalStorage("cabinetColor");
 
   const onSaveShippingAddressHandler = async (formData: FormAddressType) => {
     formData = {
@@ -77,6 +78,9 @@ const Page: React.FC<IShippingPageProps> = ({
             email: contactFields.email,
             lines: data.lines,
             shippingAddress: data.shippingAddress,
+            extraDetails: JSON.stringify({
+              colors: cabinetColor,
+            }),
           },
         },
       });

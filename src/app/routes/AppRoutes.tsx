@@ -5,7 +5,6 @@ import { PasswordReset } from "@pages";
 import { CheckoutLogin, NotFound } from "../../components";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
-import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
 import { AvailableColors } from "../../views/CollectionIndex/Colors";
 import { BrowseCabinets } from "../../views/BrowseCabinets";
@@ -44,11 +43,6 @@ export const Routes: React.FC = () => (
     <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />
     <Route path={paths.guestOrderDetailsUrl} component={OrderDetails} />
     <Route path={paths.orderConfirmationUrl} component={OrderConfirmation} />
-    <Route path={paths.accountUrl} component={Account} />
-    <Route path={paths.accountConfirmUrl} component={AccountConfirm} />
-    <Route path={paths.orderHistoryUrl} component={Account} />
-    <Route path={paths.addressBookUrl} component={Account} />
-    <Route path={paths.paymentOptionsUrl} component={Account} />
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
     <Route exact path={paths.browseCollection} component={BrowseCabinets} />
     <Route exact path={paths.cabinetCollection} component={CollectionIndex} />
