@@ -1,6 +1,5 @@
 export { default as Button, ButtonProps } from "./Button";
 export { default as Carousel } from "./Carousel";
-export { default as CheckoutLogin } from "./CheckoutLogin";
 export { default as ContactForm } from "./ContactForm";
 export { default as Form } from "./Form";
 export { default as Loader } from "./Loader";

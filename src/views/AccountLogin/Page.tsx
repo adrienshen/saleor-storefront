@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-nocheck
 import React, { useState } from "react";
 import "./scss/index.scss";
 import { LoginForm } from "@temp/components";

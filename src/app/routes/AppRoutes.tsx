@@ -20,7 +20,6 @@ import { CollectionSamples } from "../../views/CollectionIndex/Samples";
 import { CollectionSpecification } from "../../views/CollectionIndex/Specification";
 import { HomePage } from "../../views/Home";
 import OrderConfirmation from "../../views/OrderConfirmation/View";
-import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 import { ViewDetails } from "../../views/CollectionIndex/ViewDetails";
 import { OrderSamples } from "../../views/Samples";
@@ -39,7 +38,6 @@ export const Routes: React.FC = () => (
     <Route path={paths.searchUrl} component={SearchPage} />
     <Route path={paths.categoryUrl} component={CategoryPage} />
     <Route path={paths.collectionUrl} component={CollectionPage} />
-    <Route path={paths.productUrl} component={ProductPage} />
     <Route path={paths.cartUrl} component={CartPage} />
     <Route path={paths.checkoutLoginUrl} component={AccountLogin} />
     <Route path={paths.pageUrl} component={ArticlePage} />
