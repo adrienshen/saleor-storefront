@@ -1,59 +1,63 @@
+// @ts-nocheck
+
 import "./scss/index.scss";
 
-import * as React from "react";
+import React, { useState } from "react";
+// import { maybe } from "@utils/misc";
 
-import { useSignIn } from "@sdk/react";
-import { maybe } from "@utils/misc";
-
-import { Button, Form, TextField } from "..";
+import { Button } from "..";
 import { CheckoutContext } from "../../checkout/context";
 
-interface ILoginForm {
-  hide?: () => void;
-}
+const QUERY = `
+  query signin(
+    email: $email,
+    password: $email,
+  ){
 
-const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
-  const [signIn, { loading, error }] = useSignIn();
-  const { update } = React.useContext(CheckoutContext);
+  }
+`;
 
-  const handleOnSubmit = async (
-    evt: React.FormEvent<any>,
-    { email, password }: any
-  ) => {
+const LoginForm: React.FC<any> = ({ form }) => {
+  // const [signIn, { loading, error }] = useSignIn();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const { update } = React.useContext(CheckoutContext);
+
+  const loading = false;
+
+  const handleOnSubmit = async (evt: React.FormEvent<any>) => {
     evt.preventDefault();
-    const authenticated = await signIn({ email, password });
-    if (authenticated && hide) {
-      hide();
-    }
-    update({ syncUserCheckout: true });
+    // const authenticated = await signIn({ email, password });
+    // update({ syncUserCheckout: true });
   };
-
   return (
     <div className="login-form">
-      <Form
-        errors={maybe(() => error.extraInfo?.userInputErrors, [])}
-        onSubmit={handleOnSubmit}
-      >
-        <TextField
-          name="email"
-          autoComplete="email"
-          label="Email Address"
+      <span>Reimplement this form</span>
+      <form onSubmit={handleOnSubmit}>
+        <input
+          onChange={e => setEmail(e.target.value)}
+          value={email}
           type="email"
+          autoComplete="email"
+          name="email"
+          placeholder="johndoe@example.com"
           required
         />
-        <TextField
-          name="password"
-          autoComplete="password"
-          label="Password"
+        <input
+          onChange={e => setPassword(e.target.value)}
+          value={password}
           type="password"
+          autoComplete="password"
+          name="password"
           required
         />
+
         <div className="login-form__button">
           <Button type="submit" {...(loading && { disabled: true })}>
             {loading ? "Loading" : "Sign in"}
           </Button>
         </div>
-      </Form>
+      </form>
     </div>
   );
 };

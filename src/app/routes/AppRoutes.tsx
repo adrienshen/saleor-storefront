@@ -2,7 +2,10 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { PasswordReset } from "@pages";
-import { CheckoutLogin, NotFound } from "../../components";
+import {
+  // CheckoutLogin,
+  NotFound,
+} from "../../components";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { ArticlePage } from "../../views/Article";
@@ -25,6 +28,7 @@ import { MyAccount } from "../../views/MyAccount";
 import { MorePage } from "../../views/More";
 import { ShippingReturnPolicy } from "../../views/More/ShippingReturnPolicy";
 import { FAQ } from "../../views/More/FAQ";
+import { AccountLogin } from "../../views/AccountLogin";
 
 import * as paths from "./paths";
 
@@ -37,7 +41,7 @@ export const Routes: React.FC = () => (
     <Route path={paths.collectionUrl} component={CollectionPage} />
     <Route path={paths.productUrl} component={ProductPage} />
     <Route path={paths.cartUrl} component={CartPage} />
-    <Route path={paths.checkoutLoginUrl} component={CheckoutLogin} />
+    <Route path={paths.checkoutLoginUrl} component={AccountLogin} />
     <Route path={paths.pageUrl} component={ArticlePage} />
     <Route path={accountPaths.baseUrl} component={UserAccount} />
     <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />
