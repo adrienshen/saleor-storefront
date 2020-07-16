@@ -1,5 +1,4 @@
 export { default as Button, ButtonProps } from "./Button";
-export { default as Carousel } from "./Carousel";
 export { default as ContactForm } from "./ContactForm";
 export { default as Form } from "./Form";
 export { default as Loader } from "./Loader";
@@ -20,7 +19,6 @@ export { default as AddressSummary } from "./AddressSummary";
 export { CartTable } from "./CartTable";
 export { default as ShippingAddressForm } from "./ShippingAddressForm";
 export { AddressType, FormAddressType } from "./ShippingAddressForm/types";
-export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Filters, ProductFilters } from "./ProductFilters";
 export {
   default as Breadcrumbs,

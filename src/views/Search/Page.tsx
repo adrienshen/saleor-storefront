@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { IFilterAttributes, IFilters } from "@types";
-import { DebounceChange, ProductsFeatured, TextField } from "../../components";
+import { DebounceChange, TextField } from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
@@ -55,7 +55,6 @@ const Page: React.FC<PageProps> = ({
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
   );
-  const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
@@ -127,8 +126,6 @@ const Page: React.FC<PageProps> = ({
         />
         {canDisplayProducts && <div>Show products here...</div>}
       </div>
-
-      {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );
 };
