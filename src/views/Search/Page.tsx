@@ -6,7 +6,6 @@ import { IFilterAttributes, IFilters } from "@types";
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
-import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
@@ -46,10 +45,7 @@ const Page: React.FC<PageProps> = ({
   attributes,
   search,
   setSearch,
-  displayLoader,
-  hasNextPage,
   clearFilters,
-  onLoadMore,
   products,
   filters,
   onOrder,
@@ -129,14 +125,7 @@ const Page: React.FC<PageProps> = ({
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
-        {canDisplayProducts && (
-          <ProductList
-            products={products.edges?.map(edge => edge.node)}
-            canLoadMore={hasNextPage}
-            loading={displayLoader}
-            onLoadMore={onLoadMore}
-          />
-        )}
+        {canDisplayProducts && <div>Show products here...</div>}
       </div>
 
       {!hasProducts && <ProductsFeatured title="You might like" />}

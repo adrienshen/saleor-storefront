@@ -12,8 +12,6 @@ import { ArticlePage } from "../../views/Article";
 import { AvailableColors } from "../../views/CollectionIndex/Colors";
 import { BrowseCabinets } from "../../views/BrowseCabinets";
 import { CartPage } from "../../views/Cart";
-import { CategoryPage } from "../../views/Category";
-import { CollectionPage } from "../../views/Collection";
 import { CollectionIndex } from "../../views/CollectionIndex";
 import { CollectionItems } from "../../views/CollectionIndex/ItemsIncluded";
 import { CollectionSamples } from "../../views/CollectionIndex/Samples";
@@ -36,8 +34,6 @@ export const Routes: React.FC = () => (
     <Route exact path={paths.baseUrl} component={HomePage} />
     <Route path={paths.myAccount} component={MyAccount} />
     <Route path={paths.searchUrl} component={SearchPage} />
-    <Route path={paths.categoryUrl} component={CategoryPage} />
-    <Route path={paths.collectionUrl} component={CollectionPage} />
     <Route path={paths.cartUrl} component={CartPage} />
     <Route path={paths.checkoutLoginUrl} component={AccountLogin} />
     <Route path={paths.pageUrl} component={ArticlePage} />
