@@ -1,10 +1,7 @@
 // @ts-nocheck
-
 import "./scss/index.scss";
 
 import React, { useState } from "react";
-// import { maybe } from "@utils/misc";
-
 import { Button } from "..";
 import { CheckoutContext } from "../../checkout/context";
 

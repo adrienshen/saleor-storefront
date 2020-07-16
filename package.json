@@ -32,7 +32,6 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "history": "^4.10.1",
-    "husky": "^4.2.5",
     "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.5.2",
     "lodash": "^4.17.15",
@@ -175,10 +174,5 @@
     "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@sdk & npx tsc --noEmit -p src/@next",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
     "generate": "npx plop --plopfile ./.plop/index.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
   }
 }
