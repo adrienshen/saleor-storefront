@@ -1,0 +1,39 @@
+.sign-up {
+  form {
+    .forgot-pass {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -7px;
+      margin-bottom: 2.5rem;
+      font-size: 0.9375rem;
+      line-height: 1.125rem;
+      color: #b09a51;
+    }
+    .keep-me-log {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 0.9375rem;
+      line-height: 1.125rem;
+      color: #2e2e2e;
+      .eye-icon {
+        & > div {
+          display: flex;
+        }
+      }
+    }
+    .sign-up__button {
+      margin-top: 3.125rem !important;
+    }
+    .create-acc {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1rem;
+      line-height: 1.5625rem;
+      color: #b09a51;
+      cursor: pointer;
+    }
+  }
+}
+
