@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@temp/components";
 import { TextField } from "@components/molecules";
 import ReactSVG from "react-svg";
@@ -12,9 +12,14 @@ interface IPageProps {
 }
 
 const Page = (props: IPageProps) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const loading = false;
 
   const handleOnSubmit =  (evt: React.FormEvent<any>) => {
+    console.log("event",evt.target)
     evt.preventDefault();
   };
 
@@ -23,14 +28,14 @@ const Page = (props: IPageProps) => {
   };
 
   return (
-      <div className="sign-up">
+      <div>
         <PageHeader
           back={true}
           cart={false}
           search={false}
           handleClick={handleBackButton}
         />
-
+      <div className="sign-up">
         <ReactSVG
           path={logo}
           className="logo"
@@ -40,20 +45,23 @@ const Page = (props: IPageProps) => {
             name="fullName"
             label="Full Name"
             type="text"
-            value=""
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
           <TextField
             name="email"
             label="Email"
             type="email"
-            value=""
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
           <div className="password">
             <TextField
               name="password"
               label="Password"
               type="password"
-              value=""
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             >
             </TextField>
             <ReactSVG className="eye-icon"
@@ -65,7 +73,8 @@ const Page = (props: IPageProps) => {
               name="confirmPassword"
               label="Confirm Password"
               type="password"
-              value=""
+              value={confirmPassword}
+              onChange={e => setConfirmPassword(e.target.value)}
             />
             <ReactSVG  className="eye-icon"
               path={eyeIcon}
@@ -81,6 +90,7 @@ const Page = (props: IPageProps) => {
             <p>Terms and Conditions</p>
             </div>
         </form>
+      </div>
       </div>
   );
 };

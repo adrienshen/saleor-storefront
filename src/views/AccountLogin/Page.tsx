@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import "./scss/index.scss";
 import { Button } from "@temp/components";
 import ReactSVG from "react-svg";
@@ -8,16 +8,17 @@ import { TextField } from "@components/molecules";
 import eyeIcon from "images/baseline-lock.svg";
 import ToggleIcon from "images/toggle.svg";
 
-
 interface IPageProps {
   history: any;
 }
 
 const Page = (props: IPageProps) => {
-  console.log("props >> ", props);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const loading = false;
 
   const handleOnSubmit = async (evt: React.FormEvent<any>) => {
+    props.history.push("/");
     evt.preventDefault();
   }
 
@@ -32,14 +33,16 @@ const Page = (props: IPageProps) => {
           name="email"
           label="Email"
           type="email"
-          value=""
+          onChange={e => setEmail(e.target.value)}
+          value={email}
         />
         <div className="password">
           <TextField
             name="password"
             label="Password"
             type="password"
-            value=""
+            onChange={e => setPassword(e.target.value)}
+            value={password}
           >
           </TextField>
           <ReactSVG className="eye-icon"
