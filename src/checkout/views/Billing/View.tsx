@@ -5,7 +5,6 @@ import {
   useCreateCheckout,
   useUpdateCheckoutBillingAddress,
   useUserDetails,
-  useVariantsProducts,
 } from "@sdk/react";
 
 import { CartContext } from "../../../components/CartProvider/context";
@@ -28,30 +27,13 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     CheckoutContext
   );
   const { lines: cardLines } = React.useContext(CartContext);
-  const { data: variantsProducts } = useVariantsProducts({
-    ids: cardLines?.map(line => line.variantId) || [],
-  });
-  const isShippingRequired = () => {
-    if (checkout?.isShippingRequired) {
-      return true;
-    } else if (checkout) {
-      return false;
-    } else if (variantsProducts) {
-      const isShippingRequired = variantsProducts.edges?.some(
-        ({ node }) => node.product?.productType?.isShippingRequired
-      );
-      return !!isShippingRequired;
-    }
-    return false;
-  };
-
   const createCheckout = useCreateCheckout();
 
   return (
     <ShopContext.Consumer>
       {shop => (
         <Page
-          isShippingRequired={isShippingRequired()}
+          isShippingRequired={true}
           shippingAsBilling={shippingAsBilling}
           checkoutId={maybe(() => checkout.id, null)}
           checkout={checkout}

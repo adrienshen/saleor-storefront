@@ -79,6 +79,7 @@ function ChooseShippingMethodContent({
   proceedToBilling,
   history,
 }: any) {
+  console.log('checkout: ', checkout);
   return (
     <>
       <TypedUpdateCheckoutShippingOptionsMutation
@@ -120,7 +121,7 @@ function ChooseShippingMethodContent({
                 }}
                 disabled={
                   loading ||
-                  !checkout.availableShippingMethods.length ||
+                  !checkout?.availableShippingMethods.length ||
                   !selectedShipping
                 }
               >

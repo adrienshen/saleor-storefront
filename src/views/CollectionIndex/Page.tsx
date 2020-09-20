@@ -1,6 +1,6 @@
 import topArrow from "images/arrow-down.svg";
 import bottomArrow from "images/arrow-up.svg";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PageHeader from "../../components/Header/PageHeader";
 import { useLocalStorage } from "../../@next/hooks/useLocalStorage";
@@ -30,10 +30,9 @@ export const Paths = [
 ];
 
 const Page = (props: ICollection) => {
-  const { storedValue: show, setValue: showOverlay } = useLocalStorage(
-    "show",
-    "false"
-  );
+  const { storedValue: show, setValue: showOverlay } = useLocalStorage("show", "false");
+  const { storedValue: storedCollection, setValue: setCollection } = useLocalStorage("collection");
+
   const { data, history } = props;
 
   const handleOverlay = () => {
@@ -44,6 +43,14 @@ const Page = (props: ICollection) => {
     showOverlay(!show);
     history.push("/collections/cabinets");
   };
+
+  useEffect(() => {
+    console.log('use effect here');
+    if (data.collection && data.collection.id) {
+      setCollection(data?.collection?.id);
+    }
+  }, []);
+  console.log('storedCollection: ', storedCollection);
 
   return (
     <div

@@ -58,15 +58,6 @@ const Page: React.FC<{
         deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
         subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
       />
-      <div className="order-details__summary">
-        <div>
-          <h4>Shipping Address</h4>
-          <AddressSummary
-            address={order.shippingAddress}
-            email={order.userEmail}
-          />
-        </div>
-      </div>
     </>
   ) : (
     <NotFound />

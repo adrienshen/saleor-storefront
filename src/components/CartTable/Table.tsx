@@ -3,8 +3,6 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import Media from "react-media";
-
-import CostRow from "./CostRow";
 import ProductRow, { EditableProductRowProps, LineI } from "./ProductRow";
 
 interface TableProps extends EditableProductRowProps {
@@ -27,17 +25,8 @@ const Table: React.FC<TableProps> = ({
 }) => (
   <Media query={{ minWidth: smallScreen }}>
     {(mediumScreen: boolean) => (
-      <table className="cart-table">
-        <thead>
-          <tr>
-            <th>Products</th>
-            {mediumScreen && <th>Price</th>}
-            <th>Size</th>
-            <th className="cart-table__quantity-header">Quantity</th>
-            <th colSpan={2}>{mediumScreen ? "Total Price" : "Price"}</th>
-          </tr>
-        </thead>
-        <tbody>
+      <main className="cart-table">
+        <div>
           {lines?.map((line, idx) => (
             <ProductRow
               key={idx}
@@ -46,36 +35,8 @@ const Table: React.FC<TableProps> = ({
               {...rowProps}
             />
           ))}
-        </tbody>
-        <tfoot>
-          <CostRow
-            mediumScreen={mediumScreen}
-            heading="Subtotal"
-            cost={subtotal}
-          />
-          {discount && (
-            <CostRow
-              mediumScreen={mediumScreen}
-              heading={`Discount: ${discountName}`}
-              cost={discount}
-            />
-          )}
-          {deliveryCost && (
-            <CostRow
-              mediumScreen={mediumScreen}
-              heading="Delivery Cost"
-              cost={deliveryCost}
-            />
-          )}
-          {totalCost && (
-            <CostRow
-              mediumScreen={mediumScreen}
-              heading="Total Cost"
-              cost={totalCost}
-            />
-          )}
-        </tfoot>
-      </table>
+        </div>
+      </main>
     )}
   </Media>
 );

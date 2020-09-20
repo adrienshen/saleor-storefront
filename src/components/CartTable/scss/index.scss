@@ -105,3 +105,18 @@
     }
   }
 }
+
+.center-contents {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.row span {
+  width: 40%;
+}

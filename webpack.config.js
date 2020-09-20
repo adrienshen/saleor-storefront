@@ -1,6 +1,9 @@
 const path = require("path");
 const merge = require("webpack-merge");
 
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
 require("dotenv").config();
 
 const baseConfig = require("./config/webpack/config.base");
@@ -21,7 +24,8 @@ module.exports = (env, argv) => {
   const dev = sw
     ? merge(base, worker, devConfig(paths))
     : merge(base, devConfig(paths));
+  console.log('Dev Webpack Settings: ', dev);
   const prod = merge(base, worker, prodConfig(paths));
 
-  return devMode ? dev : prod;
+  return devMode ? dev : smp.wrap(prod);
 };
