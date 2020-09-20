@@ -77,7 +77,6 @@
     "@storybook/cli": "^5.3.19",
     "@storybook/react": "^5.3.19",
     "@storybook/theming": "^5.3.19",
-    "@types/braintree-web": "^3.47.2",
     "@types/classnames": "^2.2.10",
     "@types/dompurify": "0.0.33",
     "@types/enzyme": "^3.10.5",

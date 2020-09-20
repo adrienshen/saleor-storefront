@@ -31,7 +31,7 @@ export const Paths = [
 
 const Page = (props: ICollection) => {
   const { storedValue: show, setValue: showOverlay } = useLocalStorage("show", "false");
-  const { storedValue: storedCollection, setValue: setCollection } = useLocalStorage("collection");
+  const { setValue: setCollection } = useLocalStorage("collection");
 
   const { data, history } = props;
 
