@@ -45,12 +45,10 @@ const Page = (props: ICollection) => {
   };
 
   useEffect(() => {
-    console.log('use effect here');
     if (data.collection && data.collection.id) {
       setCollection(data?.collection?.id);
     }
   }, []);
-  console.log('storedCollection: ', storedCollection);
 
   return (
     <div

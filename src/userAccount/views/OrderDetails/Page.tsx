@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
 
-import { AddressSummary, CartTable, NotFound } from "../../../components";
+import { CartTable, NotFound } from "../../../components";
 import { LineI } from "../../../components/CartTable/ProductRow";
 import { OrderById_order, OrderById_order_lines } from "./types/OrderById";
 import {
