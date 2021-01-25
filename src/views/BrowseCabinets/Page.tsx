@@ -3,6 +3,7 @@ import { CollectionBlock } from "../../components/Collection/CollectionBlock";
 import PageHeader from "../../components/Header/PageHeader";
 import { SubHeader } from "../../components/Collection/SubHeader";
 import "./scss/index.scss";
+import { SubHeader } from "../../components/Collection/SubHeader";
 import { GridViewTypes } from "../../constants";
 import { ICollections } from "../Collection/types/Collection";
 
@@ -26,6 +27,7 @@ const Page = (props: ICollections) => {
         search={true}
         handleClick={handleBackButton}
       />
+
 
       <SubHeader handleViewChange={handleViewChange} title="Browse Cabinets" />
 

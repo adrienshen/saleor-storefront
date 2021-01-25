@@ -1,4 +1,5 @@
 import "./scss/index.scss";
+import OrderPage from "@temp/userAccount/views/OrderDetails/Orderpage";
 
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
@@ -12,6 +13,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   match: {
     params: { token },
   },
+  history,
 }) => {
   const { data: order, loading } = useOrderDetails({ token });
   const { data: user } = useUserDetails();
@@ -22,8 +24,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   }
 
   return (
-    <div className="order-details container">
-      <Page guest={guest} order={order} />
+    <div className="order-details">
+      {/*<Page guest={guest} order={order} />*/}
+      <OrderPage history={history} />
     </div>
   );
 };
