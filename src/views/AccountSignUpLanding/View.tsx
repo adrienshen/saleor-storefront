@@ -7,9 +7,7 @@ type ViewProps = RouteComponentProps<{ slug: string }>;
 export const View: React.FC<ViewProps> = ({
   match: {
     params: {},
-  },
-  history,
-}) => (
+  },history}) => (
   <div className="login-page">
     <Page history={history} />
   </div>

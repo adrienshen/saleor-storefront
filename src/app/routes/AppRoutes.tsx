@@ -26,6 +26,9 @@ import { MorePage } from "../../views/More";
 import { ShippingReturnPolicy } from "../../views/More/ShippingReturnPolicy";
 import { FAQ } from "../../views/More/FAQ";
 import { AccountLogin } from "../../views/AccountLogin";
+import { AccountSignUpLanding } from "../../views/AccountSignUpLanding";
+import { AccountSignUp } from "../../views/AccountSignUp";
+
 
 import * as paths from "./paths";
 
@@ -36,6 +39,8 @@ export const Routes: React.FC = () => (
     <Route path={paths.searchUrl} component={SearchPage} />
     <Route path={paths.cartUrl} component={CartPage} />
     <Route path={paths.checkoutLoginUrl} component={AccountLogin} />
+    <Route path={paths.landUrl} component={AccountSignUpLanding} />
+    <Route path={paths.signUpUrl} component={AccountSignUp} />
     <Route path={paths.pageUrl} component={ArticlePage} />
     <Route path={accountPaths.baseUrl} component={UserAccount} />
     <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />

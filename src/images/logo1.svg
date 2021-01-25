@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="145.865" height="67.056" viewBox="0 0 145.865 67.056">
+  <g id="logo" transform="translate(-41.031 -250)">
+    <circle id="circle" cx="33.528" cy="33.528" r="33.528" transform="translate(41.031 250)" fill="#242424"/>
+    <g id="image" transform="translate(55.325 260.656)">
+      <path id="Path_543" data-name="Path 543" d="M1090.134,389.7,1080,396.023V368.511l21.63-13.092v10.1" transform="translate(-1077.716 -355.419)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2"/>
+      <path id="Path_544" data-name="Path 544" d="M1075,380.61l27.858,13.879L1075,412.756Z" transform="translate(-1075 -369.105)" fill="#242424" opacity="0.57"/>
+      <path id="Path_545" data-name="Path 545" d="M1129.467,396.419l-15.578,10.219V384.412l15.45-10.154" transform="translate(-1096.13 -365.654)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="2"/>
+      <rect id="Rectangle_1759" data-name="Rectangle 1759" width="5.937" height="30.598" transform="translate(32.424 4.832)" fill="#242424"/>
+      <path id="Path_546" data-name="Path 546" d="M1122.562,373.861v2.049l5.123-3.373v-2.049Z" transform="translate(-1100.841 -363.606)" fill="#242424"/>
+      <rect id="Rectangle_1760" data-name="Rectangle 1760" width="1.37" height="7.764" transform="translate(11.417 31.32)" fill="#242424"/>
+      <circle id="Ellipse_345" data-name="Ellipse 345" cx="1.37" cy="1.37" r="1.37" transform="translate(22.834 25.383)" fill="#fff"/>
+    </g>
+    <text id="ONE_HOME" data-name="ONE
+HOME" transform="translate(115.896 276.887)" fill="#242424" font-size="23" font-family="Kiona-Regular, Kiona" letter-spacing="0.05em"><tspan x="0" y="0">ONE</tspan><tspan x="0" y="27">HOME</tspan></text>
+  </g>
+</svg>
